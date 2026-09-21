@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><title>Water layout preview</title>
+<style>body{margin:0;background:#eee}iframe{display:block;border:0;height:100vh}#result{position:fixed;bottom:0;right:0;background:white;color:black;font:12px monospace}</style>
+<iframe src="../index.html"></iframe><pre id="result">RUNNING</pre>
+<script>
+const frame=document.querySelector('iframe');
+frame.style.width=(new URLSearchParams(location.search).get('width')||'1440')+'px';
+frame.onload=()=>{
+  const doc=frame.contentDocument;
+  doc.querySelector('[data-enter-work]').click();
+  setTimeout(()=>{
+    frame.contentWindow.eval('portfolioScene.update(0.016, performance.now()); portfolioScene.render(performance.now());');
+    const bubbles=[...doc.querySelectorAll('.underwater-bubble-hit:not([hidden])')];
+    document.querySelector('#result').textContent=(doc.documentElement.scrollWidth<=frame.clientWidth?'PASS':'FAIL')+' overflow; '+bubbles.length+' accessible bubbles; '+frame.clientWidth+'px';
+  },1800);
+};
+</script>

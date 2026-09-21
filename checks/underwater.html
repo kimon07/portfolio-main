@@ -1,0 +1,46 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Underwater rendering checks</title>
+<style>body{margin:0}canvas{width:100vw;height:100vh}#result{position:fixed;top:0;background:white;color:black}.underwater-controls{position:absolute;inset:0;pointer-events:none}.underwater-bubble-hit{position:absolute;pointer-events:auto;background:transparent;border:0}</style>
+<canvas></canvas><pre id="result">RUNNING</pre>
+<script src="../underwater.js"></script>
+<script>
+function createMat4(){return new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);}
+function pointInQuad(x,y,p){return x>=p[0][0]&&x<=p[2][0]&&y>=p[0][1]&&y<=p[2][1];}
+function createProgram(gl,vs,fs){
+  const program=gl.createProgram();
+  for(const [type,source] of [[gl.VERTEX_SHADER,vs],[gl.FRAGMENT_SHADER,fs]]){
+    const shader=gl.createShader(type);gl.shaderSource(shader,source);gl.compileShader(shader);
+    if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(shader));
+    gl.attachShader(program,shader);
+  }
+  gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));return program;
+}
+const results=[];
+const check=(name,value)=>{results.push((value?'PASS ':'FAIL ')+name);if(!value)throw Error(name);};
+try{
+  const canvas=document.querySelector('canvas');canvas.width=innerWidth;canvas.height=innerHeight;
+  const gl=canvas.getContext('webgl2');check('WebGL2 available',!!gl);
+  let reduced=false;
+  const scene={gl,experience:document.body,sceneMode:'index',hitAreas:[],setHover(){},isReducedMotion:()=>reduced};
+  const water=new UnderwaterScene(scene);
+  check('All shaders compile and link',!!water.bubbleProgram);
+  let time=0;
+  function frame(){gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(.157,.345,1,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);water.render(time);water.updateHitTargets();time+=50;}
+  frame();
+  const visible=water.bubbles.filter(b=>b.visible);
+  check('Responsive bubble count',visible.length===11);
+  check('44px minimum touch targets',visible.every(b=>parseFloat(b.button.style.width)>=44));
+  check('Bubbles fit horizontally',visible.every(b=>b.screen.x-b.screen.radius>=0&&b.screen.x+b.screen.radius<=innerWidth));
+  check('Varied sizes',Math.max(...visible.map(b=>b.screen.radius))/Math.min(...visible.map(b=>b.screen.radius))>3);
+  const bubble=visible[0];bubble.button.click();check('Click starts pop',bubble.poppedAt!==null);
+  for(let i=0;i<8;i++)frame();check('Burst renders without GL errors',gl.getError()===gl.NO_ERROR);
+  for(let i=0;i<45;i++)frame();check('Bubble regenerates',bubble.poppedAt===null&&!bubble.button.hasAttribute('aria-disabled'));
+  reduced=true;frame();const rotation=bubble.rotation;frame();check('Reduced motion freezes rotation',rotation===bubble.rotation);
+  bubble.button.click();for(let i=0;i<46;i++)frame();check('Reduced motion pop recovers',bubble.poppedAt===null);
+  scene.hitAreas=[{points:[[0,0],[innerWidth,0],[innerWidth,innerHeight],[0,innerHeight]]}];frame();check('Artwork keeps click priority',visible.every(b=>b.button.hidden));
+  scene.menuOpen=true;frame();check('Menu hides bubble controls',water.layer.hidden);
+  check('No WebGL errors',gl.getError()===gl.NO_ERROR);
+  document.querySelector('#result').textContent=results.join('\n')+'\nDONE '+innerWidth+'x'+innerHeight;
+}catch(error){document.querySelector('#result').textContent=results.join('\n')+'\nERROR '+error.stack;}
+</script>

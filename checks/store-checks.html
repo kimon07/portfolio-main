@@ -1,0 +1,63 @@
+<!doctype html><meta charset="utf-8"><title>NESTO functional checks</title><pre id="result">RUNNING</pre><iframe id="test" style="width:1440px;height:950px"></iframe><script>
+(async()=>{
+const frame=document.querySelector('#test'),out=document.querySelector('#result'),results=[];
+const check=(name,ok)=>{results.push((ok?'PASS ':'FAIL ')+name);out.textContent=results.join('
+');};
+const pause=ms=>new Promise(r=>setTimeout(r,ms));
+const load=url=>new Promise(resolve=>{frame.onload=()=>resolve(frame.contentDocument);frame.src='../nesto-shop/'+url;});
+let doc;
+try{
+doc=await load('index.html');frame.contentWindow.localStorage.removeItem('nesto-shop-v2');doc=await load('index.html');
+check('Three hero banners',doc.querySelectorAll('.n-slide').length===3);
+doc.querySelector('[data-slide="2"]').click();check('Hero pagination switches slide',!doc.querySelectorAll('.n-slide')[2].hidden);
+doc.querySelector('[data-slide-step="-1"]').click();check('Hero previous control',!doc.querySelectorAll('.n-slide')[1].hidden);
+doc.querySelector('[data-slide-pause]').click();check('Autoplay pause',doc.querySelector('[data-slide-pause]').getAttribute('aria-label')==='자동 재생 시작');
+check('Spaces and stories restored',doc.querySelectorAll('.n-space').length===4&&doc.querySelectorAll('.n-story').length===4);
+check('Desktop mega menus retained',doc.querySelectorAll('.gnb2depth').length>=5);
+doc.querySelector('[data-action="search"]').click();check('Search dialog',doc.querySelector('.n-modal').open&&!!doc.querySelector('input[type="search"]'));doc.querySelector('[data-close]').click();
+doc.querySelector('[data-like="1"]').click();check('Wishlist toggle',doc.querySelector('[data-like="1"]').getAttribute('aria-pressed')==='true');
+doc=await load('list.html');check('All eighteen products retained',doc.querySelector('[data-count]').textContent.includes('18'));
+check('Catalog pagination limits first page',doc.querySelectorAll('.n-card').length===12);
+doc.querySelector('[data-page="2"]').click();check('Second catalog page',doc.querySelectorAll('.n-card').length===6);
+doc.querySelector('[data-category="sofa"]').click();check('Category filter',doc.querySelectorAll('.n-card').length===3);
+doc.querySelector('[data-sort]').value='low';doc.querySelector('[data-sort]').dispatchEvent(new frame.contentWindow.Event('change'));
+check('Sort state recorded',frame.contentWindow.location.search.includes('sort=low'));
+doc=await load('list.html?q=존재하지않는상품');check('Search empty state',!!doc.querySelector('.n-empty')&&doc.querySelectorAll('.n-card').length===0);
+doc=await load('product.html?id=1');check('Wishlist persisted across pages',doc.querySelector('[data-like="1"]').getAttribute('aria-pressed')==='true');
+doc.querySelector('[data-photo="1"]').click();check('Gallery thumbnail selection',doc.querySelector('[data-photo="1"]').getAttribute('aria-pressed')==='true');
+doc.querySelector('[data-gallery-zoom]').click();check('Gallery zoom dialog',doc.querySelector('.n-modal').open);doc.querySelector('[data-close]').click();
+doc.querySelector('[data-qty="1"]').click();doc.querySelector('#n-size').value='care';doc.querySelector('#n-size').dispatchEvent(new frame.contentWindow.Event('change'));
+check('Options and quantity update amount',doc.querySelector('[data-total]').textContent==='1,960,000원');
+doc.querySelector('[data-add-cart]').click();doc.querySelector('[data-action="cart"]').click();
+check('Cart has selected configuration',doc.querySelector('.n-cart-row').textContent.includes('케어 키트 포함')&&doc.querySelector('.n-cart-row output').textContent==='2');
+doc.querySelector('.n-modal [data-action="coupon"]').click();
+check('Coupon cap calculation',doc.querySelector('.n-cart-totals').textContent.includes('1,930,000원'));
+doc.querySelector('[data-close]').click();
+doc.querySelector('[data-review-more]').click();check('Review expand',doc.querySelector('[data-review-more]').getAttribute('aria-expanded')==='true');
+doc.querySelector('[data-helpful]').click();check('Review helpful toggles',doc.querySelector('[data-helpful]').getAttribute('aria-pressed')==='true');
+doc.querySelector('[data-lightbox]').click();check('Review image zoom',doc.querySelector('.n-modal').open);doc.querySelector('[data-close]').click();
+doc.querySelector('[data-question]').click();let form=doc.querySelector('[data-question-form]');form.elements.name.value='테스트';form.elements.title.value='<img src=x onerror=alert(1)>';form.elements.body.value='상품 구성 문의';form.requestSubmit();
+check('Question saved and escaped',doc.querySelector('[data-questions]').textContent.includes('<img src=x')&&!doc.querySelector('[data-questions] img'));
+doc=await load('product.html?id=1');check('Question persists after reload',doc.querySelector('[data-questions]').textContent.includes('상품 구성 문의'));
+doc.querySelector('[data-action="cart"]').click();check('Cart persists after reload',doc.querySelectorAll('.n-cart-row').length===1);
+doc.querySelector('[data-checkout]').click();check('Checkout summary matches cart',doc.querySelector('.n-modal-body').textContent.includes('1,930,000원'));
+doc.querySelector('[data-order-confirm]').click();check('Order completion',doc.querySelector('#n-modal-title').textContent.includes('완료'));
+doc.querySelector('[data-close]').click();doc.querySelector('[data-action="cart"]').click();check('Cart cleared after checkout',doc.querySelectorAll('.n-cart-row').length===0);doc.querySelector('[data-close]').click();
+doc.querySelector('[data-action="account"]').click();form=doc.querySelector('[data-profile-form]');form.elements.name.value='NESTO TEST';form.requestSubmit();
+check('Profile and order history',doc.querySelector('.n-modal-body').textContent.includes('NESTO TEST')&&!!doc.querySelector('[data-order-cancel]'));
+doc.querySelector('[data-order-cancel]').click();check('Order cancellation',doc.querySelector('.n-modal-body').textContent.includes('취소됨'));doc.querySelector('[data-close]').click();
+doc=await load('product.html?id=999');check('Unknown product fallback',doc.querySelector('.n-empty').textContent.includes('찾을 수'));
+doc=await load('index.html');frame.style.width='390px';await pause(100);
+doc.querySelector('.btn-menu').click();check('Mobile menu opens',doc.querySelector('.smart-overlay-menu').classList.contains('on')&&!doc.querySelector('.smart-overlay-menu').inert);
+doc.querySelector('.gnb-smart>li:nth-child(3)>a').click();check('Mobile submenu switching',doc.querySelectorAll('.gnb2depth-smart.on').length===1);
+doc.querySelector('.btn-menu-close').click();check('Mobile menu closes',doc.querySelector('.smart-overlay-menu').inert);
+for(const width of [1440,768,390,320]){frame.style.width=width+'px';for(const path of ['index.html','list.html','product.html?id=1']){doc=await load(path);await pause(80);check(path+' overflow at '+width,doc.documentElement.scrollWidth<=width);}}
+frame.contentWindow.localStorage.removeItem('nesto-shop-v2');
+out.textContent=results.join('
+')+'
+DONE';
+}catch(error){out.textContent=results.join('
+')+'
+ERROR '+error.stack;}
+})();
+</script>
