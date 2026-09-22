@@ -1,0 +1,432 @@
+/* =========================================================
+   Common design tokens
+   ========================================================= */
+:root {
+  /* 디바이스별 기본 글자 크기 */
+  --fs-pc: 16px;
+  --fs-pad: 16px;
+  --fs-mo: 12px;
+
+  /* 행간 */
+  --lh1: 1.2;
+  --lh2: 1.45;
+
+  /* 제목 및 본문 글자 크기 */
+  --fs-h1: 2.4414rem;
+  --fs-h2: 1.9531rem;
+  --fs-h3: 1.5625rem;
+  --fs-h4: 1.25rem;
+  --fs-body1: 1rem;
+  --fs-body2: 0.85rem;
+  --fs-detail: 0.7225rem;
+
+  /* 글자 두께 */
+  --fw1: 400;
+  --fw2: 700;
+
+  /* 여백 */
+  --space-3x-large: 6rem;
+  --space-2x-large: 3rem;
+  --space-x-large: 2rem;
+  --space-normal: 1rem;
+  --space-x-small: 0.5rem;
+  --space-2x-small: 0.25rem;
+
+  /* 메인 그린 */
+  --main-0: #e9f5ea;
+  --main-100: #d6f1da;
+  --main-200: #c3ebc8;
+  --main-300: #afe1b6;
+  --main-400: #9bd3a3;
+  --main-500: #87c08f;
+  --main-600: #71a678;
+  --main-700: #5a8660;
+  --main-800: #406144;
+  --main-900: #263b29;
+
+  /* 기존 cream 변수 호환용 별칭 */
+  --cream-0: var(--main-0);
+  --cream-100: var(--main-100);
+  --cream-200: var(--main-200);
+  --cream-300: var(--main-300);
+  --cream-400: var(--main-400);
+  --cream-500: var(--main-500);
+  --cream-600: var(--main-600);
+  --cream-700: var(--main-700);
+  --cream-800: var(--main-800);
+  --cream-900: var(--main-900);
+
+  /* 그레이 */
+  --gray-0: #ffffff;
+  --gray-100: #fcfcfc;
+  --gray-200: #f6f6f6;
+  --gray-300: #eeeeee;
+  --gray-400: #e1e1e1;
+  --gray-500: #d0d0d0;
+  --gray-600: #b9b9b9;
+  --gray-700: #9d9d9d;
+  --gray-800: #7c7c7c;
+  --gray-900: #1e1e1e;
+
+  /* 상태 및 보조 색상 */
+  --sub-color: var(--main-500);
+  --red: #b31f1f;
+
+  /* 현재 Aesop 페이지에서 사용하는 공통 토큰 */
+  --ink: var(--gray-900);
+  --paper: var(--gray-0);
+  --sand: var(--main-100);
+  --blush: var(--main-0);
+  --forest: var(--main-900);
+  --copper: var(--main-700);
+  --footer: var(--gray-900);
+  --line: rgb(30 30 30 / 20%);
+  --font-sans: 'Pretendard', Arial, 'Noto Sans KR', sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--paper);
+  color: var(--gray-900);
+  font-family: var(--font-sans);
+  font-size: var(--fs-pc);
+  font-weight: var(--fw1);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh1);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh1);
+}
+
+h4 {
+  font-size: var(--fs-h4);
+  line-height: var(--lh1);
+}
+
+p {
+  line-height: var(--lh2);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: var(--forest);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   Layout utilities
+   ========================================================= */
+.common-frame {
+  width: 100%;
+  padding-inline: var(--space-2x-large);
+}
+
+/* 고정 헤더를 사용하는 페이지에서만 선택적으로 적용 */
+.main-header-offset {
+  margin-top: 154px;
+}
+
+/* 전체 섹션에 동일한 세로 여백이 필요한 페이지에서 사용 */
+.common-page > section {
+  padding-block: var(--space-3x-large);
+}
+
+.pc {
+  display: block;
+}
+
+.pad,
+.mo {
+  display: none;
+}
+
+.site-shell {
+  width: 100%;
+  background: var(--paper);
+}
+
+/* =========================================================
+   Typography utilities
+   ========================================================= */
+.title-1 {
+  font-weight: var(--fw2);
+}
+
+.desc-1 {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--gray-700);
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-x-large);
+  margin-bottom: var(--space-2x-large);
+  color: var(--gray-800);
+  text-align: center;
+}
+
+.title h1 {
+  margin-bottom: 0;
+  font-weight: var(--fw2);
+}
+
+.title span {
+  width: 1rem;
+  height: 0.125rem;
+  background-color: var(--gray-800);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   Price utilities
+   ========================================================= */
+.pay-original {
+  color: var(--gray-500);
+  font-size: var(--fs-body2);
+}
+
+.pay-original span {
+  text-decoration: line-through;
+}
+
+.pay-discount {
+  display: flex;
+  align-items: center;
+  gap: var(--space-x-small);
+}
+
+.discount {
+  font-size: var(--fs-body2);
+}
+
+.pay {
+  color: var(--red);
+}
+
+/* =========================================================
+   Product list utilities
+   ========================================================= */
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(50px, 1fr));
+  gap: var(--space-2x-large) var(--space-normal);
+}
+
+.grid-list li figure {
+  margin: 0 0 1.75rem;
+  line-height: 0;
+}
+
+.grid-list li figure img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--space-x-small);
+  object-fit: cover;
+}
+
+.like-badge.noab {
+  position: initial;
+}
+
+.sale-txt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-x-small);
+}
+
+/* =========================================================
+   Existing page utilities
+   ========================================================= */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 16px;
+  left: 16px;
+  padding: 12px 18px;
+  background: var(--ink);
+  color: var(--gray-0);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.text-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 24px;
+  padding: 0 22px;
+  border: 1px solid currentColor;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.text-button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 1024px) {
+  html {
+    font-size: var(--fs-pad);
+  }
+
+  .common-frame {
+    padding-inline: var(--space-x-large);
+  }
+
+  .main-header-offset {
+    margin-top: 5rem;
+  }
+
+  .pc,
+  .mo {
+    display: none;
+  }
+
+  .pad {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: var(--fs-mo);
+  }
+
+  .common-frame {
+    padding-inline: var(--space-normal);
+  }
+
+  .grid-list {
+    grid-template-columns: repeat(2, minmax(50px, 1fr));
+  }
+
+  .pc,
+  .pad {
+    display: none;
+  }
+
+  .mo {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

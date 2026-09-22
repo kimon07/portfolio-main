@@ -1,0 +1,45 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>AESOP regression checks</title><style>body{font:14px monospace}iframe{position:absolute;left:0;top:0;border:0;opacity:.01;pointer-events:none}pre{white-space:pre-wrap}</style><pre id="results">RUNNING</pre><script>
+(async()=>{
+ const results=[],check=(name,ok,detail='')=>{results.push({name,pass:!!ok,detail});document.querySelector('#results').textContent=JSON.stringify({running:true,total:results.length,last:name,failed:results.filter(x=>!x.pass)},null,2);};
+ const frame=document.createElement('iframe');frame.height=1080;document.body.append(frame);
+ const load=(page,width=402)=>new Promise((resolve,reject)=>{frame.width=width;const timeout=setTimeout(()=>reject(new Error('Load timed out: '+page)),20000);frame.onload=()=>{clearTimeout(timeout);setTimeout(()=>resolve(frame.contentWindow),80);};const u=new URL('../aesop/'+page,location.href);u.searchParams.set('qa','1');frame.src=u.href;});
+ const images=async w=>{w.document.querySelectorAll('img').forEach(img=>img.loading='eager');for(let i=0;i<40;i++){if([...w.document.images].every(img=>img.complete))break;await new Promise(r=>setTimeout(r,50));}};
+ const click=(w,s)=>{const el=w.document.querySelector(s);if(!el)throw new Error('Missing '+s);el.click();};
+ const report=()=>{const data=JSON.stringify({done:true,total:results.length,failed:results.filter(x=>!x.pass),results},null,2);document.querySelector('#results').textContent=data;document.title='DONE '+results.filter(x=>!x.pass).length+' failures';fetch('/__aesop_qa',{method:'POST',body:data});};
+ try{
+  let w=await load('index.html');const ns=['cart','recent','favorites','questions','checkout','orders'];ns.forEach(k=>w.localStorage.removeItem('aesop.'+k));
+  const pages=['index.html','shoppingLIst.html','purchase.html','purchase.html?id=best-1','purchase.html?id=set-2','promotion.html','about.html','journal.html','search.html','cart.html','account.html','checkout.html','support.html','together.html','footer.html'];
+  for(const width of [1920,1024,402])for(const p of pages){
+   w=await load(p,width);await images(w);const d=w.document;
+   check(`${width} ${p}: no horizontal overflow`,d.documentElement.scrollWidth<=d.documentElement.clientWidth,`${d.documentElement.scrollWidth}/${d.documentElement.clientWidth}`);
+   check(`${width} ${p}: images`,[...d.images].every(i=>i.complete&&i.naturalWidth>0),[...d.images].filter(i=>!i.naturalWidth).map(i=>i.getAttribute('src')).join(','));
+   check(`${width} ${p}: no dead links`,![...d.querySelectorAll('a')].some(a=>a.getAttribute('href')==='#'||!a.getAttribute('href')));
+   check(`${width} ${p}: no runtime errors`,!(w.__qaErrors||[]).length,(w.__qaErrors||[]).join('; '));
+   if(width<=1024){click(w,'.btn-menu button');check(`${width} ${p}: menu opens`,d.querySelector('.smart-overlay-menu').classList.contains('on'));click(w,'[data-menu="about"]');check(`${width} ${p}: submenu opens`,d.querySelector('[data-depth="about"]').classList.contains('on'));click(w,'[data-menu="about"]');check(`${width} ${p}: submenu toggles`,!d.querySelector('[data-depth="about"]').classList.contains('on'));click(w,'.btn-menu-close button');check(`${width} ${p}: menu closes`,!d.body.classList.contains('menu-open'));}
+  }
+  w=await load('shoppingLIst.html',1024);let d=w.document;check('catalog paginates first 12 products',d.querySelectorAll('[data-product-card]').length===12);while(!d.querySelector('.ae-load-more').hidden)click(w,'.ae-load-more');check('view more exposes all 41 products',d.querySelectorAll('[data-product-card]').length===41);
+  click(w,'[data-filter="HAND CARE"]');check('category actually filters',d.querySelectorAll('[data-product-card]').length>0&&[...d.querySelectorAll('[data-product-card]')].every(c=>w.AesopShop.find(c.dataset.id).category==='HAND CARE'));
+  click(w,'[data-filter="ALL"]');let sort=d.querySelector('[data-product-sort]');sort.value='price-high';sort.dispatchEvent(new w.Event('change'));const prices=[...d.querySelectorAll('[data-product-card]')].map(c=>w.AesopShop.find(c.dataset.id).price);check('price sorting',prices.every((x,i)=>!i||prices[i-1]>=x));
+  click(w,'[data-list-add]');check('list cart persists',JSON.parse(w.localStorage.getItem('aesop.cart')).length===1);w.localStorage.removeItem('aesop.cart');
+  w=await load('purchase.html?id=new-5');d=w.document;
+  click(w,'.size-option:nth-of-type(2)');click(w,'[data-quantity-plus]');click(w,'[data-coupon]');check('size, quantity, coupon total = 256500',d.querySelector('[data-total]').textContent.replace(/\D/g,'')==='256500');
+  click(w,'[data-gift]');click(w,'[data-add-cart]');let items=JSON.parse(w.localStorage.getItem('aesop.cart'));check('cart saves option + quantity + gift + coupon',items[0].option==='500mL'&&items[0].qty===2&&items[0].gift&&items[0].discount);
+  click(w,'[data-favorite]');check('favorites persist',JSON.parse(w.localStorage.getItem('aesop.favorites')).includes('new-5'));
+  click(w,'[data-tab="qna"]');check('Q&A tab',!d.querySelector('#qna-panel').hidden&&d.querySelector('#review-panel').hidden);click(w,'.qna-list li>button');check('Q&A accordion',d.querySelector('.qna-list li>button').getAttribute('aria-expanded')==='true');
+  click(w,'[data-qna-write]');check('question dialog opens',d.querySelector('#ae-question-dialog').open);d.querySelector('#ae-question').value='제품의 질감이 궁금합니다.';d.querySelector('#ae-question-dialog form').requestSubmit();check('question saved and visible',JSON.parse(w.localStorage.getItem('aesop.questions')).length===1&&d.querySelector('.ae-question-notes').textContent.includes('제품의 질감'));
+  w=await load('cart.html');d=w.document;check('cart total matches product',d.querySelector('.ae-order-summary strong').textContent==='256,500원');click(w,'[data-cart-change="0"][data-delta="-1"]');check('cart quantity updates total',d.querySelector('.ae-order-summary strong').textContent==='128,250원');
+  w=await load('checkout.html');d=w.document;click(w,'[data-finish-order]');check('preview requires acknowledgement',!!d.querySelector('[data-finish-order]'));d.querySelector('#ae-demo-consent').checked=true;click(w,'[data-finish-order]');check('preview completes without payment',d.body.textContent.includes('결제나 배송은 진행되지 않았습니다.')&&JSON.parse(w.localStorage.getItem('aesop.orders')).length===1);check('cart clears after preview',JSON.parse(w.localStorage.getItem('aesop.cart')).length===0);
+  w=await load('purchase.html?id=best-1');d=w.document;check('unique product details',d.querySelector('#product-title').textContent==='레버런스 아로마틱 핸드 워시');click(w,'[data-tgt-view="recent"]');check('recent tab uses real history',d.querySelector('.ae-related-grid').textContent.includes('선릿 보태니컬 바디 밤'));
+  w=await load('search.html?q=핸드');d=w.document;check('search produces relevant results',d.querySelectorAll('.ae-card').length>0&&[...d.querySelectorAll('.ae-card h3')].every(e=>e.textContent.includes('핸드')));d.querySelector('input').value='zzznomatch';d.querySelector('.ae-search').requestSubmit();check('search no-results state',d.body.textContent.includes('찾으시는 제품이 없습니다.'));
+  w=await load('purchase.html?id=not-real');check('invalid product has recovery link',w.document.body.textContent.includes('제품을 찾을 수 없습니다.'));
+  const catalog=w.AesopCatalog;
+  for(const product of catalog){w=await load('purchase.html?id='+product.id,402);d=w.document;check(product.id+': correct detail',d.querySelector('#product-title')?.textContent===product.name);check(product.id+': correct base price',d.querySelector('[data-unit-price]')?.textContent.replace(/\D/g,'')===String(product.price));check(product.id+': no runtime errors',!(w.__qaErrors||[]).length);}
+  w=await load('purchase.html?id=new-2');d=w.document;click(w,'.size-option:nth-of-type(2)');check('non-default product option has own price',d.querySelector('[data-total]').textContent.replace(/\D/g,'')==='89000');click(w,'.buy-button');check('buy opens order summary',d.querySelector('[data-order-dialog]').open);click(w,'[data-order-confirm]');await new Promise(r=>setTimeout(r,300));w=frame.contentWindow;check('buy continues to checkout preview',w.location.pathname.endsWith('checkout.html')&&w.document.body.textContent.includes('89,000원'));
+  w=await load('account.html?tab=orders');check('order history renders saved preview',w.document.body.textContent.includes('PREVIEW-'));
+  w=await load('cart.html');w.localStorage.setItem('aesop.questions','[null,{},4]');w=await load('purchase.html?id=new-1');check('malformed optional storage handled',!(w.__qaErrors||[]).length);w.localStorage.removeItem('aesop.questions');
+  w=await load('index.html',1920);d=w.document;const swiper=d.querySelector('[data-hero-swiper]').swiper;swiper.autoplay.stop();const before=swiper.realIndex;swiper.slideNext(0);check('hero slider changes',swiper.realIndex!==before);const campaign=d.querySelector('[data-campaign-swiper]').swiper;const prev=campaign.realIndex;click(w,'.campaign-next');check('campaign next button',campaign.realIndex!==prev);
+  ns.forEach(k=>w.localStorage.removeItem('aesop.'+k));
+ }catch(e){check('unexpected test exception',false,e.stack);}
+ report();
+})();
+</script></html>

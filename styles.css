@@ -1057,18 +1057,19 @@ a:focus-visible {
   padding-bottom: 4px;
 }
 .profile-about__statement h2 {
-  margin: 0 0 24px;
-  font-size: clamp(28px, 2.9vw, 44px);
-  font-weight: 500;
-  line-height: 1.55;
-  letter-spacing: -0.06em;
+    margin: 0 0 60px;
+    font-size: clamp(28px, 2.9vw, 44px);
+    font-weight: 700;
+    line-height: 1.55;
+    letter-spacing: -0.06em;
 }
 .profile-about__statement > p {
-  margin: 0 0 24px;
-  color: rgba(241, 240, 233, 0.8);
-  font-size: clamp(16px, 1.5vw, 22px);
-  line-height: 1.75;
-  letter-spacing: -0.03em;
+    margin: 0 0 12px;
+    color: rgb(255 255 255 / 100%);
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.75;
+    letter-spacing: -0.03em;
+    font-weight: 300;
 }
 .profile-spark {
   display: block;
@@ -1117,8 +1118,20 @@ a:focus-visible {
 .profile-skills__heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 38px; }
 .profile-skills__heading h2 { margin: 0; font-size: clamp(30px, 3vw, 42px); line-height: 1.15; font-weight: 400; letter-spacing: -0.065em; }
 .profile-skills__heading h2 span { color: var(--acid); }
-.profile-skills__heading > p { margin: 0; font-size: 14px; line-height: 1.8; }
-.profile-skills__heading > p span { display: block; margin-top: 16px; opacity: 0.55; font: 500 9px/1.6 var(--mono); letter-spacing: 0.06em; }
+.profile-skills__heading > p {
+    margin: 0;
+    font-size: 50px;
+    line-height: 1.8;
+    font-weight: 600;
+}
+.profile-skills__heading > p span {
+    display: block;
+    margin-top: 16px;
+    opacity: 0.55;
+    font: 500 9px/1.6 var(--mono);
+    letter-spacing: 0.06em;
+    text-align: right;
+}
 .profile-skills__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 40px; }
 .skill-card { position: relative; display: flex; flex-direction: column; min-height: 270px; padding: 30px; border-radius: 14px; border: 2px solid rgba(241, 240, 233, 0.7); background: rgba(255, 255, 255, 0.035); transition: border-color 300ms ease, background 300ms ease, transform 600ms var(--ease-out), opacity 600ms ease; }
 .skill-card__meta {
@@ -2226,6 +2239,23 @@ a:focus-visible {
   .detail-swatch {
     padding: 8px;
     font-size: 6px;
+  }
+}
+
+@media (max-width:450px){
+    .detail-next {
+      display: flex;
+      width: 100%;
+      min-height: 42svh;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: var(--pad);
+      background: var(--detail-ink);
+      color: var(--detail-bg);
+      text-align: left;
+      gap: 1rem;
+      flex-direction: column;
+      cursor: pointer;
   }
 }
 
@@ -4886,8 +4916,8 @@ a:focus-visible {
 }
 
 html[lang="ko"] :is(h1, h2) {
-  line-height: 1.05;
-  letter-spacing: 0;
+    line-height: 1.2;
+    letter-spacing: 0;
 }
 
 html[lang="ko"] :is(h3, h4) {
@@ -4921,7 +4951,7 @@ html :is(
   .aesop-goal h2,
   .aesop-final h2
 ) {
-  line-height: 1.02;
+  line-height: 1.12;
   letter-spacing: 0;
   word-spacing: 0.04em;
   word-break: keep-all;

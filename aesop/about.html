@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브랜드 이야기 | Aesop Reimagined</title>
+
+    <meta name="description" content="Aesop의 브랜드 감성을 재해석한 웹사이트 리디자인 포트폴리오 프로젝트입니다.">
+
+    <meta name="keywords" content="Aesop, 이솝, 스킨케어, 바디케어, 핸드케어, 헤어케어, 향수, 퍼스널케어, 프래그런스">
+    <meta name="author" content="Aesop team project">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph : 카카오톡, 페이스북 등 공유 -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Aesop team project">
+    <meta property="og:title" content="Aesop team project | 새로운 공간의 시작">
+    <meta property="og:local" content="ko_KR">
+
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/react.css">
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <script src="./js/header.js" defer></script>
+    <link rel="stylesheet" href="./css/completion.css">
+    <script src="./js/catalog.js" defer></script>
+    <script src="./js/site.js" defer></script>
+</head>
+
+<body>
+    <!-- 데스크탑용 헤더 -->
+    <header class="pc">
+        <div class="common-frame desktop-header-row">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./img/로고.svg" alt="Aesop 로고">
+                </a>
+            </div>
+            <nav class="desktop-nav" aria-label="주 메뉴">
+                <ul class="gnb" aria-label="주 메뉴">
+                    <li><a href="./index.html">HOME</a></li>
+                    <li>
+                        <a href="./shoppingLIst.html?view=new#products">NEW</a>
+                    </li>
+                    <li>
+                        <a href="./shoppingLIst.html?view=best#products">BEST SELLER</a>
+                    </li>
+                    <li>
+                        <a href="./shoppingLIst.html">STORE</a>
+                        <div class="gnb2depth">
+                            <div class="common-frame">
+                                <section>
+                                    <h4><a href="./shoppingLIst.html?view=new#products">전체신제품</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./shoppingLIst.html?category=FRAGRANCE#products">퍼퓸</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./shoppingLIst.html?category=HAND%20CARE#products">핸드&립</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./shoppingLIst.html?category=BODY%20%26%20HAIR#products">바디&헤어</a></h4>
+                                </section>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="./promotion.html">PROMOTION</a>
+                    </li>
+                    <li>
+                        <a href="./about.html">ABOUT</a>
+                        <div class="gnb2depth">
+                            <div class="common-frame">
+                                <section>
+                                    <h4><a href="./about.html">브랜드 소개</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./about.html#philosophy">브랜드 철학</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./about.html#sustainability">지속가능성</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./journal.html">저널</a></h4>
+                                </section>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </nav>
+            <div class="lnb">
+                <ul class="user-menu">
+                    <li>
+                        <a href="./search.html">
+                            <img src="./img/material-symbols-light_search-rounded.svg" alt="검색하기">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./account.html">
+                            <img src="./img/stash_person-light.svg" alt="로그인하기">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./cart.html">
+                            <img src="./img/teenyicons_basket-minus-outline.svg" alt="장바구니보기">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- 패드 / 모바일용 헤더 -->
+    <header class="smart-header">
+        <div class="common-frame">
+            <!-- 전체 메뉴 열기 -->
+            <div class="btn-menu">
+                <button type="button" aria-label="전체 메뉴 열기" aria-controls="smart-overlay-menu" aria-expanded="false">
+                    <img src="./img/menu.svg" alt="메뉴버튼">
+                </button>
+            </div>
+            <!-- 모바일 로고 -->
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./img/로고.svg" alt="Aesop 로고">
+                </a>
+            </div>
+            <!-- 모바일 사용자 메뉴 -->
+            <div class="lnb">
+                <ul class="user-menu">
+                    <li>
+                        <a href="./search.html">
+                            <img src="./img/material-symbols-light_search-rounded.svg" alt="검색하기">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./account.html">
+                            <img src="./img/stash_person-light.svg" alt="로그인하기">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./cart.html">
+                            <img src="./img/teenyicons_basket-minus-outline.svg" alt="장바구니 보기">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- 패드 / 모바일 전체 메뉴 -->
+    <div class="smart-overlay-menu" id="smart-overlay-menu" aria-hidden="true">
+        <!-- 모바일 전체 메뉴 상단 -->
+        <div class="smart-overlay-menu-header">
+            <div class="common-frame">
+                <!-- 전체 메뉴 닫기 -->
+                <div class="btn-menu-close">
+                    <button type="button" aria-label="전체 메뉴 닫기">
+                        <img src="./img/btn-close.svg" alt="닫기이미지">
+                    </button>
+                </div>
+                <!-- 로고 -->
+                <div class="logo">
+                    <a href="./index.html">
+                        <img src="./img/로고.svg" alt="Aesop 로고">
+                    </a>
+                </div>
+                <!-- 사용자 메뉴 -->
+                <div class="lnb">
+                    <ul class="user-menu">
+                        <li>
+                            <a href="./search.html">
+                                <img src="./img/material-symbols-light_search-rounded.svg" alt="검색하기">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./account.html">
+                                <img src="./img/stash_person-light.svg" alt="로그인하기">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./cart.html">
+                                <img src="./img/teenyicons_basket-minus-outline.svg" alt="장바구니 보기">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 모바일 1뎁스 메뉴 -->
+        <div class="smart-overlay-menu-top">
+            <div class="common-frame">
+                <ul class="gnb-smart" aria-label="모바일 주 메뉴">
+                    <li>
+                        <a href="./index.html">HOME</a>
+                    </li>
+                    <li>
+                        <a href="./shoppingLIst.html?view=new#products">NEW</a>
+                    </li>
+                    <li>
+                        <a href="./shoppingLIst.html?view=best#products">BESTSELLER</a>
+                    </li>
+                    <!-- 현재 선택된 메뉴 -->
+                    <li>
+                        <button type="button" class="smart-depth-button" data-menu="store" aria-controls="store-depth"
+                            aria-expanded="false">
+                            <span>STORE</span>
+                            <span class="depth-icon">+</span>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="./promotion.html">PROMOTION</a>
+                    </li>
+                    <li>
+                        <button type="button" class="smart-depth-button" data-menu="about" aria-controls="about-depth"
+                            aria-expanded="false">
+                            <span>ABOUT</span>
+                            <span class="depth-icon">+</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- 모바일 2뎁스 메뉴 -->
+        <div class="smart-overlay-menu-bottom">
+            <!-- STORE 2뎁스 -->
+            <div class="gnb2depth-smart" id="store-depth" data-depth="store">
+                <div class="common-frame">
+                    <section>
+                        <h4>
+                            <a href="./shoppingLIst.html?view=new#products">전체 신제품</a>
+                        </h4>
+                    </section>
+                    <section>
+                        <h4>
+                            <a href="./shoppingLIst.html?category=FRAGRANCE#products">퍼퓸</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./shoppingLIst.html?category=HAND%20CARE#products">핸드 & 립</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./shoppingLIst.html?category=BODY%20%26%20HAIR#products">바디 & 헤어</a>
+                        </h4>
+                    </section>
+                </div>
+            </div>
+            <!-- ABOUT 2뎁스 -->
+            <div class="gnb2depth-smart" id="about-depth" data-depth="about">
+                <div class="common-frame">
+                    <section>
+                        <h4>
+                            <a href="./about.html">브랜드 소개</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./about.html#philosophy">브랜드 철학</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./about.html#sustainability">지속가능성</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./journal.html">저널</a>
+                        </h4>
+                    </section>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<main class="ae-page" id="main-content"><section class="ae-editorial-hero"><div><header class="ae-intro"><p class="ae-kicker">AESOP / REIMAGINED</p><h1>자연을 가까이,<br>일상을 가볍게.</h1><p>식물의 빛과 향, 손끝에 남는 감각.<br>익숙한 하루를 새롭게 바라보는 작은 리추얼.</p></header><a class="ae-link" href="#philosophy">우리의 시선 ↓</a></div><img src="./img/promotion/promo-01-hero.png" alt="자연광 아래 식물과 돌, 리넨이 놓인 장면"></section><section class="ae-editorial" id="philosophy"><img src="./img/buy-info/tree.jpg" alt="시더 우드의 자연스러운 결" loading="lazy"><div><p class="ae-kicker">01 / PHILOSOPHY</p><h2>덜어내고,<br>감각에 집중합니다.</h2><p>매일 손이 가는 물건에는 그만의 이유가 있습니다. 편안한 질감, 오래 머물지 않는 향, 손에 익는 모양. 이 리브랜딩은 그러한 작은 경험에서 시작했습니다.</p><p>차분한 타이포그래피와 크림빛 여백 위에 연한 그린을 더해, 제품과 자연이 함께 보이도록 구성했습니다.</p><a class="ae-link" href="./shoppingLIst.html">컬렉션 살펴보기 ↗</a></div></section><section class="ae-values" id="sustainability"><p class="ae-kicker">02 / A MORE CONSIDERED ROUTINE</p><h2>오래 쓰는 일상에 관하여</h2><div class="ae-three"><article><span>01</span><h3>필요한 만큼</h3><p>자신의 생활에 맞는 용량을 선택하고, 사용하던 제품을 끝까지 사용하는 습관.</p></article><article><span>02</span><h3>다시 바라보기</h3><p>비워낸 용기를 정리하기 전, 재질과 지역의 분리배출 기준을 먼저 살펴보는 시간.</p></article><article><span>03</span><h3>천천히 고르기</h3><p>유행보다 취향을 따라, 오래 함께할 향과 질감을 찾는 즐거움.</p></article></div><p class="ae-note">이 페이지는 리브랜딩의 디자인 방향을 소개합니다. 공식 브랜드의 환경 성과나 인증을 뜻하지 않습니다.</p></section><section class="ae-wide-story"><img src="./img/promotion/promo-02-hero.png" alt="햇살이 드는 시트러스 가든" loading="lazy"><div><p class="ae-kicker">THE JOURNAL</p><h2>하루에 놓이는<br>세 가지 장면.</h2><a class="ae-link" href="./journal.html">이야기 읽기 ↗</a></div></section></main>
+    <footer>
+        <div class="footer-box">
+            <div class="box-wrap-5">
+                <div class="box one">
+                    <h4 class="t-txt-bold">회사 정보</h4>
+                    <ul>
+                        <li><a href="./about.html">브랜드 이야기</a></li>
+                        <li><a href="./support.html#careers">인재 채용</a></li>
+                        <li><a href="./about.html#sustainability">지속 가능성</a></li>
+                        <li><a href="./support.html#press">프레스</a></li>
+                    </ul>
+                </div>
+                <div class="box two">
+                    <h4 class="t-txt-bold">고객 지원</h4>
+                    <ul>
+                        <li><a href="./support.html#contact">문의하기</a></li>
+                        <li><a href="./support.html#stores">매장 찾기</a></li>
+                        <li><a href="./support.html#delivery">배송 및 반품</a></li>
+                        <li><a href="./support.html#faq">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="box three">
+                    <h4 class="t-txt-bold">법률 및 정책</h4>
+                    <ul>
+                        <li><a href="./support.html#terms">이용약관</a></li>
+                        <li><a href="./support.html#privacy">개인정보 처리방침</a></li>
+                        <li><a href="./support.html#cookies">쿠키 정책</a></li>
+                        <li><a href="./support.html#sales">판매 조건</a></li>
+                    </ul>
+                </div>
+                <div class="box cs">
+                    <div class="cs con">
+                        <h4 class="t-txt-bold">고객센터</h4>
+                        <h2 class="t-txt-bold"><a href="./support.html">이용 안내 ↗</a></h2>
+                        <dl class="cstime">
+                            <dt>제품 탐색</dt>
+                            <dd class="t-txt-bold">카테고리 · 검색</dd>
+                            <dt>나의 컬렉션</dt>
+                            <dd class="t-txt-bold">이 브라우저에 저장</dd>
+                            <dt class="t-txt-bold">주문 확인</dt>
+                            <dd class="t-txt-bold">미리보기 체험</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="box-section">
+                    <div class="logo">
+                        <img src="./img/footer/logo-foot.svg" alt="푸터로고">
+                    </div>
+                    <div class="sns">
+                        <ul>
+                            <li><a href="https://www.instagram.com/aesop/"><img src="./img/footer/icon-insta.svg"
+                                        alt="HF인스타"></a></li>
+                            <li><a href="https://www.youtube.com/@aesopskincare"><img src="./img/footer/icon-utube.svg"
+                                        alt="HF유투브"></a></li>
+                            <li><a href="https://pf.kakao.com/_BxdYjT"><img src="./img/footer/icon-talk.svg"
+                                        alt="HF카톡"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="copyright">
+                <span>© 2026 Aesop. All rights reserved.</span>
+                <span>취업용도의 이솝 리디자인 포트폴리오 홈페이지입니다.
+                </span>
+            </div>
+        </div>
+    </footer>
+</body></html>

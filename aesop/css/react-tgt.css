@@ -1,0 +1,148 @@
+/* 1129px */
+
+@media(max-width:1129px){
+html{
+    font-size: var(--fs-pad);
+    }
+    /* body{
+        background-color:red;
+    } */
+
+.tgt-img li{
+    width:100%;
+    max-width:250px;
+    min-width:0;
+}
+
+
+.tgt-img img{
+    width:100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+
+.tgt-caption-1 h4{
+    width:100%;
+    min-width:0;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+}
+
+/* 862px */
+
+@media(max-width:862px){
+html{
+    font-size: var(--fs-mo);
+}
+/* 
+body{
+        background-color:blue;
+    } */
+
+.tgt-img li{
+    width:100%;
+    max-width:160px;
+    min-width:0;
+}
+
+}
+
+/* 575px */
+
+@media(max-width:575px){
+  .together{
+        width:100%;
+        align-items:stretch;
+    }
+
+    /* 위쪽 제목 영역 */
+    .tgt-top{
+        width:100%;
+        padding:0 2.3rem;
+    }
+
+    .tgt-top ul{
+        display:flex;
+        justify-content:flex-start;
+        gap:3rem;
+    }
+
+    .tgt-top li{
+        flex-shrink:0;
+    }
+
+    .tgt-top h3{
+        white-space:nowrap;
+    }
+
+    /* 함께 보면 좋은 제품 */
+    .tgt-underline{
+        padding:0 2.3rem 1rem;
+        border-bottom:1px solid #000;
+    }
+
+
+    /* 상품 가로 스크롤 영역 */
+    .tgt-img{
+        width:100%;
+        overflow-x:auto;
+        overflow-y:hidden;
+        scrollbar-width:none;
+    }
+
+    .tgt-img::-webkit-scrollbar{
+        display:none;
+    }
+
+
+    /* 상품 목록 */
+    .tgt-img ul{
+        display:flex;
+        width:max-content;
+
+        /* 왼쪽 28px / 오른쪽 28px */
+        padding:0 2.3rem;
+
+        /* 상품 사이 간격 */
+        gap:1rem;
+    }
+
+
+    /* 상품 카드 */
+    .tgt-img li{
+        flex:0 0 160px;
+        width:160px;
+        min-width:0;
+    }
+
+
+    /* 상품 이미지 */
+    .tgt-img img{
+        display:block;
+        width:160px;
+        height:160px;
+        object-fit:cover;
+
+        user-select:none;
+        -webkit-user-drag:none;
+    }
+
+
+    /* 상품명 / 설명 한 줄 말줄임 */
+    .tgt-caption-1 h4{
+        width:100%;
+        min-width:0;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+
+    /* 버튼 */
+    .tgt-button{
+        width:100%;
+    }
+}

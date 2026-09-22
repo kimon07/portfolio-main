@@ -1,0 +1,661 @@
+:root {
+    --header-logo-width: 10rem;
+    --header-icon-size: 1.75rem;
+}
+body {
+    font-family: 'Pretendard', sans-serif;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+.common-frame {
+    width: 100%;
+    max-width: 107.5rem;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+}
+
+/* 헤더 전체 */
+.pc {
+    position: relative;
+    z-index: 1000;
+    background: #f1eee5;
+}
+
+/* PC 헤더: 로고, 주 메뉴, 사용자 메뉴를 한 줄로 정렬 */
+.desktop-header-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2.5rem);
+    height: 6.25rem;
+}
+
+.desktop-header-row > .logo,
+.desktop-header-row > .lnb {
+    flex-shrink: 0;
+}
+
+.desktop-nav {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+}
+/* 로고 */
+.logo {
+    width: var(--header-logo-width);
+}
+
+.logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* 사용자 메뉴 */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+}
+
+.user-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-menu img {
+    display: block;
+    width: var(--header-icon-size);
+    height: var(--header-icon-size);
+}
+
+/* 1뎁스 메뉴 */
+.gnb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 1.5vw, 2.5rem);
+    height: 100%;
+}
+
+.gnb > li {
+    height: 100%;
+}
+
+.gnb > li > a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 0.3125rem;
+    white-space: nowrap;
+    font-size: 0.9375rem;
+    font-weight: 700;
+}
+
+/* 1뎁스 메뉴 호버 */
+.gnb > li > a::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0.125rem;
+    background: #536350;
+    content: "";
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.gnb > li:hover > a {
+    color: #9cac80;
+}
+
+.gnb > li:hover > a::after {
+    width: 100%;
+}
+
+/* 2뎁스 메뉴 */
+.gnb2depth {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #f1eee5;
+    border-top: 0.0625rem solid rgba(0, 0, 0, 0.08);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.625rem);
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* 부모 메뉴에 마우스를 올리면 2뎁스 표시 */
+.gnb > li:hover .gnb2depth {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* 2뎁스 내부 정렬 */
+.gnb2depth .common-frame {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    min-height: 3.75rem;
+}
+
+.gnb2depth section h4 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+}
+
+.gnb2depth section a {
+    transition: color 0.2s ease;
+}
+
+.gnb2depth section a:hover {
+    color: #9cac80;
+}
+
+/* ========================================
+   PC에서는 모바일 헤더 숨기기
+======================================== */
+
+.smart-header,
+.smart-overlay-menu {
+    display: none;
+}
+
+
+/* ========================================
+   패드 / 모바일
+======================================== */
+
+@media (max-width: 1024px) {
+
+    /* PC 헤더 숨기기 */
+
+    .pc {
+        display: none;
+    }
+
+    /* 공통 프레임 */
+
+    .common-frame {
+        width: 100%;
+        padding-right: 0.875rem;
+        padding-left: 0.875rem;
+    }
+
+    /* 모바일 기본 헤더 */
+
+    .smart-header {
+        display: block;
+        width: 100%;
+        height: 4.5625rem;
+        background: #fff;
+        border-bottom: 0.0625rem solid #dedede;
+    }
+
+    .smart-header > .common-frame {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    /* 모바일 로고 */
+
+    .smart-header .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--header-logo-width);
+        transform: translate(-50%, -50%);
+    }
+
+    .smart-header .logo a,
+    .smart-header .logo img {
+        display: block;
+        width: 100%;
+    }
+
+    /* 메뉴 열기 버튼 */
+
+    .btn-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-menu button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.25rem;
+        height: 1.25rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .btn-menu img {
+        display: block;
+        width: 0.75rem;
+        height: 0.75rem;
+        object-fit: contain;
+    }
+
+    /* 검색, 로그인, 장바구니 */
+
+    .smart-header .lnb {
+        margin-left: auto;
+    }
+
+    .smart-header .user-menu {
+        display: flex;
+        align-items: center;
+        gap: 1.125rem;
+    }
+
+    .smart-header .user-menu li {
+        display: flex;
+    }
+
+    .smart-header .user-menu a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .smart-header .user-menu img {
+        display: block;
+        width: var(--header-icon-size);
+        height: var(--header-icon-size);
+        object-fit: contain;
+    }
+
+    /* ========================================
+       모바일 전체 메뉴
+    ======================================== */
+
+    .smart-overlay-menu {
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        display: block;
+        overflow-y: auto;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+
+        background: #f3efe5;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-100%);
+
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease,
+            transform 0.3s ease;
+    }
+
+    /* on 클래스가 생기면 전체 메뉴 열림 */
+
+    .smart-overlay-menu.on {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    /* 전체 메뉴 상단 */
+
+    .smart-overlay-menu-header {
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        width: 100%;
+        height: 4.5625rem;
+        background: #fff;
+        border-bottom: 0.0625rem solid #dedede;
+    }
+
+    .smart-overlay-menu-header > .common-frame {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    /* 전체 메뉴 안의 로고 */
+
+    .smart-overlay-menu-header .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--header-logo-width);
+        transform: translate(-50%, -50%);
+    }
+
+    .smart-overlay-menu-header .logo a,
+    .smart-overlay-menu-header .logo img {
+        display: block;
+        width: 100%;
+    }
+
+    /* 닫기 버튼 */
+
+    .btn-menu-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-menu-close button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.25rem;
+        height: 1.25rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .btn-menu-close img {
+        display: block;
+        width: 0.75rem;
+        height: 0.75rem;
+        object-fit: contain;
+    }
+
+    /* 전체 메뉴 안의 사용자 메뉴 */
+
+    .smart-overlay-menu-header .lnb {
+        margin-left: auto;
+    }
+
+    .smart-overlay-menu-header .user-menu {
+        display: flex;
+        align-items: center;
+        gap: 1.125rem;
+    }
+
+    .smart-overlay-menu-header .user-menu a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .smart-overlay-menu-header .user-menu img {
+        display: block;
+        width: var(--header-icon-size);
+        height: var(--header-icon-size);
+        object-fit: contain;
+    }
+
+    /* ========================================
+       모바일 1뎁스
+    ======================================== */
+
+    .smart-overlay-menu-top {
+        width: 100%;
+        background: #f3efe5;
+    }
+
+    .smart-overlay-menu-top .common-frame {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .gnb-smart {
+        width: 100%;
+    }
+
+    .gnb-smart > li {
+        width: 100%;
+        border-bottom: 0.0625rem solid #e4dfd5;
+    }
+
+    .gnb-smart > li > a,
+    .smart-depth-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 4rem;
+        padding: 0;
+
+        color: #171717;
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: left;
+
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    /* 선택한 1뎁스 */
+
+    .gnb-smart > li.on > a,
+    .gnb-smart > li.on .smart-depth-button {
+        color: #98a27e;
+    }
+
+    .gnb-smart > li:hover .smart-depth-button,
+    .gnb-smart > li:focus-within .smart-depth-button {
+        color: #98a27e;
+    }
+
+    /* + 아이콘 */
+
+    .depth-icon {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1;
+        transition: transform 0.25s ease;
+    }
+
+    .gnb-smart > li.on .depth-icon {
+        transform: rotate(45deg);
+    }
+
+    /* ========================================
+       모바일 2뎁스
+    ======================================== */
+
+    .smart-overlay-menu-bottom {
+        width: 100%;
+        background: #ece7dc;
+    }
+
+    .gnb2depth-smart {
+        display: none;
+        width: 100%;
+    }
+
+    /* 선택된 2뎁스만 표시 */
+
+    .gnb2depth-smart.on {
+        display: block;
+    }
+
+    .gnb2depth-smart > .common-frame {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.875rem;
+        padding-top: 1.875rem;
+    }
+
+    .gnb2depth-smart section {
+        min-width: 0;
+    }
+
+    .gnb2depth-smart section h4 {
+        margin-bottom: 1.125rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+    }
+
+    .gnb2depth-smart section h4 a {
+        color: #171717;
+    }
+
+}
+
+
+/* ========================================
+   모바일 세부 조정
+======================================== */
+
+@media (max-width: 768px) {
+
+    .smart-header,
+    .smart-overlay-menu-header {
+        height: 4.5625rem;
+    }
+
+    .smart-header .logo,
+    .smart-overlay-menu-header .logo {
+        width: var(--header-logo-width);
+    }
+
+    /* 화면이 좁으므로 2뎁스 세로 배치 */
+
+    .gnb2depth-smart > .common-frame {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .gnb2depth-smart section {
+        padding: 1.25rem 0;
+        border-bottom: 0.0625rem solid #ddd7cb;
+    }
+
+    .gnb2depth-smart section:last-child {
+        border-bottom: 0;
+    }
+
+    .gnb2depth-smart section h4 {
+        margin-bottom: 0.875rem;
+        font-size: 0.75rem;
+    }
+
+}
+
+
+/* ========================================
+   작은 모바일
+======================================== */
+
+@media (max-width: 402px) {
+
+    .smart-header .user-menu,
+    .smart-overlay-menu-header .user-menu {
+        gap: 1rem;
+    }
+
+    .smart-header .user-menu img,
+    .smart-overlay-menu-header .user-menu img {
+        width: var(--header-icon-size);
+        height: var(--header-icon-size);
+    }
+
+    .gnb-smart > li > a,
+    .smart-depth-button {
+        min-height: 4rem;
+    }
+}
+
+/* common.css의 모바일 기준(1rem = 12px)에 맞춘 크기 보정 */
+@media (max-width: 768px) {
+    .smart-header,
+    .smart-overlay-menu-header {
+        height: 6rem;
+    }
+
+    .smart-header .logo,
+    .smart-overlay-menu-header .logo {
+        width: var(--header-logo-width);
+    }
+
+    .smart-header .user-menu img,
+    .smart-overlay-menu-header .user-menu img {
+        width: var(--header-icon-size);
+        height: var(--header-icon-size);
+    }
+
+    .gnb2depth-smart section h4 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .btn-menu button,
+    .btn-menu-close button {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+
+    .btn-menu img,
+    .btn-menu-close img {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+/* 화면별 로고 및 사용자 메뉴 크기 */
+@media (max-width: 1024px) {
+    :root {
+        --header-logo-width: 7.5rem;
+        --header-icon-size: 1.625rem;
+    }
+
+    .smart-header .user-menu,
+    .smart-overlay-menu-header .user-menu {
+        gap: 0.5rem;
+    }
+
+    .smart-header .user-menu a,
+    .smart-overlay-menu-header .user-menu a {
+        width: 2.5rem;
+        min-height: 2.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-logo-width: 9rem;
+        --header-icon-size: 2rem;
+    }
+}
+
+@media (max-width: 402px) {
+    :root {
+        --header-logo-width: 8rem;
+        --header-icon-size: 2rem;
+    }
+
+    .smart-header .user-menu,
+    .smart-overlay-menu-header .user-menu {
+        gap: 0.25rem;
+    }
+}

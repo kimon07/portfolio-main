@@ -1,0 +1,146 @@
+/* PC 띠배너 */
+
+.t-banner{
+    width:100%;
+    max-width:1920px;
+    height:140px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D8D5CA;
+    gap:4.35rem;
+}
+
+.t-txt-bold{
+    font-weight: var(--fw2);
+}
+
+.t-button{
+    padding:1rem 1.25rem;
+    background-color: #F1ECE1;
+    border:1px solid #C9C6BC;
+}
+
+/* PC 푸터 */
+
+footer{
+    position: relative;
+    width:100%;
+    max-width:1920px;
+    height:399px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:3rem;
+    padding:3rem 3rem 4rem 3rem;
+    /* border:1px solid red; */
+    box-sizing: border-box;
+    background-color: #000;
+    color:#fff;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 3rem;
+    bottom: 2rem;
+    z-index: 50;
+    display: none;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 1px solid #c9c6bc;
+    border-radius: 50%;
+    background: #f1ece1;
+    color: #222;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 12%);
+}
+
+.purchase-page .back-to-top {
+    display: grid;
+}
+
+.back-to-top:hover {
+    background: #d8d5ca;
+}
+
+.back-to-top:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+.footer-box{
+    gap:3rem;
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    max-width:1824px;
+    padding:0 4.7rem;
+    box-sizing: border-box;
+}
+
+.box-wrap-5{
+    display: flex;
+    justify-content: space-between;
+    /* border:1px solid red; */
+    /* gap:4rem; */
+}
+
+.box h4{
+    margin-bottom: 3rem;
+}
+
+.box ul{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
+
+.cs h2{
+    margin-bottom:1rem;
+}
+
+
+.cstime{
+    width:318px;
+    display:grid;
+    /* grid-template-columns:repeat(2, 1fr);
+    gap:1rem; */
+    grid-template-columns: 1fr auto;
+    column-gap:1rem;
+    row-gap:1rem;
+}
+
+.copyright{
+    /* border:1px solid red; */
+    text-align: center;
+}
+
+.box-section{
+    display:flex;
+    /* border:10px solid violet; */
+    flex-direction: column;
+}
+
+.sns ul{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+}
+
+.copyright span{
+    display:inline;
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        right: 1rem;
+        bottom: 1rem;
+    }
+}

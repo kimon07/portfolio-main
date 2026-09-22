@@ -1,0 +1,292 @@
+/* Shared responsive fixes for the four storefront pages. Load last. */
+html,
+body {
+    min-width: 240px;
+}
+
+@media (max-width: 1024px) {
+    footer {
+        height: auto;
+    }
+
+    .footer-box {
+        min-width: 0;
+        padding-inline: 0;
+    }
+
+    .box-wrap-5 > * {
+        min-width: 0;
+    }
+
+    .box h4,
+    .box li,
+    .cstime > *,
+    .copyright {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .cstime {
+        max-width: 100%;
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .review-card,
+    button.review-card.qna {
+        height: auto;
+        min-height: 9rem;
+        padding-block: 2rem;
+    }
+
+    .review-card > *,
+    .review-body > * {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .tgt-top {
+        max-width: 100%;
+    }
+
+    .tgt-top ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .tgt-top li {
+        min-width: 0;
+        flex-shrink: 1;
+    }
+
+    .tgt-img {
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+    }
+
+    .tgt-img ul {
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+        padding-inline: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .purchase-benefits dd {
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        padding-block: 0.75rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .tgt-img ul {
+        justify-content: flex-start;
+        width: max-content;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Flow layout prevents the centered logo from overlapping the icons. */
+    .smart-header > .common-frame,
+    .smart-overlay-menu-header > .common-frame {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 0.25rem;
+    }
+
+    .smart-header .logo,
+    .smart-overlay-menu-header .logo {
+        position: static;
+        width: min(100%, 8rem);
+        justify-self: center;
+        transform: none;
+    }
+
+    .smart-header .user-menu,
+    .smart-overlay-menu-header .user-menu {
+        gap: 0;
+    }
+
+    .t-banner {
+        height: auto;
+        min-height: 60px;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .t-banner .icon {
+        display: none;
+    }
+
+    footer {
+        padding: 3rem 1rem;
+    }
+
+    .box-wrap-5 {
+        grid-template-columns: minmax(2, 1fr);
+        gap: 2.5rem;
+    }
+
+    .box-section {
+        margin-block: 2rem;
+    }
+
+    .collection-toolbar {
+        flex-wrap: wrap;
+        padding-bottom: 1rem;
+    }
+
+    .collection-toolbar .list-section-heading {
+        flex-basis: 100%;
+    }
+
+    .sort-control {
+        flex: 0 1 100%;
+    }
+
+    .category-section > .list-section-heading {
+        width: 100%;
+    }
+
+    .breadcrumb {
+        overflow: visible;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .breadcrumb ol {
+        flex-wrap: wrap;
+    }
+
+    .product-price-row {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding-block: 1.5rem;
+    }
+
+    .product-price del {
+        margin-left: 0;
+    }
+
+    .order-total,
+    .dialog-total {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding-block: 1rem;
+    }
+
+    .product-community {
+        padding-top: 6rem;
+    }
+
+    .order-dialog {
+        max-width: calc(100% - 2rem);
+        max-height: calc(100dvh - 2rem);
+        overflow-y: auto;
+        overflow-wrap: anywhere;
+    }
+
+    .dialog-product {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .dialog-product img {
+        max-width: 6.5rem;
+    }
+
+    .tgt-top {
+        padding-inline: 1rem;
+    }
+
+    .tgt-txt > li {
+        padding-inline: 0;
+    }
+
+    .tgt-top h3,
+    .tgt-txt button {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 320px) {
+    .campaign-panel {
+        padding-inline: 2.5rem;
+    }
+
+    .campaign-panel h2 {
+        letter-spacing: 0.15em;
+        overflow-wrap: anywhere;
+    }
+
+    .featured-heading {
+        padding-inline: 1rem;
+    }
+
+    .collection-grid.grid-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .collection-info {
+        min-height: 0;
+        padding-bottom: 1.5rem;
+    }
+
+    .collection-info h3 {
+        display: block;
+        overflow: visible;
+        overflow-wrap: anywhere;
+    }
+
+    .category-grid figcaption {
+        overflow-wrap: anywhere;
+    }
+
+    .order-actions {
+        grid-template-columns: 4rem minmax(0, 1fr);
+    }
+
+    .order-actions .buy-button {
+        grid-column: 1 / -1;
+    }
+
+    .purchase-benefits > div {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 0.75rem;
+    }
+
+    .tgt-top {
+        width: 100%;
+        padding-inline: 0.5rem;
+        box-sizing: border-box;
+    }
+
+    .tgt-top ul {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .tgt-txt > li {
+        flex: 0 0 auto;
+        min-width: 0;
+        padding: 0 0.25rem 0.75rem;
+    }
+
+    .tgt-top h3,
+    .tgt-txt button {
+        font-size: 1rem;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow-wrap: normal;
+        word-break: keep-all;
+    }
+}

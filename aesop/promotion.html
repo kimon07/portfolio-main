@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계절의 리추얼 | Aesop Reimagined</title>
+
+        <meta name="description" content="Aesop의 브랜드 감성을 재해석한 웹사이트 리디자인 포트폴리오 프로젝트입니다.">
+
+    <meta name="keywords" content="Aesop, 이솝, 스킨케어, 바디케어, 핸드케어, 헤어케어, 향수, 퍼스널케어, 프래그런스">
+    <meta name="author" content="Aesop team project">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph : 카카오톡, 페이스북 등 공유 -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Aesop team project">
+    <meta property="og:title" content="Aesop team project | 새로운 공간의 시작">
+    <meta property="og:local" content="ko_KR">
+
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/react.css">
+    <link rel="stylesheet" href="./css/promotion.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <script src="./js/header.js" defer></script>
+    <link rel="stylesheet" href="./css/completion.css">
+    <script src="./js/catalog.js" defer></script>
+    <script src="./js/site.js" defer></script>
+</head>
+
+<body>
+    <!-- 데스크탑용 헤더 -->
+    <header class="pc">
+        <div class="common-frame desktop-header-row">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./img/로고.svg" alt="Aesop 로고">
+                </a>
+            </div>
+            <nav class="desktop-nav" aria-label="주 메뉴">
+                <ul class="gnb" aria-label="주 메뉴">
+                    <li><a href="./index.html">HOME</a></li>
+                    <li>
+                        <a href="./shoppingLIst.html?view=new#products">NEW</a>
+                    </li>
+                    <li>
+                        <a href="./shoppingLIst.html?view=best#products">BEST SELLER</a>
+                    </li>
+                    <li>
+                        <a href="./shoppingLIst.html">STORE</a>
+                        <div class="gnb2depth">
+                            <div class="common-frame">
+                                <section>
+                                    <h4><a href="./shoppingLIst.html?view=new#products">전체신제품</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./shoppingLIst.html?category=FRAGRANCE#products">퍼퓸</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./shoppingLIst.html?category=HAND%20CARE#products">핸드&립</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./shoppingLIst.html?category=BODY%20%26%20HAIR#products">바디&헤어</a></h4>
+                                </section>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="./promotion.html">PROMOTION</a>
+                    </li>
+                    <li>
+                        <a href="./about.html">ABOUT</a>
+                        <div class="gnb2depth">
+                            <div class="common-frame">
+                                <section>
+                                    <h4><a href="./about.html">브랜드 소개</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./about.html#philosophy">브랜드 철학</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./about.html#sustainability">지속가능성</a></h4>
+                                </section>
+                                <section>
+                                    <h4><a href="./journal.html">저널</a></h4>
+                                </section>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </nav>
+            <div class="lnb">
+                <ul class="user-menu">
+                    <li>
+                        <a href="./search.html">
+                            <img src="./img/material-symbols-light_search-rounded.svg" alt="검색하기">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./account.html">
+                            <img src="./img/stash_person-light.svg" alt="로그인하기">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./cart.html">
+                            <img src="./img/teenyicons_basket-minus-outline.svg" alt="장바구니보기">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- 패드 / 모바일용 헤더 -->
+    <header class="smart-header">
+        <div class="common-frame">
+            <!-- 전체 메뉴 열기 -->
+            <div class="btn-menu">
+                <button type="button" aria-label="전체 메뉴 열기" aria-controls="smart-overlay-menu" aria-expanded="false">
+                    <img src="./img/menu.svg" alt="메뉴버튼">
+                </button>
+            </div>
+            <!-- 모바일 로고 -->
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./img/로고.svg" alt="Aesop 로고">
+                </a>
+            </div>
+            <!-- 모바일 사용자 메뉴 -->
+            <div class="lnb">
+                <ul class="user-menu">
+                    <li>
+                        <a href="./search.html">
+                            <img src="./img/material-symbols-light_search-rounded.svg" alt="검색하기">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./account.html">
+                            <img src="./img/stash_person-light.svg" alt="로그인하기">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./cart.html">
+                            <img src="./img/teenyicons_basket-minus-outline.svg" alt="장바구니 보기">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- 패드 / 모바일 전체 메뉴 -->
+    <div class="smart-overlay-menu" id="smart-overlay-menu" aria-hidden="true">
+        <!-- 모바일 전체 메뉴 상단 -->
+        <div class="smart-overlay-menu-header">
+            <div class="common-frame">
+                <!-- 전체 메뉴 닫기 -->
+                <div class="btn-menu-close">
+                    <button type="button" aria-label="전체 메뉴 닫기">
+                        <img src="./img/btn-close.svg" alt="닫기이미지">
+                    </button>
+                </div>
+                <!-- 로고 -->
+                <div class="logo">
+                    <a href="./index.html">
+                        <img src="./img/로고.svg" alt="Aesop 로고">
+                    </a>
+                </div>
+                <!-- 사용자 메뉴 -->
+                <div class="lnb">
+                    <ul class="user-menu">
+                        <li>
+                            <a href="./search.html">
+                                <img src="./img/material-symbols-light_search-rounded.svg" alt="검색하기">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./account.html">
+                                <img src="./img/stash_person-light.svg" alt="로그인하기">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./cart.html">
+                                <img src="./img/teenyicons_basket-minus-outline.svg" alt="장바구니 보기">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 모바일 1뎁스 메뉴 -->
+        <div class="smart-overlay-menu-top">
+            <div class="common-frame">
+                <ul class="gnb-smart" aria-label="모바일 주 메뉴">
+                    <li>
+                        <a href="./index.html">HOME</a>
+                    </li>
+                    <li>
+                        <a href="./shoppingLIst.html?view=new#products">NEW</a>
+                    </li>
+                    <li>
+                        <a href="./shoppingLIst.html?view=best#products">BESTSELLER</a>
+                    </li>
+                    <!-- 현재 선택된 메뉴 -->
+                    <li>
+                        <button type="button" class="smart-depth-button" data-menu="store" aria-controls="store-depth"
+                            aria-expanded="false">
+                            <span>STORE</span>
+                            <span class="depth-icon">+</span>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="./promotion.html">PROMOTION</a>
+                    </li>
+                    <li>
+                        <button type="button" class="smart-depth-button" data-menu="about" aria-controls="about-depth"
+                            aria-expanded="false">
+                            <span>ABOUT</span>
+                            <span class="depth-icon">+</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- 모바일 2뎁스 메뉴 -->
+        <div class="smart-overlay-menu-bottom">
+            <!-- STORE 2뎁스 -->
+            <div class="gnb2depth-smart" id="store-depth" data-depth="store">
+                <div class="common-frame">
+                    <section>
+                        <h4>
+                            <a href="./shoppingLIst.html?view=new#products">전체 신제품</a>
+                        </h4>
+                    </section>
+                    <section>
+                        <h4>
+                            <a href="./shoppingLIst.html?category=FRAGRANCE#products">퍼퓸</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./shoppingLIst.html?category=HAND%20CARE#products">핸드 & 립</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./shoppingLIst.html?category=BODY%20%26%20HAIR#products">바디 & 헤어</a>
+                        </h4>
+                    </section>
+                </div>
+            </div>
+            <!-- ABOUT 2뎁스 -->
+            <div class="gnb2depth-smart" id="about-depth" data-depth="about">
+                <div class="common-frame">
+                    <section>
+                        <h4>
+                            <a href="./about.html">브랜드 소개</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./about.html#philosophy">브랜드 철학</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./about.html#sustainability">지속가능성</a>
+                        </h4>
+                    </section>
+
+                    <section>
+                        <h4>
+                            <a href="./journal.html">저널</a>
+                        </h4>
+                    </section>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <main class="promo-page">
+        <section class="promo-section promo-theme-forest" id="promotion-01" aria-labelledby="promo-01-title">
+            <div class="promo-hero">
+                <img class="promo-hero-image" src="./img/promotion/promo-01-hero.png" alt="햇살 아래 천과 허브, 돌이 놓인 숲 테마 비주얼">
+                <p class="promo-hero-kicker">promotion 01</p>
+                <div class="promo-hero-copy">
+                    <h1 class="promo-hero-title title-1" id="promo-01-title">숲 · 진정</h1>
+                    <p class="promo-hero-description">허브와 햇살이 머무는 고요한 순간, 몸과 마음을 편안히 쉬어가세요.</p>
+                </div>
+            </div>
+
+            <div class="promo-content">
+                <div class="promo-layout">
+                    <article class="promo-set">
+                        <div class="promo-set-image">
+                            <img src="./img/promotion/promo-01-set.png" alt="포레스트 캄 에센셜 세트 구성품">
+                        </div>
+                        <div class="promo-set-details">
+                            <div class="promo-set-info">
+                                <div class="promo-set-heading">
+                                    <h2 class="promo-set-name title-1">포레스트 캄 에센셜 세트</h2>
+                                    <p class="promo-set-name-en" lang="en">Forest Calm Essential Set</p>
+                                </div>
+                                <div class="promo-price-block">
+                                    <dl class="promo-price-list">
+                                        <div class="promo-price-row promo-price-row-original">
+                                            <dt>정가</dt>
+                                            <dd><s>287,000원</s></dd>
+                                        </div>
+                                        <div class="promo-price-row promo-price-row-special title-1">
+                                            <dt>특별 할인가</dt>
+                                            <dd>243,950원</dd>
+                                        </div>
+                                    </dl>
+                                    <p class="promo-discount title-1">15% OFF</p>
+                                </div>
+                            </div>
+                            <a class="promo-buy-button one" href="./purchase.html?id=set-1">세트 구매하기</a>
+                        </div>
+                    </article>
+
+                    <div class="promo-products" aria-label="포레스트 캄 세트 개별 상품">
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-1">
+                                <img src="./img/promotion/promo-01-product-01.png" alt="포레스트 캄 바디 클렌저">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">포레스트 캄 바디 클렌저</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">100ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">59,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-2">
+                                <img src="./img/promotion/promo-01-product-02.png" alt="포레스트 캄 바디 밤">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">포레스트 캄 바디 밤</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">100ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">47,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-3">
+                                <img src="./img/promotion/promo-01-product-03.png" alt="포레스트 캄 핸드 워시">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">포레스트 캄 핸드 워시</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">500ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">53,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-4">
+                                <img src="./img/promotion/promo-01-product-04.png" alt="포레스트 캄 라디언스 세럼">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">포레스트 캄 라디언스 세럼</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">75ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">39,000원</span></p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-section promo-theme-citrus" id="promotion-02" aria-labelledby="promo-02-title">
+            <div class="promo-hero">
+                <img class="promo-hero-image" src="./img/promotion/promo-02-hero.png"
+                    alt="아침 햇살 아래 시트러스 제품과 식물이 놓인 테마 비주얼" loading="lazy">
+                <p class="promo-hero-kicker">promotion 02</p>
+                <div class="promo-hero-copy">
+                    <h1 class="promo-hero-title title-1" id="promo-02-title">아침 · 리프레싱</h1>
+                    <p class="promo-hero-description">상쾌한 시트러스와 싱그러운 식물의 향으로 하루를 깨웁니다.</p>
+                </div>
+            </div>
+
+            <div class="promo-content">
+                <div class="promo-layout">
+                    <article class="promo-set">
+                        <div class="promo-set-image">
+                            <img src="./img/promotion/promo-02-set.png" alt="시트러스 가든 에센셜 세트 구성품" loading="lazy">
+                        </div>
+                        <div class="promo-set-details">
+                            <div class="promo-set-info">
+                                <div class="promo-set-heading">
+                                    <h2 class="promo-set-name title-1">시트러스 가든 에센셜 세트</h2>
+                                    <p class="promo-set-name-en" lang="en">Citrus Garden Essential Set</p>
+                                </div>
+                                <div class="promo-price-block">
+                                    <dl class="promo-price-list">
+                                        <div class="promo-price-row promo-price-row-original">
+                                            <dt>정가</dt>
+                                            <dd><s>229,000원</s></dd>
+                                        </div>
+                                        <div class="promo-price-row promo-price-row-special title-1">
+                                            <dt>특별 할인가</dt>
+                                            <dd>194,650원</dd>
+                                        </div>
+                                    </dl>
+                                    <p class="promo-discount title-1">15% OFF</p>
+                                </div>
+                            </div>
+                            <a class="promo-buy-button two" href="./purchase.html?id=set-2">세트 구매하기</a>
+                        </div>
+                    </article>
+
+                    <div class="promo-products" aria-label="시트러스 가든 세트 개별 상품">
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-5">
+                                <img src="./img/promotion/promo-02-product-01.png" alt="시트러스 바디오일" loading="lazy">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">시트러스 바디오일</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">100ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">53,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-6">
+                                <img src="./img/promotion/promo-02-product-02.png" alt="시트러스 아로마틱 핸드 워시" loading="lazy">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">시트러스 아로마틱 핸드 워시</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">500ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">38,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-7">
+                                <img src="./img/promotion/promo-02-product-03.png" alt="시트러스 퓨어 래디언스 세럼" loading="lazy">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">시트러스 퓨어 래디언스 세럼</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">30ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">89,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-8">
+                                <img src="./img/promotion/promo-02-product-04.png" alt="시트러스 린드 바디 밤" loading="lazy">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">시트러스 린드 바디 밤</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">100ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">49,000원</span></p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-section promo-theme-relaxing" id="promotion-03" aria-labelledby="promo-03-title">
+            <div class="promo-hero">
+                <img class="promo-hero-image" src="./img/promotion/promo-03-hero.png"
+                    alt="침구 위 수면 노트와 보랏빛 안대가 놓인 밤 테마 비주얼" loading="lazy">
+                <p class="promo-hero-kicker">promotion 03</p>
+                <div class="promo-hero-copy">
+                    <h1 class="promo-hero-title title-1" id="promo-03-title">밤 · 릴렉싱</h1>
+                    <p class="promo-hero-description">라벤더의 그윽한 향이 고요한 휴식을 드립니다.</p>
+                </div>
+            </div>
+
+            <div class="promo-content">
+                <div class="promo-layout">
+                    <article class="promo-set">
+                        <div class="promo-set-image">
+                            <img src="./img/promotion/promo-03-set.png" alt="릴렉싱 에센셜 세트 구성품" loading="lazy">
+                        </div>
+                        <div class="promo-set-details">
+                            <div class="promo-set-info">
+                                <div class="promo-set-heading">
+                                    <h2 class="promo-set-name title-1">릴렉싱 에센셜 세트</h2>
+                                    <p class="promo-set-name-en" lang="en">Relaxing Essential Set</p>
+                                </div>
+                                <div class="promo-price-block">
+                                    <dl class="promo-price-list">
+                                        <div class="promo-price-row promo-price-row-original">
+                                            <dt>정가</dt>
+                                            <dd><s>348,000원</s></dd>
+                                        </div>
+                                        <div class="promo-price-row promo-price-row-special title-1">
+                                            <dt>특별 할인가</dt>
+                                            <dd>295,800원</dd>
+                                        </div>
+                                    </dl>
+                                    <p class="promo-discount title-1">15% OFF</p>
+                                </div>
+                            </div>
+                            <a class="promo-buy-button thr" href="./purchase.html?id=set-3">세트 구매하기</a>
+                        </div>
+                    </article>
+
+                    <div class="promo-products" aria-label="릴렉싱 세트 개별 상품">
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-9">
+                                <img src="./img/promotion/promo-03-product-01.png" alt="이스트로스 바디 밤" loading="lazy">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">이스트로스 바디 밤</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">100ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">47,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-10">
+                                <img src="./img/promotion/promo-03-product-02.png" alt="이스트로스 룸 스프레이" loading="lazy">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">이스트로스 룸 스프레이</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">100ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">76,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-11">
+                                <img src="./img/promotion/promo-03-product-03.png" alt="이스트로스 캔들" loading="lazy">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">이스트로스 캔들</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">300g</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">115,000원</span></p>
+                            </div>
+                        </article>
+                        <article class="promo-product-card">
+                            <a class="promo-product-image" href="./purchase.html?id=ritual-12">
+                                <img src="./img/promotion/promo-03-product-04.png" alt="이스트로스 룸 디퓨저" loading="lazy">
+                            </a>
+                            <div class="promo-product-info">
+                                <h3 class="promo-product-name title-1">이스트로스 룸 디퓨저</h3>
+                                <p class="promo-product-meta"><span class="promo-volume">200ml</span><span
+                                        aria-hidden="true">/</span><span
+                                        class="promo-product-price title-1">110,000원</span></p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- PC 푸터 -->
+    <footer>
+        <div class="footer-box">
+            <div class="box-wrap-5">
+                <div class="box one">
+                    <h4 class="t-txt-bold">회사 정보</h4>
+                    <ul>
+                        <li><a href="./about.html">브랜드 이야기</a></li>
+                        <li><a href="./support.html#careers">인재 채용</a></li>
+                        <li><a href="./about.html#sustainability">지속 가능성</a></li>
+                        <li><a href="./support.html#press">프레스</a></li>
+                    </ul>
+                </div>
+                <div class="box two">
+                    <h4 class="t-txt-bold">고객 지원</h4>
+                    <ul>
+                        <li><a href="./support.html#contact">문의하기</a></li>
+                        <li><a href="./support.html#stores">매장 찾기</a></li>
+                        <li><a href="./support.html#delivery">배송 및 반품</a></li>
+                        <li><a href="./support.html#faq">자주 묻는 질문</a></li>
+                    </ul>
+                </div>
+                <div class="box three">
+                    <h4 class="t-txt-bold">법률 및 정책</h4>
+                    <ul>
+                        <li><a href="./support.html#terms">이용약관</a></li>
+                        <li><a href="./support.html#privacy">개인정보 처리방침</a></li>
+                        <li><a href="./support.html#cookies">쿠키 정책</a></li>
+                        <li><a href="./support.html#sales">판매 조건</a></li>
+                    </ul>
+                </div>
+                <div class="box cs">
+                    <div class="cs con">
+                        <h4 class="t-txt-bold">고객센터</h4>
+                        <h2 class="t-txt-bold"><a href="./support.html">이용 안내 ↗</a></h2>
+                        <dl class="cstime">
+                            <dt>제품 탐색</dt>
+                            <dd class="t-txt-bold">카테고리 · 검색</dd>
+                            <dt>나의 컬렉션</dt>
+                            <dd class="t-txt-bold">이 브라우저에 저장</dd>
+                            <dt class="t-txt-bold">주문 확인</dt>
+                            <dd class="t-txt-bold">미리보기 체험</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="box-section">
+                    <div class="logo">
+                        <img src="./img/footer/logo-foot.svg" alt="푸터로고">
+                    </div>
+                    <div class="sns">
+                        <ul>
+                            <li><a href="https://www.instagram.com/aesop/"><img src="./img/footer/icon-insta.svg"
+                                        alt="HF인스타"></a></li>
+                            <li><a href="https://www.youtube.com/@aesopskincare"><img src="./img/footer/icon-utube.svg"
+                                        alt="HF유투브"></a></li>
+                            <li><a href="https://pf.kakao.com/_BxdYjT"><img src="./img/footer/icon-talk.svg"
+                                        alt="HF카톡"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="copyright">
+                <span>© 2026 Aesop. All rights reserved.</span>
+                <span>취업용도의 이솝 리디자인 포트폴리오 홈페이지입니다.
+                </span>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

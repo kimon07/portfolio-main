@@ -39,7 +39,7 @@
   const poster = root.querySelector('[data-case-poster]');
   const launch = root.querySelector('[data-case-launch]');
   const status = root.querySelector('[data-case-status]');
-  const url = 'https://octos8.github.io/Aesop-projects/';
+  const url = 'aesop/';
   let started = false, loadTimer;
   const resizeCover = () => {
     if (!coverViewport || !coverFrame) return;
