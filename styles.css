@@ -29,6 +29,7 @@ html {
   scroll-behavior: auto;
   scrollbar-width: none;
   overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 html::-webkit-scrollbar {
@@ -47,6 +48,7 @@ body {
   text-wrap: pretty;
   overscroll-behavior-y: none;
   overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 body.is-locked {
@@ -1482,6 +1484,18 @@ a:focus-visible {
   align-self: end;
 }
 
+.detail-intro__copy {
+  min-width: 0;
+}
+
+.detail-intro__copy h4 {
+  margin: 0 0 14px;
+  font-size: clamp(17px, 1.25vw, 20px);
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
 .detail-intro__body p,
 .detail-context__copy > p:last-child {
   margin: 0;
@@ -1489,8 +1503,37 @@ a:focus-visible {
   line-height: 1.52;
 }
 
-.detail-intro__body p + p {
+.detail-intro__copy + .detail-intro__copy p {
   color: color-mix(in srgb, var(--detail-ink), transparent 42%);
+}
+
+.detail-intro__body strong {
+  font-weight: 750;
+}
+
+.project-view[data-theme="apricot"] .detail-intro h3 {
+  font-size: clamp(39px, 6.05vw, 96px);
+}
+
+.project-view[data-theme="apricot"] .detail-intro__body {
+  align-self: center;
+}
+
+.project-view[data-theme="apricot"] .detail-intro__copy {
+  max-width: 460px;
+}
+
+.project-view[data-theme="apricot"] .detail-intro__body p {
+  color: #4d291b;
+  font-size: clamp(22px, 1.5vw, 24px);
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: -0.018em;
+  text-wrap: pretty;
+}
+
+.project-view[data-theme="apricot"] .detail-intro__copy h4 {
+  color: #4d291b;
 }
 
 .detail-context {
@@ -1703,7 +1746,7 @@ a:focus-visible {
 .detail-system h3 { font-size: clamp(46px, 6vw, 96px); line-height: 0.95; }
 .detail-hero h2 { word-break: keep-all; overflow-wrap: break-word; line-height: 0.94; font-size: clamp(46px, 6.5vw, 106px); }
 .detail-hero__summary, .detail-intro__body p, .detail-system__right > p { word-break: keep-all; line-height: 1.75; }
-.detail-intro__body p + p { color: color-mix(in srgb, var(--detail-ink) 78%, var(--detail-bg)); }
+.detail-intro__copy + .detail-intro__copy p { color: color-mix(in srgb, var(--detail-ink) 78%, var(--detail-bg)); }
 .detail-art-card { max-width: 100%; margin: 0; }
 .detail-swatch {
     font-size: 12px;
@@ -2688,6 +2731,16 @@ a:focus-visible {
     align-items: flex-end;
     justify-content: space-between;
     gap: 10px;
+  }
+
+  .layout-switch {
+    display: none;
+  }
+
+  .journey-controls p {
+    min-width: 112px;
+    font-size: 8px;
+    letter-spacing: 0.08em;
   }
 
   .layout-switch button {
@@ -5044,6 +5097,136 @@ html :is(
   ) {
     line-height: 1.08;
   }
+}
+
+/* Compact project-story typography for narrow phones. */
+@media (max-width: 760px) {
+  .detail-kicker,
+  .detail-section-label {
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .detail-hero h2 {
+    font-size: clamp(38px, 13vw, 54px);
+  }
+
+  .detail-hero__summary,
+  .detail-intro__body p,
+  .detail-context__copy > p:last-child,
+  .detail-system__right > p {
+    font-size: 13px;
+  }
+
+  .project-view[data-theme="apricot"] .detail-intro__body p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .project-view[data-theme="apricot"] .detail-intro__copy {
+    max-width: 480px;
+  }
+
+  .detail-copy-break {
+    display: none;
+  }
+
+  .detail-intro,
+  .detail-system {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .detail-intro > *,
+  .detail-system > *,
+  .detail-system__right {
+    min-width: 0;
+  }
+
+  html .project-view .detail-intro h3,
+  html .project-view .detail-context__copy h3,
+  html .project-view .detail-system h3 {
+    max-width: 100%;
+    font-size: clamp(27px, 10vw, 40px);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .detail-system__right > p {
+    margin-bottom: 28px;
+  }
+
+  .detail-palette {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: hidden;
+  }
+
+  .detail-swatch {
+    min-width: 0;
+    min-height: 92px;
+    aspect-ratio: auto;
+    padding: 8px 7px;
+    overflow: hidden;
+    font-size: clamp(6px, 2.15vw, 8px);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .detail-next strong {
+    font-size: clamp(36px, 12.5vw, 52px);
+  }
+}
+
+@media (max-width: 360px) {
+  html .project-view .detail-intro h3,
+  html .project-view .detail-context__copy h3,
+  html .project-view .detail-system h3 {
+    font-size: clamp(27px, 9vw, 32px);
+  }
+
+  .detail-swatch {
+    min-height: 86px;
+    padding-inline: 6px;
+  }
+}
+
+/* Mobile detail pages: metadata should remain readable without enlarging the art UI. */
+@media (max-width:760px) {
+  .project-view__header,.profile-view__header { padding-block:8px; gap:10px; }
+  .project-view__header > *,.profile-view__header { font-size:10px; line-height:1.4; }
+  .project-view__header button,.profile-view__header button { min-height:44px; }
+  .detail-hero__summary,.detail-intro__body p,
+  .detail-context__copy > p:last-child,.detail-system__right > p { font-size:14px; line-height:1.8; }
+  .detail-facts { gap:12px; }
+  .detail-facts dt { font-size:10px; line-height:1.4; }
+  .detail-facts dd { font-size:12px; line-height:1.6; word-break:keep-all; overflow-wrap:anywhere; }
+  .detail-art-card figcaption { font-size:10px; line-height:1.5; }
+  .detail-intro,.detail-system { padding-block:48px; }
+  .detail-context__copy { min-height:0; padding-block:48px; }
+  html .project-view .detail-intro h3,
+  html .project-view .detail-context__copy h3,
+  html .project-view .detail-system h3 { font-size:clamp(26px,7.4vw,36px); line-height:1.35; word-break:keep-all; overflow-wrap:break-word; }
+  .detail-swatch { min-height:96px; font-size:10px; line-height:1.6; }
+  .profile-about__title { gap:28px; margin-top:32px; }
+  .profile-principles { grid-template-columns:1fr; margin-top:32px; }
+  .profile-about__statement > p,.profile-principles p { font-size:14px; line-height:1.8; }
+  .profile-skills { padding-block:48px; }
+  .skill-card p { font-size:13px; line-height:1.75; }
+}
+@media (max-width:360px) {
+  .detail-facts { grid-template-columns:1fr; gap:0; }
+  .detail-facts div { display:grid; grid-template-columns:68px minmax(0,1fr); gap:12px; padding-block:10px; }
+  .detail-facts dt { margin-bottom:0; }
+  .detail-swatch { padding-inline:6px; font-size:9px; }
 }
 
 /* Visuals are WebGL meshes; these transparent controls provide touch/keyboard access. */

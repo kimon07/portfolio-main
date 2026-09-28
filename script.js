@@ -32,7 +32,7 @@ const PROJECT_STORIES = [
   { theme: 'orchard', accent: '#DDE0C3', background: '#F4F1E4', ink: '#353B27', palette: ['#9C2627', '#858C4E', '#F0EBD9'], headline: 'AN APPLE.<br>A CHAIR.', summary: '제품명과 형태를 사과라는 익숙한 이미지로 기억시키는 포스터.', brief: '독특한 라운지 체어를 처음 보는 사람도 제품의 이름과 특징을 쉽게 연결하도록 만들고 싶었습니다. 그래서 의자를 포장된 과일처럼 연출해 한 번에 이해되는 비유를 만들었습니다.', concept: '사과의 유기적인 형태와 포장 트레이의 규칙적인 프레임을 대비시켜 의자의 둥근 실루엣을 강조했습니다. 주변 사과는 장식이 아니라 제품의 색과 이름을 반복해 기억을 돕는 장치입니다.', system: '애플 레드는 제품과 핵심 연상을 묶는 주조색으로, 올리브는 과수원의 자연스러운 분위기를 만드는 보조색으로 사용했습니다. 크림 바탕은 두 색 사이의 대비를 부드럽게 조절합니다.' },
   { theme: 'sport', accent: '#164BC5', background: '#EDF1F7', ink: '#172B47', palette: ['#164BC5', '#D8F52D', '#C7CDD1'], headline: 'BUILT<br>TO MOVE.', summary: '착화 장면의 속도감과 제품 기술을 동시에 읽히게 한 스포츠 포스터.', brief: '러닝 이미지만 강조하면 운동화의 디테일이 묻히고, 제품만 확대하면 움직임이 사라지는 문제가 있었습니다. 두 정보를 한 시선 안에서 연결하는 것을 목표로 했습니다.', concept: '러너와 크게 확대한 운동화를 겹쳐 사용 장면에서 제품 구조로 시선이 이어지게 했습니다. 좌표선과 정보 박스는 장식보다 기능 설명의 시작점으로 작동하며, 사선은 달리는 방향을 강화합니다.', system: '일렉트릭 블루는 신뢰감과 속도를 만들고, 라임은 기술 정보와 핵심 디테일을 빠르게 찾게 합니다. 실버는 소재의 기능적인 인상을 보완하되 전체 대비가 과해지지 않게 받쳐 줍니다.' },
   { theme: 'tropical', accent: '#A6E4E5', background: '#FFF9E6', ink: '#245254', palette: ['#17A6B6', '#FFD633', '#FFF4D4'], headline: 'A SLICE<br>OF SUMMER.', summary: '재료의 신선함을 먼저 느끼게 해 구매 욕구로 연결한 디저트 포스터.', brief: '시즌 디저트는 짧은 시간 안에 맛을 상상하게 해야 한다고 보았습니다. 케이크 단면과 토핑을 크게 보여 주어 코코넛의 부드러움과 파인애플의 상큼함이 설명 없이도 전달되게 했습니다.', concept: '위에서 내려다본 구도는 토핑과 재료를 한눈에 비교하게 하고, 주변 파인애플 조각은 주재료를 즉시 알려 줍니다. 둥근 제목은 케이크의 부드러운 형태와 연결해 제품과 문구가 따로 보이지 않게 했습니다.', system: '아쿠아는 여름의 청량함을, 옐로는 파인애플의 산뜻함을 담당합니다. 코코넛 크림색을 넓은 바탕으로 두어 음식 사진이 인공적으로 보이지 않고 따뜻하게 느껴지도록 조절했습니다.' },
-  { theme: 'apricot', accent: '#F2BE93', background: '#FFF2E4', ink: '#663922', palette: ['#E99758', '#B65437', '#FFF0D6'], headline: 'SOFT.<br>SWEET.<br>APRICOT.', summary: '살구의 촉촉함과 디저트의 온도를 색과 시점으로 전달한 포스터.', brief: '비슷한 오렌지 계열 재료가 많은 디저트에서 살구의 존재가 묻히지 않게 하는 것이 중요했습니다. 과육과 토핑이 가장 잘 보이는 탑뷰를 선택해 맛의 근거를 먼저 보여 줬습니다.', concept: '접시와 배경을 비슷한 색온도로 연결해 하나의 따뜻한 장면을 만들고, 크림색 타이포로 정보가 음식 위에서 튀지 않게 했습니다. 부드러운 빛은 갓 완성된 디저트의 촉촉한 인상을 강조합니다.', system: '살구 오렌지를 주조색으로 두고 테라코타는 깊이와 구운 질감을 표현하는 데 사용했습니다. 크림색은 두 색 사이에 여백을 만들어 전체가 지나치게 무겁거나 달게 보이지 않도록 합니다.' },
+  { theme: 'apricot', accent: '#F2BE93', background: '#FFF2E4', ink: '#663922', palette: ['#E99758', '#B65437', '#FFF0D6'], headline: 'SOFT.<br>SWEET.<br>APRICOT.', summary: '살구의 촉촉함과 디저트의 온도를 색과 시점으로 전달한 포스터.', briefTitle: '재료가 가장 잘 보이는 구도', brief: '비슷한 오렌지 계열 재료가 많은 디저트에서 살구의 존재가 묻히지 않게 하는 것이 중요했습니다.<br class="detail-copy-break" /><strong>과육과 토핑</strong>이 가장 잘 보이는 <strong>탑뷰</strong>를 선택해 맛의 근거를 먼저 보여 줬습니다.', conceptTitle: '색감과 타이포의 연결', concept: '접시와 배경을 비슷한 <strong>오렌지 계열</strong>로 연결해 하나의 따뜻한 장면을 만들고, <strong>크림색 타이포</strong>로 정보가 음식 위에서 튀지 않게 했습니다.<br class="detail-copy-break" /><strong>부드러운 빛</strong>은 갓 완성된 디저트의 촉촉한 인상을 강조합니다.', system: '살구 오렌지를 주조색으로 두고 테라코타는 깊이와 구운 질감을 표현하는 데 사용했습니다. 크림색은 두 색 사이에 여백을 만들어 전체가 지나치게 무겁거나 달게 보이지 않도록 합니다.' },
   { theme: 'sunshine', accent: '#F5D637', background: '#FFF8DA', ink: '#263C4B', palette: ['#F5D637', '#158BA9', '#285346'], headline: 'HELLO,<br>SUMMER!', summary: '행사의 즐거움과 참여 정보를 한 흐름으로 연결한 여름 팝업.', brief: '캐릭터의 인지도만 강조하면 행사 정보가 묻힐 수 있어, 시선을 끄는 장면과 실제 참여에 필요한 내용을 분리해 설계했습니다.', concept: '큰 제목과 캐릭터 표정으로 먼저 감정을 만들고, 해변 소품이 시선을 아래의 일정과 버튼으로 이어 주게 했습니다. 정보는 장면 안에 흩어 놓지 않고 하단에 모아 참여 방법을 빠르게 찾도록 했습니다.', system: '미니언 옐로는 캐릭터와 즉시 연결되는 주조색으로, 오션 블루와 팜 그린은 장소가 해변임을 설명하는 보조색으로 선택했습니다. 원형 패턴은 햇빛과 활동적인 분위기를 더합니다.' },
   { theme: 'ice', accent: '#DCEEF9', background: '#F3F8FC', ink: '#163C66', palette: ['#167DDC', '#A8D9EB', '#F3F5F7'], headline: 'FRESH<br>ON YOUR FEET.', summary: '여름의 청량감에서 할인 정보까지 시선이 멈추지 않게 설계한 세일 팝업.', brief: '세일 팝업은 제품 이미지와 할인율이 서로 경쟁하기 쉽습니다. 먼저 계절감으로 관심을 끌고, 제품을 확인한 뒤 혜택과 행동 버튼으로 이어지는 순서를 만들었습니다.', concept: '운동화와 튀는 물을 결합해 가벼운 착화감을 직관적으로 표현하고, 할인 숫자는 제품을 가리지 않는 위치에 크게 배치했습니다. 비스듬한 화면 분할은 위에서 아래로 이동하는 시선에 속도를 더합니다.', system: '아이스 블루와 화이트로 첫인상을 시원하게 만들고, 깊은 블루는 할인 정보와 버튼처럼 읽어야 하는 요소에 사용했습니다. 같은 계열 안에서 명도 차이를 줘 정보 단계가 분명하게 보이도록 했습니다.' },
   { theme: 'pool', accent: '#F4BBCB', background: '#FFF2F5', ink: '#592940', palette: ['#EA4089', '#15B9C4', '#F9E642'], headline: 'SUMMER<br>IN COLOR.', summary: '다양한 제품과 프로모션 혜택을 한눈에 구분하게 만든 뷰티 팝업.', brief: '여러 제품을 동시에 노출하면서도 여름 한정 행사라는 메시지와 혜택을 놓치지 않게 해야 했습니다. 제품군·계절감·행동 정보에 각각 다른 시각적 역할을 부여했습니다.', concept: '핑크 제품과 청록빛 수영장을 대비시켜 제품 윤곽을 살리고, 대각선 구도로 정적인 진열감을 줄였습니다. 옐로 정보 요소는 사진과 분리되어 할인과 버튼을 빠르게 찾게 합니다.', system: '썸머 핑크는 제품군을, 풀 아쿠아는 계절과 장소를, 레몬 옐로는 혜택과 행동을 담당합니다. 색을 역할별로 고정해 요소가 많아도 무엇을 먼저 봐야 하는지 헷갈리지 않게 했습니다.' },
@@ -101,7 +101,9 @@ const PROJECTS = PROJECT_BLUEPRINTS.map(([title, imageFile, orientation], index)
   id: `project-${String(index + 1).padStart(2, "0")}`,
   index: String(index + 1).padStart(2, "0"),
   title,
-  imageSrc: window.PORTFOLIO_ARTWORKS?.[imageFile],
+  imageSrc: index === 9 && window.location.protocol !== 'file:'
+    ? 'assets/images/personal-project/twosome-apricot-poster.png'
+    : window.PORTFOLIO_ARTWORKS?.[imageFile],
   artTitle: [title],
   group: projectGroup(orientation, index),
   media: [WORK_CATEGORIES.find(group => group.id === projectGroup(orientation, index)).english],
@@ -801,27 +803,38 @@ uniform float uActive;
 uniform float uDim;
 uniform float uFog;
 uniform float uCategoryHighlight;
+uniform float uCategoryFilter;
 uniform float uGlowPass;
 in vec2 vUv;
 out vec4 outColor;
 void main() {
   float edge = min(min(vUv.x, 1.0 - vUv.x), min(vUv.y, 1.0 - vUv.y));
   if (uGlowPass > 0.5) {
-    float halo = smoothstep(0.0, 0.055, edge) * (1.0 - smoothstep(0.055, 0.26, edge));
-    float core = 1.0 - smoothstep(0.0, 0.045, abs(edge - 0.055));
-    vec3 glowColor = mix(vec3(0.66, 0.88, 1.0), vec3(0.97, 0.995, 1.0), core);
-    float glowAlpha = (halo * 0.25 + core * 0.2) * uCategoryHighlight;
+    float softHalo = smoothstep(0.0, 0.035, edge) * (1.0 - smoothstep(0.035, 0.22, edge));
+    float edgeLight = 1.0 - smoothstep(0.0, 0.032, abs(edge - 0.045));
+    vec3 glowColor = mix(vec3(0.62, 0.80, 1.0), vec3(0.95, 0.985, 1.0), edgeLight);
+    float glowAlpha = (softHalo * 0.28 + edgeLight * 0.26) * uCategoryHighlight;
     outColor = vec4(glowColor, glowAlpha);
     return;
   }
   vec4 texel = texture(uTexture, vUv);
   vec3 color = texel.rgb;
+  float selected = uCategoryFilter * uCategoryHighlight;
+  float muted = uCategoryFilter * (1.0 - uCategoryHighlight);
+  float luminance = dot(color, vec3(0.2126, 0.7152, 0.0722));
+  color = mix(color, vec3(luminance), muted * 0.58);
+  color = mix(vec3(0.5), color, 1.0 - muted * 0.16);
+  color *= 1.0 - muted * 0.34;
+  luminance = dot(color, vec3(0.2126, 0.7152, 0.0722));
+  color = mix(vec3(luminance), color, 1.0 + selected * 0.22);
+  color = mix(vec3(0.5), color, 1.0 + selected * 0.08);
+  color *= 1.0 + selected * 0.075;
   float border = 1.0 - smoothstep(0.0, 0.012 + uHover * 0.012 + uCategoryHighlight * 0.006, edge);
   vec3 borderColor = mix(vec3(0.94), vec3(0.86, 0.96, 1.0), uCategoryHighlight);
-  float borderLight = max(max(uHover * 0.72, uActive * 0.045), uCategoryHighlight * 0.94);
+  float borderLight = max(max(uHover * 0.72, uActive * 0.045), selected * 0.92);
   color = mix(color, borderColor, border * borderLight);
   color = mix(color, vec3(1.0), uHover * 0.055);
-  color += vec3(0.035, 0.075, 0.11) * uCategoryHighlight;
+  color += vec3(0.018, 0.035, 0.055) * selected;
   color *= 1.0 - uDim * 0.76;
   color = mix(color, vec3(0.1569, 0.3451, 1.0), uFog * 0.2);
   if (!gl_FrontFacing) color *= 0.26;
@@ -1694,7 +1707,12 @@ function createEnvelopeGeometry(gl) {
   const normals = [];
   const bands = [];
   const indices = [];
-  appendSweptTube(positions, normals, bands, indices, roundedRectanglePath(5.7, 3.5, 0.43, 11), 0.18, 0.215, true);
+  const frameStart = bands.length;
+  // Fuller, rounded tubes keep the envelope soft and legible at every viewport size.
+  appendSweptTube(positions, normals, bands, indices, roundedRectanglePath(5.7, 3.5, 0.55, 11), 0.28, 0.32, true);
+  // Reuse the duck's molded-plastic material palette: cyan-blue for the
+  // rounded outer frame, yellow for the folds and their soft center joint.
+  bands.fill(6.2, frameStart);
   const center = [0, -0.24, 0.26];
   const folds = [
     [[-2.4, 1.34, 0.02], [-1.22, 0.62, 0.12], center],
@@ -1704,9 +1722,13 @@ function createEnvelopeGeometry(gl) {
   ];
   folds.forEach((controls, index) => {
     const path = resampleCurve(sampleCatmullControls(controls, false, 8), 13, false);
-    appendSweptTube(positions, normals, bands, indices, path, index < 2 ? 0.135 : 0.12, 0.165, false);
+    const foldStart = bands.length;
+    appendSweptTube(positions, normals, bands, indices, path, index < 2 ? 0.205 : 0.185, 0.245, false);
+    bands.fill(2.1, foldStart);
   });
-  appendUvSphere(positions, normals, bands, indices, center, 0.205, 18, 12);
+  const jointStart = bands.length;
+  appendUvSphere(positions, normals, bands, indices, center, 0.29, 18, 12);
+  bands.fill(2.1, jointStart);
   return uploadIndexedGeometry(gl, positions, normals, bands, indices);
 }
 
@@ -1766,7 +1788,11 @@ function createStudioEnvironmentTexture(gl) {
 }
 
 function projectPlaneSize(project, mobile) {
-  const multiplier = 1.15 * (mobile ? 0.7 : 1) * (project.sceneScale || 1);
+  // Keep the work legible on narrow screens. The orbit already scales cards
+  // down for depth, so mobile cards need a larger base plane to stay readable.
+  // Desktop keeps the original proportions while phones get a measured boost.
+  // The orbit scale below does the rest without making neighbouring cards collide.
+  const multiplier = 1.15 * (mobile ? 1.08 : 1) * (project.sceneScale || 1);
   if (project.orientation === 'detail') return [2.34 * multiplier, 3.1 * multiplier];
   if (project.imageElement) {
     const ratio = project.imageElement.naturalWidth / project.imageElement.naturalHeight;
@@ -1783,9 +1809,9 @@ function buildLayouts(mobile) {
   // composition of the reference while every work stays on the same 3D orbit.
   const lanePattern = [0, 1, -1, 0, 1, -1, 0, 1, -1, 0, 1, -1];
   const heightJitter = [0.2, -0.15, 0.1, -0.25, 0.18, -0.12, 0.14, -0.2, 0.22, -0.1, 0.12, -0.18];
-  const rowGap = mobile ? 1.85 : 3.4;
+  const rowGap = mobile ? 2.35 : 3.4;
   const radiusPattern = [1, 0.9, 1.08, 0.94, 1.06, 0.91, 1.1, 0.96, 1.05, 0.9, 1.08, 0.93];
-  const radiusX = mobile ? 3.35 : 7.55;
+  const radiusX = mobile ? 3.75 : 7.55;
   const radiusZ = mobile ? 2.8 : 4.55;
   const centerZ = mobile ? -9.25 : -6.35;
   const activePhase = 1.36;
@@ -1915,6 +1941,8 @@ class PortfolioScene {
     this.sceneMode = "index";
     this.transitioning = false;
     this.indexTouchY = null;
+    this.mobileSwipe = null;
+    this.lastMobileWheelAt = -Infinity;
     this.running = false;
     this.lastTime = performance.now();
     this.projection = createMat4();
@@ -1986,7 +2014,10 @@ class PortfolioScene {
       const scratch = document.createElement("canvas");
       for (let index = 0; index < PROJECTS.length; index += 1) {
         const project = PROJECTS[index];
-        if (project.imageSrc) {
+        const canLoadArtwork = project.imageSrc && (
+          window.location.protocol !== "file:" || project.imageSrc.startsWith("data:")
+        );
+        if (canLoadArtwork) {
           try {
             project.imageElement = await new Promise((resolve, reject) => {
               const image = new Image();
@@ -2024,7 +2055,9 @@ class PortfolioScene {
       const initialId = window.location.hash.slice(1);
       const initialIndex = PROJECTS.findIndex((project) => project.id === initialId);
       if (initialIndex >= 0) {
-        window.setTimeout(() => this.startFocus(initialIndex, [window.innerWidth / 2, window.innerHeight / 2], false, true), 260);
+        window.setTimeout(() => {
+          this.startFocus(initialIndex, [window.innerWidth / 2, window.innerHeight / 2], false, true);
+        }, 260);
       } else if (initialId === "about") {
         window.setTimeout(() => this.openProfile(false), 160);
       } else if (initialId === "team-project") {
@@ -2058,6 +2091,7 @@ class PortfolioScene {
       dim: gl.getUniformLocation(this.planeProgram, "uDim"),
       fog: gl.getUniformLocation(this.planeProgram, "uFog"),
       categoryHighlight: gl.getUniformLocation(this.planeProgram, "uCategoryHighlight"),
+      categoryFilter: gl.getUniformLocation(this.planeProgram, "uCategoryFilter"),
       glowPass: gl.getUniformLocation(this.planeProgram, "uGlowPass"),
     };
 
@@ -2100,8 +2134,14 @@ class PortfolioScene {
     }
     const controls = document.querySelector(".bottombar");
     if (controls) controls.inert = open;
-    if (!open) this.lastOrbitInput = performance.now();
-    if (moveFocus) document.querySelector(open ? "[data-enter-work]" : "[data-layout].is-active")?.focus({ preventScroll: true });
+    if (!open) {
+      this.lastOrbitInput = performance.now();
+      if (this.mobile) this.lastMobileWheelAt = this.lastOrbitInput;
+    }
+    if (moveFocus) {
+      const target = open ? "[data-enter-work]" : "[data-layout].is-active";
+      document.querySelector(target)?.focus({ preventScroll: true });
+    }
   }
 
   setupCategoryNavigation() {
@@ -2121,23 +2161,35 @@ class PortfolioScene {
   setProjectFilter(groupId = 'all', { focusFirst = true, instant = false } = {}) {
     const validGroup = groupId === 'all' || WORK_CATEGORIES.some(group => group.id === groupId);
     this.activeGroup = validGroup ? groupId : 'all';
-    // Category controls only change the exhibition lighting. Keeping the full
-    // index list intact preserves every artwork's position, rotation and path.
-    this.visibleIndices = PROJECTS.map((_, index) => index);
+    // Desktop keeps the authored exhibition and its category-lighting effect.
+    // On phones the category is the carousel itself: only matching works take
+    // part in the loop, and every category begins at its first item.
+    this.visibleIndices = this.mobile && this.activeGroup !== 'all'
+      ? PROJECTS.reduce((indices, project, index) => {
+        if (project.group === this.activeGroup) indices.push(index);
+        return indices;
+      }, [])
+      : PROJECTS.map((_, index) => index);
     this.setIntro(false);
     document.querySelectorAll('[data-category-open]').forEach(button => {
       const active = button.dataset.categoryOpen === this.activeGroup;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', String(active));
     });
-    if (this.totalCount) this.totalCount.textContent = String(PROJECTS.length).padStart(2, '0');
+    if (this.totalCount) this.totalCount.textContent = String(this.visibleIndices.length).padStart(2, '0');
     if (focusFirst) {
       const firstIndex = PROJECTS.findIndex(project => this.activeGroup === 'all' || project.group === this.activeGroup);
       if (firstIndex >= 0) {
-        this.scrollToProject(firstIndex);
+        if (this.mobile) {
+          this.targetJourney = 0;
+          this.journey = 0;
+          this.orbitRotation = 0;
+        } else {
+          this.scrollToProject(firstIndex);
+        }
         this.journeyVelocity = 0;
         this.setHover(-1);
-        if (instant) {
+        if (instant || this.mobile) {
           this.journey = this.targetJourney;
           this.updateTransforms();
           this.updateActiveProject();
@@ -2238,10 +2290,22 @@ class PortfolioScene {
   }
 
   handleResize() {
-    if (!this.gl || !this.canvas) return;
     const wasMobile = this.mobile;
     this.mobile = window.matchMedia("(max-width: 520px)").matches;
-    if (wasMobile !== this.mobile) this.layouts = buildLayouts(this.mobile);
+    if (!this.gl || !this.canvas) return;
+    if (wasMobile !== this.mobile) {
+      this.layouts = buildLayouts(this.mobile);
+      this.visibleIndices = this.mobile && this.activeGroup !== 'all'
+        ? PROJECTS.reduce((indices, project, index) => {
+          if (project.group === this.activeGroup) indices.push(index);
+          return indices;
+        }, [])
+        : PROJECTS.map((_, index) => index);
+      this.targetJourney = 0;
+      this.journey = 0;
+      this.journeyVelocity = 0;
+      if (this.totalCount) this.totalCount.textContent = String(this.visibleIndices.length).padStart(2, '0');
+    }
     const pixelRatio = Math.min(window.devicePixelRatio || 1, this.mobile ? 1.25 : 1.65);
     const viewportWidth = Math.max(1, Math.round(this.canvas.clientWidth || window.innerWidth));
     const viewportHeight = Math.max(1, Math.round(this.canvas.clientHeight || window.innerHeight));
@@ -2289,7 +2353,24 @@ class PortfolioScene {
       }
       return;
     }
-    if (event.pointerType === "touch" && this.sceneMode === "index" && this.indexTouchY !== null) {
+    if (event.pointerType === "touch" && this.mobile && this.sceneMode === "index" && this.mobileSwipe) {
+      const deltaX = event.clientX - this.mobileSwipe.startX;
+      const deltaY = event.clientY - this.mobileSwipe.startY;
+      if (!this.mobileSwipe.axis && Math.hypot(deltaX, deltaY) > 7) {
+        this.mobileSwipe.axis = Math.abs(deltaX) >= Math.abs(deltaY) ? 'x' : 'y';
+      }
+      if (this.mobileSwipe.axis === 'x') {
+        const width = Math.max(280, this.canvas.clientWidth || window.innerWidth);
+        this.targetJourney = this.mobileSwipe.startJourney - deltaX / (width * 0.78);
+        this.mobileSwipe.lastX = event.clientX;
+        this.mobileSwipe.lastTime = event.timeStamp;
+        this.mobileSwipe.moved = Math.max(this.mobileSwipe.moved, Math.abs(deltaX));
+        this.duckDragDistance = this.mobileSwipe.moved;
+        this.lastOrbitInput = performance.now();
+      }
+      return;
+    }
+    if (event.pointerType === "touch" && !this.mobile && this.sceneMode === "index" && this.indexTouchY !== null) {
       const delta = this.indexTouchY - event.clientY;
       this.indexTouchY = event.clientY;
       this.targetJourney += delta * 0.0065;
@@ -2313,8 +2394,25 @@ class PortfolioScene {
   }
 
   handlePointerDown(event) {
-    if (event.pointerType === "touch" && this.sceneMode === "index" && !this.menuOpen && !this.profileOpen && !this.contactOpen) this.indexTouchY = event.clientY;
-    if ((event.pointerType === "mouse" || event.pointerType === "touch") && this.sceneMode === "index" && !this.menuOpen && !this.profileOpen && !this.contactOpen && !this.focus) {
+    if (event.pointerType === "touch" && this.sceneMode === "index" && !this.menuOpen && !this.profileOpen && !this.contactOpen) {
+      this.indexTouchY = event.clientY;
+      if (this.mobile && !this.introOpen) {
+        this.duckDragDistance = 0;
+        this.mobileSwipe = {
+          startX: event.clientX,
+          startY: event.clientY,
+          startJourney: Math.round(this.targetJourney),
+          lastX: event.clientX,
+          lastTime: event.timeStamp,
+          axis: null,
+          moved: 0,
+        };
+        this.targetJourney = this.mobileSwipe.startJourney;
+        this.journeyVelocity = 0;
+        this.canvas.setPointerCapture?.(event.pointerId);
+      }
+    }
+    if ((event.pointerType === "mouse" || (event.pointerType === "touch" && !this.mobile)) && this.sceneMode === "index" && !this.menuOpen && !this.profileOpen && !this.contactOpen && !this.focus) {
       this.isDuckDragging = true;
       this.duckDragStartX = event.clientX;
       this.duckDragStartRotation = this.duckRotationY;
@@ -2323,7 +2421,18 @@ class PortfolioScene {
     }
   }
 
-  handlePointerUp() {
+  handlePointerUp(event) {
+    if (this.mobile && !this.introOpen && this.sceneMode === "index" && this.mobileSwipe) {
+      const swipe = this.mobileSwipe;
+      const deltaX = (event?.clientX ?? swipe.lastX) - swipe.startX;
+      if (swipe.axis === 'x' && Math.abs(deltaX) > 42 && event?.type !== 'pointercancel') {
+        this.targetJourney = swipe.startJourney + (deltaX < 0 ? 1 : -1);
+      } else {
+        this.targetJourney = Math.round(this.targetJourney);
+      }
+      this.mobileSwipe = null;
+      this.lastOrbitInput = performance.now();
+    }
     this.indexTouchY = null;
     if (this.isDuckDragging) {
       this.isDuckDragging = false;
@@ -2341,6 +2450,15 @@ class PortfolioScene {
 
     if (this.sceneMode === "index") {
       event.preventDefault();
+      if (this.mobile) {
+        const now = performance.now();
+        if (Math.abs(event.deltaY) > 12 && now - this.lastMobileWheelAt > 500) {
+          this.lastMobileWheelAt = now;
+          this.targetJourney = Math.round(this.targetJourney) + Math.sign(event.deltaY);
+          this.lastOrbitInput = now;
+        }
+        return;
+      }
       const delta = clamp(event.deltaY, -140, 140);
       this.targetJourney += delta * 0.0031;
       this.lastOrbitInput = performance.now();
@@ -2394,7 +2512,9 @@ class PortfolioScene {
     if (this.teamOpen) this.closeTeamProject(true);
     const index = PROJECTS.findIndex((project) => project.id === id);
     if (index >= 0) {
-      if (!this.detailOpen && !this.focus) this.startFocus(index, [window.innerWidth / 2, window.innerHeight / 2], false);
+      if (!this.detailOpen && !this.focus) {
+        this.startFocus(index, [window.innerWidth / 2, window.innerHeight / 2], false);
+      }
       else if (this.detailOpen && index !== this.activeDetailIndex) this.showProjectView(index, [window.innerWidth / 2, window.innerHeight / 2]);
     } else if (id === "about") {
       if (!this.profileOpen) this.openProfile(false);
@@ -2409,7 +2529,7 @@ class PortfolioScene {
   }
 
   goRelative(direction) {
-    this.targetJourney += direction;
+    this.targetJourney = (this.mobile ? Math.round(this.targetJourney) : this.targetJourney) + direction;
     this.lastOrbitInput = performance.now();
   }
    
@@ -2730,12 +2850,56 @@ class PortfolioScene {
   }
 
   updateTransforms() {
-    const visibleCount = PROJECTS.length;
-    this.transforms = PROJECTS.map((_, index) => {
+    const visibleCount = this.mobile ? Math.max(1, this.visibleIndices.length) : PROJECTS.length;
+    this.transforms = PROJECTS.map((project, index) => {
       const visibleSlot = this.visibleIndices.indexOf(index);
       const count = visibleCount;
+      if (this.mobile && visibleSlot < 0) {
+        return {
+          position: [0, 0, -40],
+          rotation: [0, 0, 0],
+          scale: 0,
+          screenWidth: 0,
+          visible: false,
+          activity: 0,
+        };
+      }
       const rawRelative = visibleSlot - this.journey;
       const relative = ((rawRelative + count * 0.5) % count + count) % count - count * 0.5;
+      if (this.mobile) {
+        // Keep the one-card snap, but move the outgoing and incoming sheets on
+        // the front half of a shallow ellipse. The centre stays square to the
+        // camera; cards turn, recede and shrink progressively toward the sides.
+        const distance = Math.abs(relative);
+        const travel = Math.min(distance, 1);
+        const [planeWidth, planeHeight] = projectPlaneSize(project, true);
+        const aspect = planeWidth / planeHeight;
+        const viewportWidth = Math.max(1, this.canvas.clientWidth || window.innerWidth);
+        const viewportHeight = Math.max(1, this.canvas.clientHeight || window.innerHeight);
+        const maxCardHeight = Math.min(0.63 * viewportHeight, viewportHeight - 250);
+        const mainWidth = Math.min(aspect >= 1.2 ? 0.84 : aspect >= 0.9 ? 0.72 : 0.68,
+          maxCardHeight / viewportWidth * aspect);
+        const orbitAngle = relative * 1.16;
+        const centreDepth = -5.2;
+        const centreCameraDepth = 6.8 - centreDepth;
+        const viewWidth = 2 * centreCameraDepth * Math.tan(72 * Math.PI / 360)
+          * viewportWidth / viewportHeight;
+        // Keep a useful slice of each neighbour inside the viewport so its
+        // angled face is visible before it starts travelling toward centre.
+        const orbitX = Math.sin(orbitAngle) * viewWidth * 0.62;
+        const orbitLift = (1 - Math.cos(orbitAngle)) * 0.52;
+        const orbitDepth = (1 - Math.cos(orbitAngle)) * 3.8;
+        const hiddenDepth = Math.max(0, distance - 1) * 4;
+        const sideTurn = Math.sin(orbitAngle);
+        return {
+          position: [orbitX, 0.15 + orbitLift, centreDepth - orbitDepth - hiddenDepth],
+          rotation: [0.018 * travel, -0.54 * sideTurn, 0.04 * sideTurn],
+          scale: 1,
+          screenWidth: mainWidth * lerp(1, 0.72, smoothstep(0, 1, travel)),
+          visible: distance <= 1.12,
+          activity: Math.exp(-distance * distance * 8),
+        };
+      }
       // A single horizontal X/Z orbit rotates as one group around the object.
       // Small per-work Y offsets keep it organic without becoming an X/Y wall.
       const orbit = this.layouts.orbits[index];
@@ -2747,12 +2911,17 @@ class PortfolioScene {
       const ringSin = Math.sin(ringPhase);
       const frontness = (ringSin + 1) * 0.5;
       const ringX = ringCos * orbit.radiusX;
-      const isAllCategory = this.activeGroup === "all";
+      // On a phone, adjacent works need their own vertical space. Tying the
+      // lanes to the relative slot keeps the selected work centered while the
+      // previous and next works move to opposite sides of it as users scroll.
+      const mobileLaneY = Math.sin(relative * Math.PI * 0.5) * 2.6
+        + Math.sin(relative * Math.PI) * 0.3;
       const ringPosition = [
         ringX,
-        isAllCategory
-          ? 0
-          : orbit.height * (1 - activeWeight * 0.94) + Math.sin(ringPhase * 2 + index * 0.61) * (this.mobile ? 0.055 : 0.1),
+        this.mobile
+          ? mobileLaneY
+          : orbit.height * (1 - activeWeight * 0.94)
+            + Math.sin(ringPhase * 2 + index * 0.61) * 0.1,
         this.layouts.centerZ + ringSin * orbit.radiusZ,
       ];
       const cameraZ = this.mobile ? 6.8 : 5.25;
@@ -2761,14 +2930,16 @@ class PortfolioScene {
         Math.atan2(-ringX, this.layouts.centerZ - ringPosition[2]),
         ringCameraYaw,
       );
-      const ringYaw = mixAngle(ringRadialYaw, ringCameraYaw, 0.4 + activeWeight * 0.22);
+      const ringYaw = this.mobile
+        ? ringCameraYaw
+        : mixAngle(ringRadialYaw, ringCameraYaw, 0.4 + activeWeight * 0.22);
       const ringRotation = [
-        -ringSin * 0.025,
+        this.mobile ? 0 : -ringSin * 0.025,
         ringYaw,
-        Math.sin(ringPhase * 2 + index * 0.71) * 0.035,
+        this.mobile ? 0 : Math.sin(ringPhase * 2 + index * 0.71) * 0.035,
       ];
       const ringScale = this.mobile
-        ? 0.3 + frontness * 0.13 + activeWeight * 0.22
+        ? 0.3 + frontness * 0.13 + activeWeight * 0.38
         : 0.4 + frontness * 0.2 + activeWeight * 0.4;
 
       // SPIRAL is a closed wave around the same physical orbit. Using a
@@ -2780,7 +2951,9 @@ class PortfolioScene {
       const spiralX = spiralCos * orbit.radiusX * 0.8;
       const spiralPosition = [
         spiralX,
-        Math.sin(spiralAngle * 2) * (this.mobile ? 1.55 : 2.25) + orbit.height * 0.18,
+        this.mobile
+          ? mobileLaneY * 0.9 + Math.sin(spiralAngle * 2) * 0.25
+          : Math.sin(spiralAngle * 2) * 2.25 + orbit.height * 0.18,
         this.layouts.centerZ + spiralSin * orbit.radiusZ * 0.76,
       ];
       const spiralFrontness = (spiralSin + 1) * 0.5;
@@ -2790,12 +2963,14 @@ class PortfolioScene {
         spiralCameraYaw,
       );
       const spiralRotation = [
-        -spiralSin * 0.035,
-        mixAngle(spiralRadialYaw, spiralCameraYaw, 0.46 + activeWeight * 0.2),
-        Math.sin(index * 0.72) * 0.055,
+        this.mobile ? 0 : -spiralSin * 0.035,
+        this.mobile
+          ? spiralCameraYaw
+          : mixAngle(spiralRadialYaw, spiralCameraYaw, 0.46 + activeWeight * 0.2),
+        this.mobile ? 0 : Math.sin(index * 0.72) * 0.055,
       ];
       const spiralScale = this.mobile
-        ? 0.34 + spiralFrontness * 0.13 + activeWeight * 0.1
+        ? 0.33 + spiralFrontness * 0.13 + activeWeight * 0.27
         : 0.46 + spiralFrontness * 0.23 + activeWeight * 0.16;
       return {
         position: vec3Mix(ringPosition, spiralPosition, this.layoutMix),
@@ -2859,7 +3034,7 @@ class PortfolioScene {
       }
     }
     this.experience?.classList.add("is-entered");
-    if (this.scrollLabel) this.scrollLabel.textContent = "SCROLL · ROTATE";
+    if (this.scrollLabel) this.scrollLabel.textContent = this.mobile ? "SWIPE TO BROWSE" : "SCROLL · ROTATE";
   }
 
   update(delta, time) {
@@ -2873,7 +3048,9 @@ class PortfolioScene {
       this.pointer[0] = this.pointerTarget[0];
       this.pointer[1] = this.pointerTarget[1];
     } else {
-      this.journeyVelocity += (36 * (this.targetJourney - this.journey) - 8.8 * this.journeyVelocity) * delta;
+      const journeySpring = this.mobile ? 26 : 36;
+      const journeyDamping = this.mobile ? 10.5 : 8.8;
+      this.journeyVelocity += (journeySpring * (this.targetJourney - this.journey) - journeyDamping * this.journeyVelocity) * delta;
       this.journey += this.journeyVelocity * delta;
       this.layoutVelocity += (38 * (this.layoutTarget - this.layoutMix) - 10.5 * this.layoutVelocity) * delta;
       this.layoutMix += this.layoutVelocity * delta;
@@ -2884,7 +3061,11 @@ class PortfolioScene {
     }
 
     const orbitIsIdle = time - this.lastOrbitInput > 1200 && Math.abs(this.targetJourney - this.journey) < 0.025 && Math.abs(this.journeyVelocity) < 0.035;
-    if (!reduced && orbitIsIdle && this.sceneMode === "index" && !this.focus && !this.menuOpen && !this.profileOpen && !this.contactOpen) {
+    if (this.mobile) {
+      // Mobile navigation already moves the orbit through touch input. Keeping
+      // the desktop idle rotation here makes cards drift out of their lanes.
+      this.orbitRotation = 0;
+    } else if (!reduced && orbitIsIdle && this.sceneMode === "index" && !this.focus && !this.menuOpen && !this.profileOpen && !this.contactOpen) {
       this.orbitRotation = (this.orbitRotation + delta * (Math.PI * 2 / 68)) % (Math.PI * 2);
     }
     if (!this.isDuckDragging && !reduced && this.sceneMode === "index" && !this.focus && !this.menuOpen && !this.profileOpen && !this.contactOpen) {
@@ -2970,6 +3151,10 @@ class PortfolioScene {
       this.renderTunnel();
       this.renderDuckBubbles(time);
       this.renderFish(time);
+      // The enlarged mobile duck spans a much deeper volume than the flat
+      // project sheets. Start the sheets on a fresh depth layer so a card is
+      // always wholly in front instead of appearing to pass through the duck.
+      if (this.mobile) gl.clear(gl.DEPTH_BUFFER_BIT);
       this.renderProjects(time);
     }
 
@@ -3022,7 +3207,7 @@ class PortfolioScene {
     gl.bindTexture(gl.TEXTURE_2D, this.environmentTexture);
 
     const model = createMat4();
-    const baseScale = this.mobile ? 0.52 : window.innerWidth <= 1024 ? 0.8 : 1.14;
+    const baseScale = this.mobile ? 1.8 : window.innerWidth <= 1024 ? 0.8 : 1.14;
     const fishScale = baseScale * 0.76;
     const fishPosition = [0.72, -0.04, this.layouts.centerZ + 0.46];
     this.duckBubbleAnchor = { position: fishPosition, scale: fishScale };
@@ -3075,6 +3260,7 @@ class PortfolioScene {
     gl.uniform1f(plane.dim, 0);
     gl.uniform1f(plane.fog, 0);
     gl.uniform1f(plane.categoryHighlight, 0);
+    gl.uniform1f(plane.categoryFilter, 0);
     gl.uniform1f(plane.glowPass, 0);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, this.contactTexture);
@@ -3100,7 +3286,7 @@ class PortfolioScene {
     gl.uniformMatrix4fv(locations.viewProjection, false, this.viewProjection);
     gl.uniform3fv(locations.camera, this.cameraEye);
     gl.uniform1f(locations.dim, 0);
-    gl.uniform1f(locations.roughness, 0.12);
+    gl.uniform1f(locations.roughness, 0.28);
     gl.uniform1i(locations.environment, 1);
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_2D, this.environmentTexture);
@@ -3141,7 +3327,8 @@ class PortfolioScene {
 
     PROJECTS.forEach((project, index) => {
       const transform = this.transforms[index];
-      const bob = reduced || this.focus ? 0 : Math.sin(time * 0.00028 + index * 1.73) * 0.022;
+      if (this.mobile && !transform.visible && (!this.focus || this.focus.index !== index)) return;
+      const bob = reduced || this.focus || this.mobile ? 0 : Math.sin(time * 0.00028 + index * 1.73) * 0.022;
       const position = [
         transform.position[0],
         transform.position[1] + bob,
@@ -3149,14 +3336,26 @@ class PortfolioScene {
       ];
       const rotation = [...transform.rotation];
       let scaleUp = (transform.scale || 1) * (1 + this.hoverValues[index] * 0.055);
-      if (index === this.activeIndex) scaleUp += 0.015;
+      if (!this.mobile && index === this.activeIndex) scaleUp += 0.015;
+      const [width, height] = projectPlaneSize(project, this.mobile);
+      if (this.mobile) {
+        // Size in world units from the resting camera, so focus animation can
+        // move closer without a sudden resize. Every orientation has the same
+        // on-screen width at its carousel position.
+        const cameraDepth = 6.8 - transform.position[2];
+        const viewportWidth = Math.max(1, this.canvas.clientWidth || window.innerWidth);
+        const viewportHeight = Math.max(1, this.canvas.clientHeight || window.innerHeight);
+        const viewportAspect = viewportWidth / viewportHeight;
+        const mobileFov = 72 * (Math.PI / 180);
+        scaleUp = transform.screenWidth * 2 * cameraDepth
+          * Math.tan(mobileFov * 0.5) * viewportAspect / width;
+      }
       if (this.focus && index === this.focus.index) {
         rotation[0] = lerp(rotation[0], 0, this.focus.progress);
         rotation[1] = lerp(rotation[1], 0, this.focus.progress);
         rotation[2] = lerp(rotation[2], 0, this.focus.progress);
         scaleUp *= 1 + this.focus.progress * 0.08;
       }
-      const [width, height] = projectPlaneSize(project, this.mobile);
       const model = this.modelMatrices[index];
       mat4Compose(model, position, rotation, [width * scaleUp, height * scaleUp, 1]);
       const mvp = createMat4();
@@ -3180,6 +3379,7 @@ class PortfolioScene {
         gl.uniform1f(locations.dim, 0);
         gl.uniform1f(locations.fog, 0);
         gl.uniform1f(locations.categoryHighlight, categoryHighlight);
+        gl.uniform1f(locations.categoryFilter, this.categoryFilterMix);
         gl.uniform1f(locations.glowPass, 1);
         gl.enable(gl.BLEND);
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
@@ -3193,10 +3393,14 @@ class PortfolioScene {
       gl.uniform1f(locations.hover, this.hoverValues[index]);
       gl.uniform1f(locations.active, index === this.activeIndex ? 1 : 0);
       const hoverDim = this.hoverIndex >= 0 && index !== this.hoverIndex ? this.hoverValues[this.hoverIndex] * 0.18 : 0;
-      const categoryDim = this.categoryFilterMix * (1 - categoryHighlight) * 0.24;
-      const dim = this.focus && index !== this.focus.index ? this.focus.progress : Math.max(hoverDim, categoryDim);
+      const categoryDim = this.categoryFilterMix * (1 - categoryHighlight) * 0.36;
+      const carouselDim = this.mobile && !this.focus ? (1 - (transform.activity ?? 0)) * 0.2 : 0;
+      const dim = this.focus && index !== this.focus.index
+        ? this.focus.progress
+        : Math.max(hoverDim, categoryDim, carouselDim);
       gl.uniform1f(locations.dim, dim);
       gl.uniform1f(locations.categoryHighlight, categoryHighlight);
+      gl.uniform1f(locations.categoryFilter, this.categoryFilterMix);
       gl.uniform1f(locations.glowPass, 0);
       const distance = Math.hypot(position[0] - this.cameraEye[0], position[1] - this.cameraEye[1], position[2] - this.cameraEye[2]);
       gl.uniform1f(locations.fog, smoothstep(this.mobile ? 12.4 : 13.2, this.mobile ? 17.2 : 18.4, distance));
@@ -3220,6 +3424,15 @@ class PortfolioScene {
     if (this.focus || this.detailOpen || this.menuOpen) return;
     this.setIntro(false);
     const projectIndex = clamp(index, 0, PROJECTS.length - 1);
+    if (this.mobile && this.transforms[projectIndex] && !this.transforms[projectIndex].visible) {
+      // A direct project link may name a work outside the three visible cards.
+      // Centre it before starting the camera move so the focus path stays local.
+      this.scrollToProject(projectIndex);
+      this.journey = this.targetJourney;
+      this.journeyVelocity = 0;
+      this.updateTransforms();
+      this.updateActiveProject();
+    }
     const transform = this.transforms[projectIndex] || this.layouts.rings[projectIndex];
     const position = transform.position;
     const project = PROJECTS[projectIndex];
@@ -3412,8 +3625,14 @@ function projectDetailMarkup(project, projectIndex, showAllProjects = false) {
         <h3>${project.headline}</h3>
       </div>
       <div class="detail-intro__body">
-        <p>${project.brief}</p>
-        <p>${project.concept}</p>
+        <div class="detail-intro__copy">
+          ${project.briefTitle ? `<h4>${project.briefTitle}</h4>` : ''}
+          <p>${project.brief}</p>
+        </div>
+        <div class="detail-intro__copy">
+          ${project.conceptTitle ? `<h4>${project.conceptTitle}</h4>` : ''}
+          <p>${project.concept}</p>
+        </div>
       </div>
     </section>
 
