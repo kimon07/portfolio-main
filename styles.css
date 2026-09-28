@@ -1055,6 +1055,24 @@ a:focus-visible {
 
 .profile-about__title h1 span { color: var(--acid); }
 .profile-about__role { margin: 30px 0 0; font: 500 clamp(12px, 1.2vw, 16px)/1.6 var(--mono); letter-spacing: 0.08em; }
+.profile-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  max-width: 520px;
+  margin: 48px 0 0;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--line);
+}
+.profile-facts div {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.8fr) minmax(0, 1.2fr);
+  gap: 24px;
+  align-items: baseline;
+  min-width: 0;
+}
+.profile-facts dt { color: var(--acid); font: 800 clamp(15px, 1.3vw, 18px)/1.45 var(--mono); }
+.profile-facts dd { margin: 0; font-size: clamp(16px, 1.4vw, 19px); font-weight: 400; line-height: 1.45; word-break: keep-all; }
 .profile-about__statement {
   padding-bottom: 4px;
 }
@@ -2242,7 +2260,7 @@ a:focus-visible {
   }
 
   .profile-facts {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .profile-principles { grid-template-columns: repeat(3, 1fr); }
@@ -2956,6 +2974,8 @@ a:focus-visible {
     margin-top: 20px;
     font-size: 10px;
   }
+
+  .profile-facts { grid-template-columns: 1fr; margin-top: 32px; }
 
   .profile-about__statement h2 {
     margin-bottom: 16px;
