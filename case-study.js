@@ -68,17 +68,11 @@
   const stage = root.querySelector('[data-case-live-stage]');
   const viewport = root.querySelector('[data-case-viewport]');
   const frame = root.querySelector('[data-case-frame]');
-  const coverViewport = root.querySelector('[data-case-cover-viewport]');
-  const coverFrame = root.querySelector('[data-case-cover-frame]');
   const poster = root.querySelector('[data-case-poster]');
   const launch = root.querySelector('[data-case-launch]');
   const status = root.querySelector('[data-case-status]');
   const url = 'https://octos8.github.io/Aesop-projects/';
   let started = false, loadTimer;
-  const resizeCover = () => {
-    if (!coverViewport || !coverFrame) return;
-    coverFrame.style.transform = `scale(${coverViewport.clientWidth / 1600})`;
-  };
   const resize = () => {
     const mobile = stage.dataset.device === 'mobile';
     // Match the live site's actual design canvases. Using a narrower desktop
@@ -87,8 +81,6 @@
     frame.style.width = `${width}px`; frame.style.height = `${height}px`;
     frame.style.transform = `scale(${viewport.clientWidth / width})`;
   };
-  if (coverViewport) new ResizeObserver(resizeCover).observe(coverViewport);
-  resizeCover();
   new ResizeObserver(resize).observe(viewport);
   const start = () => {
     started = true; frame.hidden = false; poster.hidden = true; launch.hidden = true;
