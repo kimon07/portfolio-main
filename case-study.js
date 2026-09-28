@@ -66,7 +66,6 @@
   });
   startHomeSlider();
   const stage = root.querySelector('[data-case-live-stage]');
-  const viewport = root.querySelector('[data-case-viewport]');
   const frame = root.querySelector('[data-case-frame]');
   const coverViewport = root.querySelector('[data-case-cover-viewport]');
   const coverFrame = root.querySelector('[data-case-cover-frame]');
@@ -79,25 +78,12 @@
     if (!coverViewport || !coverFrame) return;
     coverFrame.style.transform = `scale(${coverViewport.clientWidth / 1600})`;
   };
-  const resize = () => {
-    const mobile = stage.dataset.device === 'mobile';
-    if (mobile) {
-      frame.style.width = '100%';
-      frame.style.height = '100%';
-      frame.style.transform = 'none';
-      return;
-    }
-    frame.style.width = '1600px';
-    frame.style.height = '1000px';
-    frame.style.transform = `scale(${viewport.clientWidth / 1600})`;
-  };
   if (coverViewport) new ResizeObserver(resizeCover).observe(coverViewport);
   resizeCover();
-  new ResizeObserver(resize).observe(viewport);
   const start = () => {
     started = true; frame.hidden = false; poster.hidden = true; launch.hidden = true;
     status.textContent = '사이트를 불러오는 중입니다. 표시되지 않으면 위의 새 창 링크를 이용해 주세요.';
-    frame.src = url; resize();
+    frame.src = url;
     clearTimeout(loadTimer);
     loadTimer = setTimeout(() => { status.textContent = '화면이 표시되지 않으면 ‘새 창에서 열기’로 접속해 주세요.'; }, 15000);
   };
@@ -115,7 +101,6 @@
     poster.src = mobile ? 'assets/images/aesop-project/home-mobile.png' : 'assets/images/aesop-project/hero-banner.jpg';
     root.querySelector('[data-case-device-label]').textContent = mobile ? '모바일 / 필요한 메뉴만 남기고 세로로' : 'PC / 이미지와 정보를 넓게 분리';
     root.querySelector('[data-case-device-note]').textContent = mobile ? '가로 메뉴는 아이콘으로 줄이고 로고를 가운데 두었습니다. 제품 이미지를 먼저 보여 준 뒤 프로모션과 다음 콘텐츠가 한 방향으로 이어지게 했습니다.' : '가로 메뉴는 한 줄로 펼치고, 큰 이미지 안에서도 제품 주변의 여백이 충분히 남도록 구성했습니다.';
-    resize();
   }));
   // Start with a legible phone preview; explicit device choices remain available.
   if (matchMedia('(max-width:760px)').matches) {

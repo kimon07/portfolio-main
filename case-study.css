@@ -109,7 +109,7 @@
 .case-live-stage[data-device="mobile"] .case-live-viewport { aspect-ratio:402/874; transform:none; rotate:0deg; border-radius:0 0 20px 20px; }
 .case-live-stage[data-device="mobile"] .case-live-viewport > img { object-fit:contain; object-position:center top; }
 .case-live-viewport > img { width:100%; height:100%; display:block; object-fit:cover; object-position:top; }
-.case-live-viewport iframe { position:absolute; top:0; left:0; width:1600px; height:1000px; border:0; transform-origin:top left; background:#f1ede2; }
+.case-live-viewport iframe { position:absolute; inset:0; display:block; width:100%; height:100%; max-width:none; border:0; transform:none; background:#f1ede2; }
 .case-live-stage[data-device="mobile"] .case-live-viewport iframe { width:100%; height:100%; max-width:none; transform:none; }
 .case-live-viewport [hidden] { display:none; }
 .case-launch { position:absolute; inset:0; margin:auto; width:max-content; max-width:90%; height:56px; display:flex; align-items:center; gap:16px; border:1px solid #f6f4ed; border-radius:0; padding:0 25px; background:var(--blue); color:white; box-shadow:0 8px 40px #0003; font-size:15px; }
