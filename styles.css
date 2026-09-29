@@ -887,7 +887,8 @@ a:focus-visible {
 
 .contact-ui__meta {
   position: absolute;
-  top: clamp(72px, 10vh, 118px);
+  /* Keep the right-aligned slogan below the persistent MENU control. */
+  top: clamp(124px, 16vh, 176px);
   right: var(--pad);
   left: var(--pad);
   display: flex;

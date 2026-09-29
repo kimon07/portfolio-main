@@ -7,7 +7,7 @@
 .profile-view__header { height:64px; align-items:center; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); padding-inline:clamp(20px,3vw,56px); background:linear-gradient(180deg,#193ac7 0%,#2858ff 55%,#6385ff 100%); color:var(--reader-paper); border-bottom:1px solid #ffffff26; }
 .profile-view__header > p { text-align:center; line-height:1.4; }
 .profile-view__header button { display:inline-flex; align-items:center; gap:8px; padding:0 4px; border-bottom:0; font:600 12px/1.4 var(--mono,monospace); }
-.profile-view__header .reader-menu { justify-self:end; justify-content:center; padding:10px 4px; border-bottom:2px solid var(--reader-blue); color:var(--reader-blue); }
+.profile-view__header .reader-menu { justify-self:end; justify-content:center; padding:10px 4px; border-color:var(--reader-blue); background:var(--reader-blue); color:#d8ff32; }
 .profile-view__header button:hover { color:#e3ff67; }
 .reader-menu:hover,.profile-view__header .reader-menu:hover { background:var(--reader-blue); color:#d8ff32; }
 .profile-view__header button:focus-visible { outline:2px solid currentColor; outline-offset:2px; }
