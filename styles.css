@@ -2446,6 +2446,32 @@ a:focus-visible {
     padding-top: clamp(30px, 3.1vw, 60px);
   }
 
+  .identity {
+    gap: 14px;
+  }
+
+  .identity-mark {
+    font-size: clamp(30px, 2.45vw, 42px);
+  }
+
+  .identity-copy {
+    gap: 6px;
+  }
+
+  .identity-copy strong {
+    font-size: clamp(13px, 0.9vw, 16px);
+  }
+
+  .identity-copy small {
+    font-size: clamp(8px, 0.56vw, 10px);
+  }
+
+  .journey-controls p {
+    min-width: clamp(210px, 17vw, 280px);
+    gap: 16px;
+    font-size: clamp(9px, 0.67vw, 11px);
+  }
+
   .intro__copy {
     width: min(650px, 46vw);
   }
