@@ -11,15 +11,17 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=20260922-duck" />
     <link rel="apple-touch-icon" href="favicon.svg?v=20260922-duck" />
     <title>GAON KIM — Selected Works</title>
-    <link rel="stylesheet" href="styles.css?v=20260928-mobile-detail-2" />
-    <link rel="stylesheet" href="case-study.css?v=20260928-live-preview-6" />
+    <link rel="stylesheet" href="styles.css?v=20260929-profile-labels" />
+    <link rel="stylesheet" href="case-study.css?v=20260929-mockup" />
     <script src="assets/artworks.js" defer></script>
     <script src="assets/additional-artworks.js" defer></script>
     <script src="assets/artwork-overrides.js?v=20260923-apricot-embedded-1" defer></script>
     <script src="underwater.js" defer></script>
-    <script src="script.js?v=20260928-mobile-duck-depth-layer-1" defer></script>
-    <script src="case-study.js?v=20260928-live-preview-6" defer></script>
+    <script src="script.js?v=20260929-mobile" defer></script>
+    <script src="case-study.js?v=20260929-mockup" defer></script>
     <link rel="stylesheet" href="nesto-integration.css" />
+    <link rel="stylesheet" href="portfolio-ux.css?v=20260929-profile-blue-gradient" />
+    <script src="portfolio-ux.js?v=20260929-profile-glass" defer></script>
     <script src="nesto-integration.js" defer></script>
   </head>
   <body id="start">
@@ -89,7 +91,7 @@
           작품을 추가할 수 있도록 비워 둔 프로젝트 슬롯입니다.
         </p>
         <button class="view-project" type="button" data-view-active>
-          <span>VIEW IN 3D SPACE</span>
+          <span>작품 자세히 보기</span>
           <span aria-hidden="true">↗</span>
         </button>
       </section>
@@ -185,10 +187,10 @@
               <h1>Bold Visuals,<br /><span>Clear Intent.</span></h1>
               <p class="profile-about__role">UI/UX · CONTENT DESIGNER</p>
               <dl class="profile-facts">
-                <div><dt>이름</dt><dd>김가온</dd></div>
-                <div><dt>생년월일</dt><dd>2007년 3월 24일</dd></div>
-                <div><dt>사는 곳</dt><dd>경기도 광주시</dd></div>
-                <div><dt>전화번호</dt><dd><a href="tel:01020259424">010-2025-9424</a></dd></div>
+                <div><dt>NAME</dt><dd>김가온</dd></div>
+                <div><dt>BIRTH</dt><dd>2007년 3월 24일</dd></div>
+                <div><dt>LOCATION</dt><dd>경기도 광주시</dd></div>
+                <div><dt>CONTACT</dt><dd><a href="tel:01020259424">010-2025-9424</a></dd></div>
               </dl>
             </div>
             <div class="profile-about__statement" data-profile-reveal>
@@ -210,7 +212,7 @@
           <p class="profile-kicker">02 / SKILLS</p>
           <div class="profile-skills__heading" data-profile-reveal>
             <h2>Skills <span>&amp; Tools.</span></h2>
-            <p>실무를 위해 공부한 언어 및 디자인 툴입니다.<br /><span>6 TOOLS / ONE DESIGN PERSPECTIVE</span></p>
+            <p>실무를 위해 공부한 언어 및 디자인 툴입니다.<br /><span>7 TOOLS / ONE DESIGN PERSPECTIVE</span></p>
           </div>
           <div class="profile-skills__list">
             <section class="skill-card" data-profile-reveal>
@@ -261,7 +263,7 @@
         </article>
 
         <footer class="profile-contact-cta">
-          <p>03 / CONTACT</p>https://octos8.github.io/Aesop-projects/index.html
+          <p>03 / CONTACT</p>
           <button type="button" data-open-contact>CONTACT ME <span>↗</span></button>
         </footer>
       </div>
@@ -276,32 +278,32 @@
       </header>
 
       <div class="team-view__scroll case-study" data-team-scroll tabindex="-1">
-        <article class="case-hero aesop-hero">
+        <article class="case-hero aesop-hero" data-reader-section="01 / PROJECT">
           <div class="case-hero-copy" data-team-reveal>
             <p class="case-eyebrow">AESOP / WEBSITE REDESIGN</p>
             <span class="case-project-name" aria-hidden="true">Aēsop<span>®</span></span>
             <h1>차분한 분위기는 유지하고,<br /><em>제품과 정보는 더 선명하게.</em></h1>
             <p class="case-lead">이솝 특유의 자연을 닮은 절제된 인상은 유지하면서, 첫 화면의 정보 구조를 재구성했습니다. 크림색 배경 위에서 이미지와 텍스트 영역을 분리하고, 핵심 정보가 먼저 읽히도록 크기와 위계를 조정했습니다.</p>
-            <a href="#case-compare" data-case-jump="compare" class="case-link">리디자인 사이트 체험하기 <span>↗</span></a>
+            <a href="#case-compare" data-case-jump="responsive" class="case-link">리디자인 사이트 체험하기 <span>↗</span></a>
           </div>
-          <figure class="case-cover" data-team-reveal><div class="case-cover__viewport" data-case-cover-viewport><iframe class="case-cover__frame" data-case-cover-frame src="https://octos8.github.io/Aesop-projects/" title="자동으로 전환되는 Aesop 리디자인 홈페이지 첫 화면" loading="eager" scrolling="no" tabindex="-1" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin"></iframe></div><figcaption><span>01 — HOME SCREEN</span><p>제품과 식물 이미지는 크게 보여 주고, 메뉴는 밝은 상단 바로 분리해 첫 화면에서도 시선이 흩어지지 않게 했습니다.</p></figcaption></figure>
+          <figure class="case-cover" data-team-reveal><div class="case-cover__viewport" data-case-cover-viewport><img src="assets/images/aesop-project/home-desktop-first.png" width="1600" height="1000" alt="Aesop 리디자인 메인 화면: 밝은 상단 메뉴와 제품 중심 이미지" loading="lazy" decoding="async" /><iframe class="case-cover__frame" data-case-cover-frame title="Aesop 리디자인 메인 배너 자동 슬라이드" src="https://octos8.github.io/Aesop-projects/" loading="lazy" tabindex="-1" aria-hidden="true" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin"></iframe></div><figcaption><span>01 — HOME SCREEN</span><p>제품과 식물 이미지는 크게 보여 주고, 메뉴는 밝은 상단 바로 분리해 첫 화면에서도 시선이 흩어지지 않게 했습니다.</p></figcaption></figure>
           <div class="case-meta">
-            <dl class="case-facts"><div><dt>PROJECT</dt><dd>3인 팀 프로젝트 · PC /PAD/MO</dd></div><div><dt>MY ROLE</dt><dd>DESIGN 50% · 레이아웃, 정보 구조</dd></div><div><dt>TOOLS</dt><dd>Figma · Photoshop · HTML/CSS/JS</dd></div></dl>
-            <p class="case-disclaimer">본 작업은 이솝(Aesop)과 무관한 포트폴리오 목적의 리디자인 프로젝트입니다.</p>
+            <dl class="case-facts"><div><dt>PROJECT</dt><dd>3인 팀 프로젝트 · PC / PAD / MOBILE</dd></div><div><dt>MY ROLE</dt><dd>DESIGN 50% · 레이아웃, 정보 구조</dd></div><div><dt>TOOLS</dt><dd>Figma · Photoshop · HTML/CSS/JS</dd></div></dl>
+            <a class="case-role-link" href="#case-role" data-case-jump="final">내 기여 영역과 회고 보기 ↓</a><p class="case-disclaimer">본 작업은 이솝(Aesop)과 무관한 포트폴리오 목적의 리디자인 프로젝트입니다.</p>
           </div>
         </article>
 
-        <article class="case-section case-intent" data-team-section="overview">
-          <header class="case-heading"><p class="case-eyebrow">01 / PROJECT INTRO</p><h2>분위기는 지키고, 정보가 읽히는 순서를 다시 설계했습니다.</h2><p>기존 화면은 어두운 이미지 위에 메뉴와 문구가 겹쳐 있어 글자가 읽히기 어려웠습니다. 식물 이미지와 차분한 색감은 유지하되 메뉴와 텍스트를 밝은 영역으로 옮겨, 제품을 보는 공간과 설명을 읽는 공간을 분리했습니다.</p></header>
+        <article class="case-section case-intent" data-team-section="overview" data-reader-section="02 / OVERVIEW">
+          <header class="case-heading"><p class="case-eyebrow">02 / OVERVIEW</p><h2>분위기는 지키고, 정보가 읽히는 순서를 다시 설계했습니다.</h2><p>기존 화면은 어두운 이미지 위에 메뉴와 문구가 겹쳐 있어 글자가 읽히기 어려웠습니다. 식물 이미지와 차분한 색감은 유지하되 메뉴와 텍스트를 밝은 영역으로 옮겨, 제품을 보는 공간과 설명을 읽는 공간을 분리했습니다.</p></header>
           <div class="case-reasons"><section><span>01</span><h3>메뉴는 밝은 영역에</h3><p>로고와 메뉴를 크림색 상단 바로 분리해, 배경 이미지가 바뀌어도 내비게이션이 항상 선명하게 보입니다.</p></section><section><span>02</span><h3>이미지는 제품 중심으로</h3><p>제품이 시선의 중심에 오도록 여백과 배경을 정리했습니다. 문구가 필요한 슬라이드에서만 텍스트를 얹어 이미지가 방해받지 않게 했습니다.</p></section><section><span>03</span><h3>크기로 중요도를 구분</h3><p>대표 이미지는 넓게, 개별 제품 정보는 작은 단위로 나눠 무엇을 먼저 봐야 하는지 한눈에 보이게 했습니다.</p></section></div>
         </article>
 
-        <article id="case-compare" class="case-section case-comparison" data-team-section="compare">
-          <header class="case-heading"><p class="case-eyebrow">02 / BEFORE & AFTER</p><h2>이미지 위의 글을 덜어내고,<br />제품이 보일 자리를 만들었습니다.</h2><p>기존 첫 화면은 어두운 사진 위에 메뉴와 문구가 함께 놓여 있어 글자가 사진과 겹쳐 잘 보이지 않았습니다. 리디자인에서는 메뉴를 크림색 상단 바로 분리하고 이미지 위의 글과 요소를 덜어내, 제품이 화면의 중심에 오도록 했습니다.</p></header>
+        <article id="case-compare" class="case-section case-comparison" data-team-section="compare" data-reader-section="03 / COMPARE">
+          <header class="case-heading"><p class="case-eyebrow">03 / BEFORE & AFTER</p><h2>이미지 위의 글을 덜어내고,<br />제품이 보일 자리를 만들었습니다.</h2><p>기존 첫 화면은 어두운 사진 위에 메뉴와 문구가 함께 놓여 있어 글자가 사진과 겹쳐 잘 보이지 않았습니다. 리디자인에서는 메뉴를 크림색 상단 바로 분리하고 이미지 위의 글과 요소를 덜어내, 제품이 화면의 중심에 오도록 했습니다.</p></header>
           <div class="case-compare-labels"><span>기존 웹사이트</span><span>리디자인</span></div>
           <figure class="aesop-compare__stage">
-            <div class="aesop-compare__panel aesop-compare__panel--new"><img src="assets/images/aesop-project/home-desktop-first.png" alt="Aesop 리디자인 사이트의 실제 첫 번째 데스크톱 배너 화면" /></div>
-            <div class="aesop-compare__panel aesop-compare__panel--original"><img src="assets/images/aesop-project/original-home.png" alt="기존 이솝 사이트의 첫 화면" /></div>
+            <div class="aesop-compare__panel aesop-compare__panel--new"><img loading="lazy" decoding="async" src="assets/images/aesop-project/home-desktop-first.png" alt="Aesop 리디자인 사이트의 실제 첫 번째 데스크톱 배너 화면" /></div>
+            <div class="aesop-compare__panel aesop-compare__panel--original"><img loading="lazy" decoding="async" src="assets/images/aesop-project/original-home.png" alt="기존 이솝 사이트의 첫 화면" /></div>
             <input type="range" min="0" max="100" value="50" data-compare-range aria-label="기존 화면과 리디자인 비교" aria-describedby="case-compare-help" />
             <div class="aesop-compare__divider" aria-hidden="true"><i>↔</i></div>
             <figcaption>↔ 경계선을 드래그하거나 방향키로 비교해 보세요.</figcaption>
@@ -310,11 +312,11 @@
           <div class="case-observation"><span>DESIGN DECISION</span><p>글을 사진 위에 얹는 대신, 이미지 위의 텍스트를 걷어내 제품이 화면의 중심에 오도록 했습니다. 식물의 실루엣은 살리되, 어두운 배경과 겹쳐 잘 읽히지 않던 문구는 없애 이미지가 온전히 보이게 했습니다.</p></div>
         </article>
 
-        <article class="case-section case-decisions" data-team-section="my-design">
-          <header class="case-heading"><p class="case-eyebrow">03 / LAYOUT</p><h2>가장 중요한 정보가 먼저 보이도록,<br />화면마다 이미지의 크기와 역할을 그 기준에 맞춰 정했습니다.</h2><p>모든 화면에 같은 비율을 적용하지 않았습니다. 홈은 이미지에, 목록은 카테고리에, 상세는 제품 정보에 먼저 시선이 가도록 크기와 위치를 화면마다 조절했습니다.</p></header>
+        <article class="case-section case-decisions" data-team-section="my-design" data-reader-section="04 / DESIGN">
+          <header class="case-heading"><p class="case-eyebrow">04 / DESIGN</p><h2>화면의 목적에 맞춰,<br />이미지와 정보의 크기를 정했습니다.</h2><p>모든 화면에 같은 비율을 적용하지 않았습니다. 홈은 이미지에, 목록은 카테고리에, 상세는 제품 정보에 먼저 시선이 가도록 크기와 위치를 화면마다 조절했습니다.</p></header>
           <div class="case-explorer">
             <div class="case-explorer-visual" data-case-visual>
-              <img data-case-image src="assets/images/aesop-project/main-forest.jpg" alt="왼쪽의 포레스트 캄 소개 글과 오른쪽의 제품이 여백을 두고 배치된 메인 배너" />
+              <img loading="lazy" decoding="async" data-case-image src="assets/images/aesop-project/main-forest.jpg" alt="왼쪽의 포레스트 캄 소개 글과 오른쪽의 제품이 여백을 두고 배치된 메인 배너" />
               <button type="button" class="case-focus" data-case-focus aria-label="다음 화면의 설계 이유 보기">01</button>
               <div class="case-home-slider-controls" data-case-home-slider-controls aria-label="메인 홈페이지 배너 슬라이드">
                 <button type="button" data-case-home-prev aria-label="이전 배너">←</button>
@@ -328,19 +330,19 @@
             </div>
             <div class="case-explorer-notes">
               <div class="case-choices" role="group" aria-label="디자인 구성 선택"><button type="button" data-case-choice="0" aria-pressed="true"><span>01</span> 홈 · 글과 제품의 간격 <i>↗</i></button><button type="button" data-case-choice="1" aria-pressed="false"><span>02</span> 제품 목록 · 제목과 카테고리 <i>↗</i></button><button type="button" data-case-choice="2" aria-pressed="false"><span>03</span> 제품 상세 · 정보와 구매 흐름 <i>↗</i></button><button type="button" data-case-choice="3" aria-pressed="false"><span>04</span> 프로모션 · 세트와 단품의 크기 <i>↗</i></button></div>
-              <div class="case-note" aria-live="polite" aria-atomic="true"><small data-case-note-label>HOME / 글과 이미지의 간격</small><h3 data-case-note-title>제품과 글이<br />겹치지 않도록.</h3><p data-case-note-body>제품 주변은 식물과 그림자로 이미 밀도가 높아, 설명까지 더하면 복잡해 보였습니다. 제품은 오른쪽에 모으고 제목과 설명은 왼쪽 밝은 여백에 맞췄습니다. '자세히 보기' 버튼도 같은 시작선에 두어 시선이 한 줄로 이어지게 했습니다.</p><p class="case-note-detail" data-case-note-detail>왼쪽 정렬 · 짙은 녹색 글자 · 설명 아래 테두리 버튼</p></div>
+              <button type="button" class="case-enlarge" data-case-enlarge>선택한 화면 크게 보기 ↗</button><div class="case-note" aria-live="polite" aria-atomic="true"><small data-case-note-label>HOME / 글과 이미지의 간격</small><h3 data-case-note-title>제품과 글이<br />겹치지 않도록.</h3><p data-case-note-body>제품 주변은 식물과 그림자로 이미 밀도가 높아, 설명까지 더하면 복잡해 보였습니다. 제품은 오른쪽에 모으고 제목과 설명은 왼쪽 밝은 여백에 맞췄습니다. '자세히 보기' 버튼도 같은 시작선에 두어 시선이 한 줄로 이어지게 했습니다.</p><p class="case-note-detail" data-case-note-detail>왼쪽 정렬 · 짙은 녹색 글자 · 설명 아래 테두리 버튼</p></div>
             </div>
           </div>
         </article>
 
-        <article class="case-section case-live" data-team-section="responsive">
-          <header class="case-heading"><p class="case-eyebrow">04 / LIVE PREVIEW</p><h2>리디자인 사이트를<br />직접 확인해 보세요.</h2><p>PC에서는 이미지와 정보를 넓게 분리하고, 모바일에서는 콘텐츠를 세로 순서로 다시 배치했습니다.</p></header>
-          <div class="case-live-controls"><div role="group" aria-label="미리보기 화면 크기"><button type="button" data-case-device="pc" aria-pressed="true">PC</button><button type="button" data-case-device="mobile" aria-pressed="false">모바일</button></div><a href="https://octos8.github.io/Aesop-projects/" target="_blank" rel="noreferrer">새 창에서 열기 ↗</a></div>
-          <div class="case-live-stage" data-case-live-stage data-device="pc"><div class="case-browser" data-case-browser><div class="case-browser-top"><span aria-hidden="true">● ○ ○</span><span>AESOP · LIVE PREVIEW</span><button type="button" data-case-reset aria-label="미리보기 첫 화면으로 돌아가기">↻</button></div><div class="case-live-viewport" data-case-viewport><img data-case-poster src="assets/images/aesop-project/hero-banner.jpg" alt="이솝 사이트 미리보기" /><iframe data-case-frame title="직접 탐색하는 이솝 리디자인 사이트" hidden referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe><button type="button" class="case-launch" data-case-launch><span>↗</span>리디자인 사이트 체험하기</button></div></div></div>
-          <div class="case-live-caption"><div><span data-case-device-label>PC / 이미지와 정보를 넓게 분리</span><p data-case-device-note>가로 메뉴는 한 줄로 펼치고, 큰 이미지 안에서도 제품 주변에 여백이 충분히 남도록 구성했습니다.</p></div><p class="case-live-status" data-case-status role="status">버튼을 누르면 리디자인 사이트가 새 창에서 열립니다.</p></div>
+        <article class="case-section case-live" data-team-section="responsive" data-reader-section="05 / RESPONSIVE">
+          <header class="case-heading"><p class="case-eyebrow">05 / RESPONSIVE</p><h2>리디자인 사이트를<br />직접 확인해 보세요.</h2><p>PC에서는 이미지와 정보를 넓게 분리하고, 모바일에서는 콘텐츠를 세로 순서로 다시 배치했습니다. 패드 크기에서도 사이트를 직접 확인해 보세요.</p></header>
+          <div class="case-live-controls"><div role="group" aria-label="미리보기 화면 크기"><button type="button" data-case-device="pc" aria-pressed="true">PC</button><button type="button" data-case-device="tablet" aria-pressed="false">패드</button><button type="button" data-case-device="mobile" aria-pressed="false">모바일</button></div><a href="https://octos8.github.io/Aesop-projects/" target="_blank" rel="noreferrer">새 창에서 열기 ↗</a></div>
+          <div class="case-live-stage" data-case-live-stage data-device="pc"><div class="case-browser" data-case-browser><div class="case-browser-top"><span aria-hidden="true">● ○ ○</span><span>AESOP · LIVE PREVIEW</span><button type="button" data-case-reset aria-label="미리보기 첫 화면으로 돌아가기">↻</button></div><div class="case-live-viewport" data-case-viewport><img loading="lazy" decoding="async" data-case-poster src="assets/images/aesop-project/home-desktop-first.png" alt="이솝 사이트 미리보기" /><iframe data-case-frame title="직접 탐색하는 이솝 리디자인 사이트" hidden referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe><button type="button" class="case-launch" data-case-launch><span>↗</span>리디자인 사이트 체험하기</button></div></div></div>
+          <div class="case-live-caption"><div><span data-case-device-label>PC / 이미지와 정보를 넓게 분리</span><p data-case-device-note>가로 메뉴는 한 줄로 펼치고, 큰 이미지 안에서도 제품 주변에 여백이 충분히 남도록 구성했습니다.</p></div><p class="case-live-status" data-case-status role="status">버튼을 누르면 이 화면 안에서 사이트를 탐색할 수 있습니다.</p></div>
         </article>
 
-        <article class="case-section case-finish" data-team-section="final"><p class="case-eyebrow">05 / MY ROLE & RETROSPECTIVE</p><h2>DESIGN 50%<br />남길 것과 줄일 것을 구분했습니다.</h2><p>3인 팀에서 디자인 50%를 맡아 화면의 레이아웃, 이미지 배치, 여백, 정보 순서를 정리했습니다.<br /><br />이솝의 분위기를 유지한다는 것은 모든 요소를 그대로 둔다는 뜻이 아니었습니다. 브랜드를 대표하는 색과 이미지를 먼저 가려내고, 나머지는 과감히 덜어냈습니다. 제품이 돋보이는 장면에서도 정보가 묻히면 여백을 늘리고 위치를 다시 잡았습니다.<br /><br />사용자가 첫 화면에서 이솝 특유의 차분함을 느끼고, 제품을 확인한 뒤 목록과 상세 정보로 자연스럽게 이동하도록 설계했습니다.<br /><br />무엇을 더 넣을지보다 무엇을 덜어낼지 판단하는 과정이 더 중요하다는 점을 배웠습니다.</p><div class="case-end-actions"><a href="https://octos8.github.io/Aesop-projects/" target="_blank" rel="noreferrer">리디자인 사이트 방문 ↗</a><button type="button" data-team-next>다른 작업 보기 →</button></div></article>
+        <article id="case-role" class="case-section case-finish" data-team-section="final" data-reader-section="06 / MY ROLE"><p class="case-eyebrow">06 / MY ROLE & RETROSPECTIVE</p><dl class="case-role-summary"><div><dt>3인 팀 · 디자인 기여도</dt><dd>50<span>%</span></dd></div><div><dt>내가 기여한 디자인 영역</dt><dd>화면 레이아웃 · 이미지 배치<br />여백 · 정보 순서</dd></div></dl><h2>남길 것과 줄일 것을<br />구분했습니다.</h2><p>3인 팀에서 디자인 50%를 맡아 화면의 레이아웃, 이미지 배치, 여백, 정보 순서를 정리했습니다.<br /><br />이솝의 분위기를 유지한다는 것은 모든 요소를 그대로 둔다는 뜻이 아니었습니다. 브랜드를 대표하는 색과 이미지를 먼저 가려내고, 나머지는 과감히 덜어냈습니다. 제품이 돋보이는 장면에서도 정보가 묻히면 여백을 늘리고 위치를 다시 잡았습니다.<br /><br />사용자가 첫 화면에서 이솝 특유의 차분함을 느끼고, 제품을 확인한 뒤 목록과 상세 정보로 자연스럽게 이동하도록 설계했습니다.<br /><br />무엇을 더 넣을지보다 무엇을 덜어낼지 판단하는 과정이 더 중요하다는 점을 배웠습니다.</p><div class="case-end-actions"><a href="https://octos8.github.io/Aesop-projects/" target="_blank" rel="noreferrer">리디자인 사이트 방문 ↗</a><button type="button" data-portfolio-route="personal">NEXT PROJECT · NESTO →</button></div></article>
       </div>
 
       <dialog class="team-lightbox" data-team-lightbox aria-label="프로젝트 화면 확대 보기">
@@ -360,7 +362,7 @@
         <a href="#about" data-menu-route="about"><span>02</span><strong>ABOUT + SKILLS</strong></a>
         <a href="nesto.html" data-nesto-open><span>03</span><strong>PERSONAL PROJECT</strong><small>FURNITURE ↗</small></a>
         <a href="#team-project" data-menu-route="team"><span>04</span><strong>TEAM PROJECT</strong><small>AESOP ↗</small></a>
-        <a href="#contact" data-menu-route="contact"><span>05</span><strong>EMAIL</strong></a>
+        <a href="#contact" data-menu-route="contact"><span>05</span><strong>CONTACT</strong></a>
       </nav>
     </aside>
 

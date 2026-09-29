@@ -260,7 +260,7 @@ class UnderwaterScene {
     this.clock += delta;
     const hidden = scene.sceneMode !== "index" || scene.introOpen || scene.focus ||
       scene.detailOpen || scene.menuOpen || scene.profileOpen || scene.teamOpen ||
-      scene.contactOpen || scene.transitioning;
+      scene.contactOpen || scene.transitioning || scene.mobile;
     this.layer.hidden = Boolean(hidden);
     if (hidden) return;
     const reduced = scene.isReducedMotion();

@@ -5,7 +5,7 @@
   root.querySelectorAll('[data-case-jump]').forEach(button => button.addEventListener('click', event => {
     event.preventDefault();
     const section = root.querySelector(`[data-team-section="${button.dataset.caseJump}"]`);
-    if (section) root.scrollTo({top:section.offsetTop, behavior:reduced() ? 'instant' : 'smooth'});
+    if (section) root.scrollTo({top:root.scrollTop + section.getBoundingClientRect().top - root.getBoundingClientRect().top - 128, behavior:reduced() ? 'instant' : 'smooth'});
   }));
   const range = root.querySelector('[data-compare-range]');
   root.querySelectorAll('[data-compare-set]').forEach(button => button.addEventListener('click', () => {
@@ -25,7 +25,7 @@
   ];
   const visual = root.querySelector('[data-case-visual]');
   const homeControls = root.querySelector('[data-case-home-slider-controls]');
-  let homeSlideIndex = 0, homeSlideTimer;
+  let homeSlideIndex = 0;
   const renderHomeSlide = index => {
     const img = root.querySelector('[data-case-image]');
     homeSlideIndex = (index + homeSlides.length) % homeSlides.length;
@@ -34,28 +34,16 @@
     img.alt = slide.alt;
     homeControls.querySelectorAll('[data-case-home-slide]').forEach((dot, dotIndex) => dot.setAttribute('aria-current', String(dotIndex === homeSlideIndex)));
   };
-  const stopHomeSlider = () => { clearInterval(homeSlideTimer); };
-  const startHomeSlider = () => {
-    stopHomeSlider();
-    const homeSelected = root.querySelector('[data-case-choice="0"][aria-pressed="true"]');
-    if (!homeSelected || reduced() || document.hidden) return;
-    homeSlideTimer = setInterval(() => renderHomeSlide(homeSlideIndex + 1), 4500);
-  };
-  root.querySelector('[data-case-home-prev]').addEventListener('click', () => { renderHomeSlide(homeSlideIndex - 1); startHomeSlider(); });
-  root.querySelector('[data-case-home-next]').addEventListener('click', () => { renderHomeSlide(homeSlideIndex + 1); startHomeSlider(); });
-  homeControls.querySelectorAll('[data-case-home-slide]').forEach((dot, index) => dot.addEventListener('click', () => { renderHomeSlide(index); startHomeSlider(); }));
-  visual.addEventListener('mouseenter', stopHomeSlider);
-  visual.addEventListener('mouseleave', startHomeSlider);
-  visual.addEventListener('focusin', stopHomeSlider);
-  visual.addEventListener('focusout', event => { if (!visual.contains(event.relatedTarget)) startHomeSlider(); });
-  document.addEventListener('visibilitychange', () => document.hidden ? stopHomeSlider() : startHomeSlider());
+  root.querySelector('[data-case-home-prev]').addEventListener('click', () => renderHomeSlide(homeSlideIndex - 1));
+  root.querySelector('[data-case-home-next]').addEventListener('click', () => renderHomeSlide(homeSlideIndex + 1));
+  homeControls.querySelectorAll('[data-case-home-slide]').forEach((dot, index) => dot.addEventListener('click', () => renderHomeSlide(index)));
   root.querySelectorAll('[data-case-choice]').forEach(button => button.addEventListener('click', () => {
     const index = Number(button.dataset.caseChoice), story = stories[index];
     root.querySelectorAll('[data-case-choice]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
     const img = root.querySelector('[data-case-image]');
     if (img) { img.src = `assets/images/aesop-project/${story.image}`; img.alt = story.alt; img.style.aspectRatio = story.ratio; img.style.objectPosition = story.position; }
     homeControls.hidden = index !== 0;
-    if (index === 0) { renderHomeSlide(homeSlideIndex); startHomeSlider(); } else stopHomeSlider();
+    if (index === 0) renderHomeSlide(homeSlideIndex);
     const focus = root.querySelector('[data-case-focus]');
     focus.textContent = String(index + 1).padStart(2,'0'); focus.style.left = story.x; focus.style.top = story.y;
     ['label','title','body','detail'].forEach(key => root.querySelector(`[data-case-note-${key}]`).textContent = story[key]);
@@ -64,7 +52,10 @@
     const current = root.querySelector('[data-case-choice][aria-pressed="true"]');
     root.querySelectorAll('[data-case-choice]')[(Number(current.dataset.caseChoice) + 1) % stories.length].click();
   });
-  startHomeSlider();
+  root.querySelector('[data-case-enlarge]')?.addEventListener('click', () => {
+    const image = root.querySelector('[data-case-image]');
+    portfolioScene.openTeamLightbox(image.src, image.alt);
+  });
   const stage = root.querySelector('[data-case-live-stage]');
   const frame = root.querySelector('[data-case-frame]');
   const coverViewport = root.querySelector('[data-case-cover-viewport]');
@@ -79,6 +70,10 @@
     coverFrame.style.transform = `scale(${coverViewport.clientWidth / 1600})`;
   };
   if (coverViewport) new ResizeObserver(resizeCover).observe(coverViewport);
+  coverFrame?.addEventListener('load', () => {
+    resizeCover();
+    coverFrame.classList.add('is-loaded');
+  });
   resizeCover();
   const start = () => {
     started = true; frame.hidden = false; poster.hidden = true; launch.hidden = true;
@@ -94,13 +89,33 @@
   });
   launch.addEventListener('click', start);
   root.querySelector('[data-case-reset]').addEventListener('click', () => { if (started) start(); });
+  const liveViewport = root.querySelector('[data-case-viewport]');
+  // Keep the simulated device width independent of the reader's screen.
+  const deviceSizes = { pc: [1600, 1000], tablet: [768, 1024], mobile: [390, 844] };
+  const resizePreview = () => {
+    const [width, height] = deviceSizes[stage.dataset.device] || deviceSizes.pc;
+    stage.style.setProperty('--case-preview-width', `${width}px`);
+    stage.style.setProperty('--case-preview-height', `${height}px`);
+    stage.style.setProperty('--case-preview-ratio', `${width} / ${height}`);
+    if (liveViewport.clientWidth > 0) {
+      stage.style.setProperty('--case-preview-scale', liveViewport.clientWidth / width);
+    }
+  };
+  new ResizeObserver(resizePreview).observe(liveViewport);
+  resizePreview();
   root.querySelectorAll('[data-case-device]').forEach(button => button.addEventListener('click', () => {
     const mobile = button.dataset.caseDevice === 'mobile';
+    const tablet = button.dataset.caseDevice === 'tablet';
     stage.dataset.device = button.dataset.caseDevice;
     root.querySelectorAll('[data-case-device]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    poster.src = mobile ? 'assets/images/aesop-project/home-mobile.png' : 'assets/images/aesop-project/hero-banner.jpg';
+    poster.src = mobile ? 'assets/images/aesop-project/home-mobile.png' : 'assets/images/aesop-project/home-desktop-first.png';
     root.querySelector('[data-case-device-label]').textContent = mobile ? '모바일 / 필요한 메뉴만 남기고 세로로' : 'PC / 이미지와 정보를 넓게 분리';
     root.querySelector('[data-case-device-note]').textContent = mobile ? '가로 메뉴는 아이콘으로 줄이고 로고를 가운데 두었습니다. 제품 이미지를 먼저 보여 준 뒤 프로모션과 다음 콘텐츠가 한 방향으로 이어지게 했습니다.' : '가로 메뉴는 한 줄로 펼치고, 큰 이미지 안에서도 제품 주변의 여백이 충분히 남도록 구성했습니다.';
+    if (tablet) {
+      root.querySelector('[data-case-device-label]').textContent = '패드 / 세로형 태블릿 화면으로 탐색';
+      root.querySelector('[data-case-device-note]').textContent = '768 × 1024 크기의 화면에서 이미지와 콘텐츠 배치를 확인할 수 있습니다. 화면 안에서 직접 클릭하고 스크롤해 보세요.';
+    }
+    resizePreview();
   }));
   // Start with a legible phone preview; explicit device choices remain available.
   if (matchMedia('(max-width:760px)').matches) {

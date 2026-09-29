@@ -757,6 +757,16 @@ function drawProjectArtwork(canvas, project) {
     } else context.drawImage(project.imageElement, 0, 0, width, height);
     return canvas;
   }
+  // Detail images remain available even when WebGL initialization is unavailable.
+  if (project.imageSrc) {
+    if (!project.imageLoading) project.imageLoading = new Promise(resolve => {
+      const image = new Image();
+      image.onload = () => { project.imageElement = image; resolve(true); };
+      image.onerror = () => resolve(false);
+      image.src = project.imageSrc;
+    });
+    project.imageLoading.then(loaded => { if (loaded && canvas.isConnected) drawProjectArtwork(canvas, project); });
+  }
   const tones = ["#8b8e91", "#7f8387", "#96999b", "#74787d"];
 
   context.clearRect(0, 0, width, height);
@@ -1889,7 +1899,7 @@ class PortfolioScene {
 
     this.gl = this.canvas?.getContext("webgl2");
 
-    this.mobile = window.matchMedia("(max-width: 520px)").matches;
+    this.mobile = window.matchMedia("(max-width: 760px)").matches;
     this.systemReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     this.userReducedMotion = null;
     try {
@@ -1925,6 +1935,7 @@ class PortfolioScene {
     this.hoverValues = PROJECTS.map(() => 0);
     this.hoverIndex = -1;
     this.activeIndex = -1;
+    this.infoIndex = -1;
     this.pointerTarget = [0, 0];
     this.pointer = [0, 0];
     this.pointerPosition = [window.innerWidth / 2, window.innerHeight / 2];
@@ -1977,9 +1988,7 @@ class PortfolioScene {
     this.setIntro(!window.location.hash || window.location.hash === "#start");
     this.setupCategoryNavigation();
     this.setupTeamProject();
-    if (window.location.hash === "#team-project") {
-      requestAnimationFrame(() => this.openTeamProject(false));
-    }
+    this.bindEvents();
     document.querySelectorAll("[data-enter-work]").forEach((button) => {
       button.addEventListener("click", () => this.setIntro(false, true));
     });
@@ -1995,10 +2004,11 @@ class PortfolioScene {
       }
     }, { passive: true });
     if (!this.canvas || !this.gl) {
+      document.body.classList.add("is-static-gallery");
       if (this.loadingScreen) this.loadingScreen.hidden = true;
       if (this.fallback) {
         this.fallback.hidden = false;
-        this.fallback.textContent = "이 브라우저에서는 3D 장면을 표시할 수 없습니다. 최신 브라우저에서 다시 열어 주세요.";
+        this.fallback.textContent = "3D 대신 작품 목록에서 모든 작업과 프로젝트를 확인할 수 있습니다.";
       }
       return;
     }
@@ -2040,7 +2050,6 @@ class PortfolioScene {
       this.contactTexture = createTextureFromCanvas(this.gl, contactCanvas);
 
       this.configureGl();
-      this.bindEvents();
       this.updateMotionToggle();
       this.handleResize();
       if (this.totalCount) this.totalCount.textContent = String(PROJECTS.length).padStart(2, "0");
@@ -2055,15 +2064,13 @@ class PortfolioScene {
       const initialId = window.location.hash.slice(1);
       const initialIndex = PROJECTS.findIndex((project) => project.id === initialId);
       if (initialIndex >= 0) {
-        window.setTimeout(() => {
-          this.startFocus(initialIndex, [window.innerWidth / 2, window.innerHeight / 2], false, true);
-        }, 260);
+        this.startFocus(initialIndex, [window.innerWidth / 2, window.innerHeight / 2], false, true);
       } else if (initialId === "about") {
-        window.setTimeout(() => this.openProfile(false), 160);
+        this.openProfile(false);
       } else if (initialId === "team-project") {
-        window.setTimeout(() => this.openTeamProject(false), 160);
+        this.openTeamProject(false);
       } else if (initialId === "contact") {
-        window.setTimeout(() => this.openContact(false), 160);
+        this.openContact(false);
       }
     } catch (error) {
       console.error(error);
@@ -2212,6 +2219,8 @@ class PortfolioScene {
     this.canvas.addEventListener("webglcontextlost", (event) => {
       event.preventDefault();
       this.running = false;
+      document.body.classList.add("is-static-gallery");
+      window.dispatchEvent(new Event("portfolio:fallback"));
       if (this.fallback) this.fallback.hidden = false;
     });
 
@@ -2221,7 +2230,7 @@ class PortfolioScene {
     document.querySelector("[data-previous]")?.addEventListener("click", () => this.goRelative(-1));
     document.querySelector("[data-next]")?.addEventListener("click", () => this.goRelative(1));
     document.querySelector("[data-view-active]")?.addEventListener("click", () => {
-      this.startFocus(this.activeIndex, [window.innerWidth * 0.34, window.innerHeight * 0.58]);
+      this.startFocus(this.infoIndex >= 0 ? this.infoIndex : this.activeIndex, [window.innerWidth * 0.34, window.innerHeight * 0.58]);
     });
     document.querySelector("[data-project-close]")?.addEventListener("click", () => this.requestCloseProject());
     document.querySelector("[data-contact-close]")?.addEventListener("click", () => this.closeContact());
@@ -2291,7 +2300,7 @@ class PortfolioScene {
 
   handleResize() {
     const wasMobile = this.mobile;
-    this.mobile = window.matchMedia("(max-width: 520px)").matches;
+    this.mobile = window.matchMedia("(max-width: 760px)").matches;
     if (!this.gl || !this.canvas) return;
     if (wasMobile !== this.mobile) {
       this.layouts = buildLayouts(this.mobile);
@@ -2505,6 +2514,13 @@ class PortfolioScene {
 
   handlePopState() {
     const id = window.location.hash.slice(1);
+    if (this.profileOpen && id !== "about") this.closeProfile(true);
+    if ((this.detailOpen || this.focus) && !PROJECTS.some(project => project.id === id)) this.closeProjectView(true);
+    if (this.contactOpen && id !== "contact") {
+      this.closeContact(true);
+      window.setTimeout(this.handlePopState, this.isReducedMotion() ? 30 : 1000);
+      return;
+    }
     if (id === "team-project") {
       if (!this.teamOpen) this.openTeamProject(false);
       return;
@@ -2830,6 +2846,7 @@ class PortfolioScene {
     this.hoverIndex = index;
     this.experience?.classList.toggle("has-hover", index >= 0);
     if (index >= 0) {
+      this.updateProjectInfo(index);
       const project = PROJECTS[index];
       if (this.tooltipIndex) this.tooltipIndex.textContent = project.index;
       if (this.tooltipTitle) this.tooltipTitle.textContent = project.title;
@@ -2876,7 +2893,8 @@ class PortfolioScene {
         const aspect = planeWidth / planeHeight;
         const viewportWidth = Math.max(1, this.canvas.clientWidth || window.innerWidth);
         const viewportHeight = Math.max(1, this.canvas.clientHeight || window.innerHeight);
-        const maxCardHeight = Math.min(0.63 * viewportHeight, viewportHeight - 250);
+        // Reserve space above and below the canvas centre for mobile navigation.
+        const maxCardHeight = Math.max(64, viewportHeight - 352);
         const mainWidth = Math.min(aspect >= 1.2 ? 0.84 : aspect >= 0.9 ? 0.72 : 0.68,
           maxCardHeight / viewportWidth * aspect);
         const orbitAngle = relative * 1.16;
@@ -3004,6 +3022,17 @@ class PortfolioScene {
     return { eye, look };
   }
 
+  updateProjectInfo(index) {
+    const project = PROJECTS[index];
+    if (!project || this.infoIndex === index) return;
+    this.infoIndex = index;
+    if (this.activeTitle) this.activeTitle.textContent = project.title;
+    if (this.activeCategory) this.activeCategory.textContent = project.category;
+    if (this.activeMedia) this.activeMedia.textContent = project.media.join(" / ");
+    if (this.activeYear) this.activeYear.textContent = project.year;
+    if (this.activeSummary) this.activeSummary.textContent = project.summary;
+  }
+
   updateActiveProject() {
     const count = this.visibleIndices.length || 1;
     const activeSlot = ((Math.round(this.journey) % count) + count) % count;
@@ -3020,19 +3049,15 @@ class PortfolioScene {
         }
       });
     }
-    if (nextIndex !== this.activeIndex) {
-      this.activeIndex = nextIndex;
-      const project = PROJECTS[nextIndex];
-      if (this.activeTitle) this.activeTitle.textContent = project.title;
-      if (this.activeCategory) this.activeCategory.textContent = project.category;
-      if (this.activeMedia) this.activeMedia.textContent = project.media.join(" / ");
-      if (this.activeYear) this.activeYear.textContent = project.year;
-      if (this.activeSummary) this.activeSummary.textContent = project.summary;
-      if (this.currentIndex) {
-        const visibleNumber = this.visibleIndices.indexOf(nextIndex) + 1;
-        this.currentIndex.textContent = String(visibleNumber).padStart(2, '0');
-      }
+    this.activeIndex = nextIndex;
+    if (this.currentIndex) {
+      const visibleNumber = this.visibleIndices.indexOf(nextIndex) + 1;
+      const label = String(visibleNumber).padStart(2, '0');
+      if (this.currentIndex.textContent !== label) this.currentIndex.textContent = label;
     }
+    // Keep the last hovered work readable while the pointer moves to its link.
+    // Touch navigation and focused works still follow the active card.
+    if (this.focus || this.mobile || this.infoIndex < 0) this.updateProjectInfo(nextIndex);
     this.experience?.classList.add("is-entered");
     if (this.scrollLabel) this.scrollLabel.textContent = this.mobile ? "SWIPE TO BROWSE" : "SCROLL · ROTATE";
   }
@@ -3068,7 +3093,7 @@ class PortfolioScene {
     } else if (!reduced && orbitIsIdle && this.sceneMode === "index" && !this.focus && !this.menuOpen && !this.profileOpen && !this.contactOpen) {
       this.orbitRotation = (this.orbitRotation + delta * (Math.PI * 2 / 68)) % (Math.PI * 2);
     }
-    if (!this.isDuckDragging && !reduced && this.sceneMode === "index" && !this.focus && !this.menuOpen && !this.profileOpen && !this.contactOpen) {
+    if (!this.isDuckDragging && !reduced && (!this.mobile || this.introOpen) && this.sceneMode === "index" && !this.focus && !this.menuOpen && !this.profileOpen && !this.contactOpen) {
       this.duckRotationY += delta * (Math.PI * 2 / 32);
       this.duckRotationY = (this.duckRotationY + Math.PI * 2) % (Math.PI * 2);
       this.duckSpinVelocity *= 0.987;
@@ -3130,9 +3155,15 @@ class PortfolioScene {
 
   frame(time) {
     if (!this.running) return;
+    if (this.mobile && !this.focus && time - (this.lastRenderAt || 0) < 1000 / 30) {
+      requestAnimationFrame(this.frame);
+      return;
+    }
+    this.lastRenderAt = time;
     const delta = Math.min(1 / 30, Math.max(0.001, (time - this.lastTime) / 1000));
     this.lastTime = time;
-    if (!document.hidden) {
+    const covered = this.detailOpen || this.teamOpen || this.profileOpen || this.menuOpen || document.querySelector("dialog[open]");
+    if (!document.hidden && !covered) {
       this.update(delta, time);
       this.render(time);
     }
@@ -3207,9 +3238,11 @@ class PortfolioScene {
     gl.bindTexture(gl.TEXTURE_2D, this.environmentTexture);
 
     const model = createMat4();
-    const baseScale = this.mobile ? 1.8 : window.innerWidth <= 1024 ? 0.8 : 1.14;
+    const baseScale = this.mobile ? (this.introOpen ? 1.05 : 0.58) : window.innerWidth <= 1024 ? 0.8 : 1.14;
     const fishScale = baseScale * 0.76;
-    const fishPosition = [0.72, -0.04, this.layouts.centerZ + 0.46];
+    const fishPosition = this.mobile
+      ? this.introOpen ? [1.5, -3.0, this.layouts.centerZ + 1] : [1.2, -1.2, this.layouts.centerZ - 0.8]
+      : [0.72, -0.04, this.layouts.centerZ + 0.46];
     this.duckBubbleAnchor = { position: fishPosition, scale: fishScale };
     mat4Compose(
       model,
@@ -3307,6 +3340,7 @@ class PortfolioScene {
   }
 
   renderProjects(time) {
+    if (this.mobile && this.introOpen) { this.hitAreas = []; return; }
     const gl = this.gl;
     const locations = this.planeLocations;
     const reduced = this.isReducedMotion();
@@ -3378,7 +3412,7 @@ class PortfolioScene {
         gl.uniform1f(locations.active, 0);
         gl.uniform1f(locations.dim, 0);
         gl.uniform1f(locations.fog, 0);
-        gl.uniform1f(locations.categoryHighlight, categoryHighlight);
+        gl.uniform1f(locations.categoryHighlight, categoryHighlight * (this.mobile ? 0.3 : 0.7));
         gl.uniform1f(locations.categoryFilter, this.categoryFilterMix);
         gl.uniform1f(locations.glowPass, 1);
         gl.enable(gl.BLEND);
@@ -3421,6 +3455,12 @@ class PortfolioScene {
   }
 
   startFocus(index, origin = [window.innerWidth / 2, window.innerHeight / 2], pushHistory = true, instant = false) {
+    if (!this.running) {
+      if (pushHistory) history.pushState({ project: PROJECTS[index].id }, "", `#${PROJECTS[index].id}`);
+      document.body.classList.add("is-locked");
+      this.showProjectView(index, origin);
+      return;
+    }
     if (this.focus || this.detailOpen || this.menuOpen) return;
     this.setIntro(false);
     const projectIndex = clamp(index, 0, PROJECTS.length - 1);
@@ -3451,7 +3491,7 @@ class PortfolioScene {
       index: projectIndex,
       origin,
       started: performance.now(),
-      duration: instant || this.isReducedMotion() ? 1 : 980,
+      duration: instant || this.isReducedMotion() ? 1 : this.mobile ? 320 : 650,
       instant,
       progress: 0,
       startEye: [...this.cameraEye],
@@ -3502,6 +3542,7 @@ class PortfolioScene {
       button.addEventListener('click', () => this.requestCloseProject());
     });
     this.projectScroll.scrollTop = 0;
+    window.dispatchEvent(new Event("portfolio:detail"));
     this.projectView.setAttribute("aria-hidden", "false");
     if (this.experience) this.experience.inert = true;
     requestAnimationFrame(() => {
@@ -3540,14 +3581,16 @@ class PortfolioScene {
     this.projectView?.setAttribute("aria-hidden", "true");
     this.detailOpen = false;
     this.focus = null;
-    this.setProjectFilter(returnGroup, { instant: true });
+    const returnIndex = this.activeDetailIndex;
+    this.setProjectFilter(returnGroup, { instant: true, focusFirst: false });
+    if (Number.isInteger(returnIndex)) this.scrollToProject(returnIndex);
     this.experience?.classList.remove("is-focusing");
     if (this.experience) this.experience.inert = false;
     document.body.classList.remove("is-locked");
     if (!fromHistory && window.location.hash) history.replaceState({}, "", `${window.location.pathname}${window.location.search}`);
     window.setTimeout(() => {
       if (this.projectView && !this.detailOpen) this.projectView.hidden = true;
-      document.querySelector("[data-view-active]")?.focus({ preventScroll: true });
+      if (!this.detailOpen && !this.profileOpen && !this.teamOpen && !document.querySelector("[data-nesto-dialog]")?.open) document.querySelector("[data-view-active]")?.focus({ preventScroll: true });
     }, delay);
   }
 }
@@ -3594,7 +3637,7 @@ function projectDetailMarkup(project, projectIndex, showAllProjects = false) {
     .join("");
 
   return `
-    <section class="detail-hero detail-hero--${project.orientation}" data-index="${project.index}">
+    <section data-reader-section="01 / PROJECT" class="detail-hero detail-hero--${project.orientation}" data-index="${project.index}">
       <div class="detail-hero__copy">
         <p class="detail-kicker">${project.index} / ${project.category} / ${project.year}</p>
         <h2>${project.title}</h2>
@@ -3605,7 +3648,7 @@ function projectDetailMarkup(project, projectIndex, showAllProjects = false) {
         <dl class="detail-facts">
           <div><dt>Scope</dt><dd>${project.scope}</dd></div>
           <div><dt>Format</dt><dd>${project.format}</dd></div>
-          <div><dt>Year</dt><dd>${project.year}</dd></div>
+          <div><dt>Collection</dt><dd>SELECTED WORK</dd></div>
         </dl>
       </div>
       <div class="detail-presentation" aria-label="${project.category} 적용 예시">
@@ -3617,11 +3660,11 @@ function projectDetailMarkup(project, projectIndex, showAllProjects = false) {
       </div>
     </section>
 
-    ${project.orientation === 'detail' ? `<section class="detail-original"><p class="detail-section-label">FULL PAGE / 전체 상세페이지</p><img src="${project.imageSrc}" alt="${project.title} 전체 상세페이지" width="860" height="${project.imageElement?.naturalHeight || 10000}" /></section>` : ''}
 
-    <section class="detail-intro">
+
+    <section class="detail-intro" data-reader-section="02 / CONCEPT">
       <div>
-        <p class="detail-section-label">01 / DESIGN INTENT + DECISIONS</p>
+        <p class="detail-section-label">02 / CONCEPT + DECISIONS</p>
         <h3>${project.headline}</h3>
       </div>
       <div class="detail-intro__body">
@@ -3636,9 +3679,9 @@ function projectDetailMarkup(project, projectIndex, showAllProjects = false) {
       </div>
     </section>
 
-    <section class="detail-system">
+    <section class="detail-system" data-reader-section="03 / DESIGN">
       <div>
-        <p class="detail-section-label">02 / COLOR RATIONALE</p>
+        <p class="detail-section-label">03 / DESIGN · COLOR</p>
         <h3>COLOR &amp;<br>CHARACTER.</h3>
       </div>
       <div class="detail-system__right">
@@ -3647,15 +3690,17 @@ function projectDetailMarkup(project, projectIndex, showAllProjects = false) {
       </div>
     </section>
 
-    <section class="detail-system detail-outcome">
+    <section class="detail-system detail-outcome" data-reader-section="04 / RESULT">
       <div>
-        <p class="detail-section-label">03 / EXPECTED EXPERIENCE</p>
+        <p class="detail-section-label">04 / RESULT · EXPECTED EXPERIENCE</p>
         <h3>SEE.<br>FEEL.<br>ACT.</h3>
       </div>
       <div class="detail-system__right">
         <p>${project.effect}</p>
       </div>
     </section>
+
+    ${project.orientation === 'detail' ? `<section class="detail-original" data-reader-section="05 / FULL PAGE"><details class="full-artwork"><summary>전체 상세페이지 펼쳐 보기 <span>FULL PAGE ↗</span></summary><img src="${project.imageSrc}" alt="${project.title} 전체 상세페이지" loading="lazy" decoding="async" /></details></section>` : ''}
 
     <nav class="detail-navigation" aria-label="${navigation.category.label} 작품 탐색">
       ${navigation.previous ? `<button type="button" data-detail-project="${navigation.previous.id}">← 이전 ${navigation.category.label} 작품<span>${navigation.previous.title}</span></button>` : `<p>${navigation.category.label}의 첫 번째 작품입니다.</p>`}
