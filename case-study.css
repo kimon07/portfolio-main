@@ -29,9 +29,10 @@
 .case-facts dd { margin:9px 0 0; font-size:13px; line-height:1.55; }
 .case-cover { margin:0; min-width:0; height:auto; max-height:none; overflow:visible; }
 .case-cover__viewport { position:relative; width:100%; height:auto; max-height:none; aspect-ratio:1600 / 1000; overflow:hidden; background:#f3f1e8; }
-.case-cover__frame { position:absolute; top:0; left:0; display:block; width:1600px; height:1000px; border:0; transform-origin:top left; pointer-events:none; opacity:0; }
+.case-cover__viewport img { display:block; width:100%; height:100%; object-fit:cover; }
+.case-cover__frame { position:absolute; top:0; left:0; display:block; width:1600px; height:1000px; border:0; transform-origin:top left; pointer-events:auto; opacity:0; }
 .case-cover__frame.is-loaded { opacity:1; }
-.case-cover > img { display:block; width:100%; height:auto; max-height:none; aspect-ratio:auto; object-fit:contain; object-position:center; border-radius:0; margin:0; }
+.case-cover .case-cover__toggle { position:absolute; z-index:2; right:12px; bottom:12px; min-height:44px; padding:10px 14px; background:#f1ede2; color:#10261b; font:600 12px/1.4 var(--mono); cursor:pointer; }
 .case-cover figcaption { padding-top:20px; border-top:1px solid #b7b9af; }
 .case-cover figcaption > span { font:10px/1.5 var(--mono); letter-spacing:.08em; color:var(--case-muted); }
 .case-cover figcaption p { font-size:17px; line-height:1.65; margin:11px 0; }
@@ -113,7 +114,7 @@
 .case-live-stage[data-device="mobile"] .case-live-viewport { transform:none; rotate:0deg; border-radius:0 0 20px 20px; }
 .case-live-stage[data-device="mobile"] .case-live-viewport > img { object-fit:cover; object-position:center top; }
 .case-live-viewport > img { width:100%; height:100%; display:block; object-fit:cover; object-position:top; }
-.case-live-viewport iframe { position:absolute; inset:0; display:block; width:var(--case-preview-width,1600px); height:var(--case-preview-height,1000px); max-width:none; border:0; transform:scale(var(--case-preview-scale,1)); transform-origin:top left; background:#f1ede2; }
+.case-live-viewport iframe { position:absolute; inset:0; display:block; width:var(--case-preview-width,1600px); height:var(--case-preview-height,1000px); max-width:none; border:0; pointer-events:auto; transform:scale(var(--case-preview-scale,1)); transform-origin:top left; background:#f1ede2; }
 .case-live-viewport [hidden] { display:none; }
 .case-launch { position:absolute; inset:0; margin:auto; width:max-content; max-width:90%; height:56px; display:flex; align-items:center; gap:16px; border:1px solid #f6f4ed; border-radius:0; padding:0 25px; background:var(--blue); color:white; box-shadow:0 8px 40px #0003; font-size:15px; }
 .case-launch > span { font-size:24px; }

@@ -1918,7 +1918,10 @@ class PortfolioScene {
     this.layoutVelocity = 0;
     this.orbitRotation = 0;
     this.lastOrbitInput = Number.NEGATIVE_INFINITY;
-    this.duckRotationY = 0.88;
+    // The model's face points along local +X. Start phones half a turn around
+    // so the prominent mobile duck greets the viewer instead of facing away.
+    this.duckFrontRotation = this.mobile ? 0.88 + Math.PI : 0.88;
+    this.duckRotationY = this.duckFrontRotation;
     this.duckSpinVelocity = 0;
     this.isDuckDragging = false;
     this.duckDragStartX = 0;
@@ -2021,13 +2024,13 @@ class PortfolioScene {
       this.envelopeGeometry = createEnvelopeGeometry(this.gl);
       this.environmentTexture = createStudioEnvironmentTexture(this.gl);
       this.textures = [];
-      const scratch = document.createElement("canvas");
-      for (let index = 0; index < PROJECTS.length; index += 1) {
-        const project = PROJECTS[index];
-        const canLoadArtwork = project.imageSrc && (
-          window.location.protocol !== "file:" || project.imageSrc.startsWith("data:")
-        );
-        if (canLoadArtwork) {
+      // Decode a few artworks at a time so one slow image does not hold up
+      // every following image, while avoiding a burst of 16 decodes on phones.
+      let nextArtwork = 0;
+      const loadArtwork = async () => {
+        while (nextArtwork < PROJECTS.length) {
+          const project = PROJECTS[nextArtwork++];
+          if (!project.imageSrc || (location.protocol === "file:" && !project.imageSrc.startsWith("data:"))) continue;
           try {
             project.imageElement = await new Promise((resolve, reject) => {
               const image = new Image();
@@ -2040,6 +2043,10 @@ class PortfolioScene {
             console.warn(`Could not load artwork: ${project.title}`, error);
           }
         }
+      };
+      await Promise.all(Array.from({ length: Math.min(3, PROJECTS.length) }, loadArtwork));
+      const scratch = document.createElement("canvas");
+      for (let index = 0; index < PROJECTS.length; index += 1) {
         drawProjectArtwork(scratch, PROJECTS[index]);
         this.textures.push(createTextureFromCanvas(this.gl, scratch));
         this.setLoading(0.12 + ((index + 1) / PROJECTS.length) * 0.82);
@@ -2133,6 +2140,7 @@ class PortfolioScene {
   }
 
   setIntro(open, moveFocus = false) {
+    const wasIntroOpen = this.introOpen;
     this.introOpen = open;
     this.experience?.classList.toggle("is-intro", open);
     if (this.intro) {
@@ -2143,7 +2151,15 @@ class PortfolioScene {
     if (controls) controls.inert = open;
     if (!open) {
       this.lastOrbitInput = performance.now();
-      if (this.mobile) this.lastMobileWheelAt = this.lastOrbitInput;
+      if (this.mobile) {
+        this.lastMobileWheelAt = this.lastOrbitInput;
+        // The intro's idle spin can stop at any angle. Return to the authored
+        // front-facing pose before the duck settles into the mobile gallery.
+        if (wasIntroOpen) {
+          this.duckRotationY = this.duckFrontRotation;
+          this.duckSpinVelocity = 0;
+        }
+      }
     }
     if (moveFocus) {
       const target = open ? "[data-enter-work]" : "[data-layout].is-active";
@@ -2303,6 +2319,11 @@ class PortfolioScene {
     this.mobile = window.matchMedia("(max-width: 760px)").matches;
     if (!this.gl || !this.canvas) return;
     if (wasMobile !== this.mobile) {
+      this.duckFrontRotation = this.mobile ? 0.88 + Math.PI : 0.88;
+      if (this.mobile) {
+        this.duckRotationY = this.duckFrontRotation;
+        this.duckSpinVelocity = 0;
+      }
       this.layouts = buildLayouts(this.mobile);
       this.visibleIndices = this.mobile && this.activeGroup !== 'all'
         ? PROJECTS.reduce((indices, project, index) => {
@@ -3094,7 +3115,8 @@ class PortfolioScene {
       this.orbitRotation = (this.orbitRotation + delta * (Math.PI * 2 / 68)) % (Math.PI * 2);
     }
     if (!this.isDuckDragging && !reduced && (!this.mobile || this.introOpen) && this.sceneMode === "index" && !this.focus && !this.menuOpen && !this.profileOpen && !this.contactOpen) {
-      this.duckRotationY += delta * (Math.PI * 2 / 32);
+      const duckRotationDuration = this.mobile ? 26 : 32;
+      this.duckRotationY += delta * (Math.PI * 2 / duckRotationDuration);
       this.duckRotationY = (this.duckRotationY + Math.PI * 2) % (Math.PI * 2);
       this.duckSpinVelocity *= 0.987;
     } else if (!this.isDuckDragging) {

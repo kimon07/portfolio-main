@@ -3,10 +3,11 @@
   const isPortfolio = typeof portfolioScene !== 'undefined';
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   const routes = { home: ['WORKS', '그래픽 · 콘텐츠 디자인'], about: ['ABOUT', '소개 · 스킬'], personal: ['PERSONAL PROJECT', 'NESTO · 가구 쇼핑몰'], team: ['TEAM PROJECT', 'AESOP · 웹 리디자인'] };
+  const routeHashes = { home:'works', about:'about', personal:'personal-project', team:'team-project' };
   const directory = document.createElement('dialog');
   directory.className = 'reader-directory';
   directory.setAttribute('aria-label', '포트폴리오 전체 메뉴');
-  directory.innerHTML = `<header><span>GAON KIM / PORTFOLIO</span><button type="button" data-directory-close>닫기 ×</button></header><nav aria-label="포트폴리오 영역">${Object.entries(routes).map(([route, [label, note]], i) => `<a href="index.html#${{home:'works',about:'about',personal:'personal-project',team:'team-project'}[route]}" data-portfolio-route="${route}"><small>0${i + 1}</small><strong>${label}</strong><span>${note}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>`;
+  directory.innerHTML = `<header><span>GAON KIM / PORTFOLIO</span><button type="button" data-directory-close>닫기 ×</button></header><nav aria-label="포트폴리오 영역">${Object.entries(routes).map(([route, [label, note]], i) => `<a href="index.html#${routeHashes[route]}" data-portfolio-route="${route}"><small>0${i + 1}</small><strong>${label}</strong><span>${note}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>`;
   document.body.append(directory);
   directory.querySelector('[data-directory-close]').addEventListener('click', () => directory.close());
   directory.addEventListener('click', event => { if (event.target === directory) directory.close(); });
@@ -18,7 +19,7 @@
     if (!isPortfolio) {
       if (window.parent !== window) {
         window.parent.postMessage({ type: 'portfolio:navigate', route }, location.origin === 'null' ? '*' : location.origin);
-      } else location.href = `index.html#${{home:'works',about:'about',personal:'personal-project',team:'team-project'}[route]}`;
+      } else location.href = `index.html#${routeHashes[route]}`;
       return;
     }
     routing = true;
@@ -34,7 +35,7 @@
       scene.closeContact(true);
       await new Promise(resolve => setTimeout(resolve, reduced() ? 20 : 1000));
     }
-    const hash = { home:'works', about:'about', personal:'personal-project', team:'team-project' }[route];
+    const hash = routeHashes[route];
     history.pushState({ route: hash }, '', `#${hash}`);
     scene.setIntro(false);
     if (route === 'about') scene.openProfile(false);
@@ -69,6 +70,27 @@
   });
 
   const chapterCleanup = new WeakMap();
+  function setProjectChapterColors(project) {
+    const view = document.querySelector('[data-project-view]');
+    const contrast = (a, b) => {
+      const light = hex => {
+        const rgb = hex.match(/[\da-f]{2}/gi)?.slice(0, 3).map(value => {
+          const channel = parseInt(value, 16) / 255;
+          return channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4;
+        });
+        return rgb ? rgb[0] * .2126 + rgb[1] * .7152 + rgb[2] * .0722 : 0;
+      };
+      const x = light(a), y = light(b);
+      return (Math.max(x, y) + .05) / (Math.min(x, y) + .05);
+    };
+    const paper = project.background;
+    const ink = project.ink;
+    const accent = [project.palette[0], project.palette[1], project.palette[2]]
+      .find(color => /^#[\da-f]{6}$/i.test(color) && contrast(color, paper) >= 4.5) || ink;
+    view.style.setProperty('--chapter-paper', paper);
+    view.style.setProperty('--chapter-ink', ink);
+    view.style.setProperty('--chapter-accent', accent);
+  }
   function setupChapters(root, selector, documentScroll = false) {
     chapterCleanup.get(root)?.();
     root.querySelector(':scope > .reader-chapters')?.remove();
@@ -142,8 +164,9 @@
     document.body.append(artworkDialog);
     artworkDialog.addEventListener('click', event => { if(event.target === artworkDialog) artworkDialog.close(); });
     window.addEventListener('portfolio:detail', () => {
-      setupChapters(details, '[data-reader-section]');
       const project = PROJECTS[portfolioScene.activeDetailIndex];
+      setProjectChapterColors(project);
+      setupChapters(details, '[data-reader-section]');
       details.querySelectorAll('[data-detail-art]').forEach(canvas => {
         const button = document.createElement('button'); button.type = 'button'; button.className = 'artwork-zoom';
         button.setAttribute('aria-label',`${project.title} 원본 확대 보기`);
@@ -161,7 +184,7 @@
     setupChapters(document.querySelector('[data-profile-scroll]'), '[data-reader-section]');
 
     const introLinks = document.createElement('nav'); introLinks.className = 'intro-projects'; introLinks.setAttribute('aria-label','주요 프로젝트 바로가기');
-    introLinks.innerHTML = '<a href="#personal-project" data-portfolio-route="personal"><span>PERSONAL PROJECT</span>NESTO ↗</a><a href="#team-project" data-portfolio-route="team"><span>TEAM PROJECT</span>AESOP ↗</a>';
+    introLinks.innerHTML = '<a href="#personal-project" data-portfolio-route="personal"><span>PERSONAL / WEB DESIGN</span><strong>NESTO <i aria-hidden="true">↗</i></strong><small>가구 쇼핑몰 리디자인</small></a><a href="#team-project" data-portfolio-route="team"><span>TEAM / WEB DESIGN</span><strong>AESOP <i aria-hidden="true">↗</i></strong><small>웹 리디자인 · 디자인 50%</small></a>';
     document.querySelector('.intro__copy').append(introLinks);
     const gallery = document.createElement('dialog'); gallery.className = 'works-directory'; gallery.setAttribute('aria-label','전체 작품 목록');
     gallery.innerHTML = `<header><div><p>SELECTED WORKS</p><h2>작품을 한눈에.</h2></div><button type="button" data-gallery-close>전시로 돌아가기 ×</button></header><div class="works-directory__filters" role="group" aria-label="작품 분류">${[{id:'all',label:'전체'},...WORK_CATEGORIES].map(group => `<button type="button" data-gallery-filter="${group.id}" aria-pressed="false">${group.label}</button>`).join('')}</div><p class="works-directory__status" role="status"></p><div class="works-directory__grid"></div>`;

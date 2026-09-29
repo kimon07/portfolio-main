@@ -59,22 +59,37 @@
   const stage = root.querySelector('[data-case-live-stage]');
   const frame = root.querySelector('[data-case-frame]');
   const coverViewport = root.querySelector('[data-case-cover-viewport]');
-  const coverFrame = root.querySelector('[data-case-cover-frame]');
+  const coverToggle = root.querySelector('[data-case-cover-toggle]');
   const poster = root.querySelector('[data-case-poster]');
   const launch = root.querySelector('[data-case-launch]');
   const status = root.querySelector('[data-case-status]');
   const url = 'https://octos8.github.io/Aesop-projects/';
   let started = false, loadTimer;
+  let coverFrame;
   const resizeCover = () => {
-    if (!coverViewport || !coverFrame) return;
-    coverFrame.style.transform = `scale(${coverViewport.clientWidth / 1600})`;
+    if (coverFrame) coverFrame.style.transform = `scale(${coverViewport.clientWidth / 1600})`;
   };
-  if (coverViewport) new ResizeObserver(resizeCover).observe(coverViewport);
-  coverFrame?.addEventListener('load', () => {
+  new ResizeObserver(resizeCover).observe(coverViewport);
+  coverToggle.addEventListener('click', () => {
+    if (coverFrame) {
+      coverFrame.remove();
+      coverFrame = null;
+      coverToggle.textContent = '메인 배너 재생 ↗';
+      coverToggle.setAttribute('aria-pressed', 'false');
+      return;
+    }
+    coverFrame = document.createElement('iframe');
+    coverFrame.className = 'case-cover__frame';
+    coverFrame.title = '직접 탐색하는 Aesop 리디자인 메인 화면';
+    coverFrame.referrerPolicy = 'no-referrer';
+    const currentFrame = coverFrame;
+    currentFrame.addEventListener('load', () => currentFrame.classList.add('is-loaded'), { once:true });
+    coverViewport.insertBefore(coverFrame, coverToggle);
     resizeCover();
-    coverFrame.classList.add('is-loaded');
+    coverFrame.src = url;
+    coverToggle.textContent = '메인 배너 닫기 ×';
+    coverToggle.setAttribute('aria-pressed', 'true');
   });
-  resizeCover();
   const start = () => {
     started = true; frame.hidden = false; poster.hidden = true; launch.hidden = true;
     status.textContent = '사이트를 불러오는 중입니다. 표시되지 않으면 위의 새 창 링크를 이용해 주세요.';
