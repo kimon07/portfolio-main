@@ -4,6 +4,43 @@
 @media(max-width:360px){.n-hero-copy h1{font-size:41px}.n-hero-copy small{font-size:7px}.n-brand h2{font-size:46px}.n-heading h2{font-size:23px}.n-heading>a{font-size:7px}.n-card-info h3{font-size:11px}.n-price strong{font-size:12px}.n-price b{font-size:11px}.n-notice{font-size:9px;gap:10px}.n-notice>button{font-size:8px}.smart-overlay-menu-2 .user-menu{gap:12px;font-size:8px}.n-actions>.n-btn{padding-inline:12px}.n-tabs{font-size:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
+/* Two-tier storefront header. */
+.logo .n-brand-logo { display:block; width:140px; height:auto; object-fit:contain; }
+.n-photo-crop {
+  position: relative;
+  overflow: hidden;
+  background: #ffb21a;
+}
+
+.n-photo-crop > img {
+  position: absolute;
+  max-width: none;
+  object-fit: fill;
+}
+
+@media (min-width:1025px) {
+  html { scroll-padding-top:204px; }
+  .pc .common-frame { width:100%; max-width:none; padding-inline:48px; }
+  .pc .header-top>.common-frame { height:100px; }
+  .pc .logo a { width:140px; height:100px; justify-content:center; }
+  .pc .user-menu { gap:16px; font-size:12px; }
+  .pc .user-menu a { gap:6px; white-space:nowrap; }
+  .pc .user-menu img { width:24px; height:24px; }
+  .pc .header-bottom { background:#ffba35; border:0; }
+  .pc .gnb { height:50px; gap:16px; font-size:20px; font-weight:700; letter-spacing:0; }
+  .pc .gnb>li>a:hover { color:#111; text-decoration:underline; text-underline-offset:5px; }
+  .pc .gnb2depth { top:50px; }
+  .n-main { margin-top:150px; }
+  .n-tabs { top:150px; }
+}
+@media (max-width:1024px) {
+  .logo .n-brand-logo { width:110px; height:auto; }
+  .smart-overlay-menu-top { background:#ffba35; }
+}
+@media (max-width:700px) {
+  .logo .n-brand-logo { width:100px; height:auto; }
+}
+
 /* Mobile navigation uses full touch targets, with all categories visible. */
 @media (max-width:1024px) {
   .smart-header .common-frame .btn-menu,.btn-menu-close { right:calc(4.5% - 12px); }

@@ -2471,6 +2471,10 @@ class PortfolioScene {
   }
 
   handleWheel(event) {
+    // Modal directories and other overlays own their scroll. Do not let the
+    // fixed 3D exhibition intercept wheel/trackpad input that starts inside
+    // one of them.
+    if (event.target instanceof Element && event.target.closest("dialog[open]")) return;
     if (this.detailOpen || this.transitioning || this.menuOpen || this.profileOpen || this.teamOpen || this.contactOpen || this.focus) return;
     if (this.introOpen) {
       event.preventDefault();

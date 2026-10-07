@@ -1,3 +1,20 @@
+.n-main > .n-hero {
+    height: auto;
+    aspect-ratio: 1920 / 810;
+    padding: 0;
+}
+
+.n-banner-heading {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
 .n-slides {
     display: flex;
     width: 100%;
@@ -6,12 +23,112 @@
 }
 
 .n-slide {
+    display: block;
     flex: 0 0 100%;
     min-width: 100%;
 }
 
+.n-banner-link,
+.n-banner-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.n-banner-link {
+    padding: 0;
+    border: 0;
+    background: none;
+    line-height: 0;
+}
+
+.n-banner-link:focus-visible {
+    outline: 3px solid #47200c;
+    outline-offset: -6px;
+}
+
+/* Each supplied artwork includes its own logo, copy, CTA and desktop counter. */
+.n-banner-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .n-slide[aria-hidden="true"] {
     visibility: visible;
+}
+
+.n-hero-controls {
+    left: 50%;
+    bottom: 5.5%;
+    transform: translateX(-50%);
+    gap: 0;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    color: #fff;
+}
+
+.n-hero-controls > div {
+    gap: 0;
+}
+
+.n-hero-controls button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    font-size: 18px;
+    text-shadow: 0 1px 3px #71360980;
+}
+
+.n-hero-controls [data-slide] {
+    opacity: 1;
+    border: 0;
+}
+
+.n-hero-controls [data-slide]::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .5;
+    box-shadow: 0 1px 3px #71360940;
+}
+
+.n-hero-controls [aria-pressed="true"]::after {
+    opacity: 1;
+}
+
+.n-hero-controls [data-slide-pause] {
+    font-size: 14px;
+}
+
+.n-hero-controls button:focus-visible {
+    outline: 2px solid #47200c;
+    outline-offset: -3px;
+    border-radius: 50%;
+}
+
+@media (max-width: 1024px) {
+    .n-main > .n-hero {
+        aspect-ratio: 1024 / 900;
+    }
+}
+
+@media (max-width: 700px) {
+    .n-main > .n-hero {
+        aspect-ratio: 402 / 500;
+    }
+
+    .n-hero-controls {
+        bottom: 0;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

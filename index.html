@@ -20,14 +20,14 @@
     <script src="script.js?v=20260929-refine" defer></script>
     <script src="case-study.js?v=20260929-category-fix" defer></script>
     <link rel="stylesheet" href="nesto-integration.css" />
-    <link rel="stylesheet" href="portfolio-ux.css?v=20260929-menu-visible" />
-    <script src="portfolio-ux.js?v=20260929-chapter-colors" defer></script>
+    <link rel="stylesheet" href="portfolio-ux.css?v=20261007-menu-navigation" />
+    <script src="portfolio-ux.js?v=20261007-menu-navigation" defer></script>
     <script src="nesto-integration.js" defer></script>
   </head>
   <body id="start">
     <a class="skip-link" href="#portfolio-ui">포트폴리오 탐색 UI로 이동</a>
 
-    <main class="experience" data-experience aria-label="3D 포트폴리오 전시">
+    <main class="experience" id="works" data-experience aria-label="3D 포트폴리오 전시">
       <canvas
         class="space-canvas"
         data-space-canvas
@@ -173,7 +173,7 @@
       </div>
     </section>
 
-    <section class="profile-view" data-profile-view hidden aria-hidden="true">
+    <section class="profile-view" id="about" data-profile-view hidden aria-hidden="true">
       <header class="profile-view__header">
         <button type="button" data-profile-close><span aria-hidden="true">←</span> BACK TO SPACE</button>
         <p>ABOUT / SKILLS</p>
@@ -270,7 +270,7 @@
     </section>
 
 
-    <section class="team-view" data-team-view hidden aria-hidden="true">
+    <section class="team-view" id="team-project" data-team-view hidden aria-hidden="true">
       <header class="team-view__header">
         <button type="button" data-team-close><span aria-hidden="true">←</span> BACK TO SPACE</button>
         <p>TEAM PROJECT / 01</p>

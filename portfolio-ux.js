@@ -4,28 +4,42 @@
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   const routes = { home: ['WORKS', '그래픽 · 콘텐츠 디자인'], about: ['ABOUT', '소개 · 스킬'], personal: ['PERSONAL PROJECT', 'NESTO · 가구 쇼핑몰'], team: ['TEAM PROJECT', 'AESOP · 웹 리디자인'] };
   const routeHashes = { home:'works', about:'about', personal:'personal-project', team:'team-project' };
+  const routeUrls = { home:'index.html#works', about:'index.html#about', personal:'nesto.html', team:'index.html#team-project' };
   const directory = document.createElement('dialog');
   directory.className = 'reader-directory';
   directory.setAttribute('aria-label', '포트폴리오 전체 메뉴');
-  directory.innerHTML = `<header><span>GAON KIM / PORTFOLIO</span><button type="button" data-directory-close>닫기 ×</button></header><nav aria-label="포트폴리오 영역">${Object.entries(routes).map(([route, [label, note]], i) => `<a href="index.html#${routeHashes[route]}" data-portfolio-route="${route}"><small>0${i + 1}</small><strong>${label}</strong><span>${note}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>`;
+  directory.innerHTML = `<header><span>GAON KIM / PORTFOLIO</span><button type="button" data-directory-close>닫기 ×</button></header><nav aria-label="포트폴리오 영역">${Object.entries(routes).map(([route, [label, note]], i) => `<a href="${routeUrls[route]}" data-portfolio-route="${route}"><small>0${i + 1}</small><strong>${label}</strong><span>${note}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>`;
   document.body.append(directory);
   directory.querySelector('[data-directory-close]').addEventListener('click', () => directory.close());
   directory.addEventListener('click', event => { if (event.target === directory) directory.close(); });
 
   function openDirectory() { if (!directory.open) directory.showModal(); }
+  async function closeDirectoryForNavigation() {
+    if (!directory.open) return;
+    directory.classList.add('is-closing');
+    if (!reduced()) await new Promise(resolve => setTimeout(resolve, 220));
+    directory.close();
+    directory.classList.remove('is-closing');
+  }
   let routing = false;
   async function navigate(route) {
     if (!routes[route] || routing) return;
+    routing = true;
+    await closeDirectoryForNavigation();
     if (!isPortfolio) {
-      if (window.parent !== window) {
+      if (window.parent !== window && route !== 'personal') {
         window.parent.postMessage({ type: 'portfolio:navigate', route }, location.origin === 'null' ? '*' : location.origin);
-      } else location.href = `index.html#${routeHashes[route]}`;
+      } else location.href = routeUrls[route];
+      routing = false;
       return;
     }
-    routing = true;
-    directory.close();
+    if (route === 'personal') {
+      location.href = routeUrls.personal;
+      return;
+    }
     document.querySelector('.works-directory')?.close();
-    document.querySelector('[data-nesto-dialog]')?.close();
+    const nestoDialog = document.querySelector('[data-nesto-dialog]');
+    if (nestoDialog?.open) nestoDialog.close();
     const scene = portfolioScene;
     scene.closeMenu();
     scene.closeTeamProject(true);
@@ -40,7 +54,6 @@
     scene.setIntro(false);
     if (route === 'about') scene.openProfile(false);
     else if (route === 'team') scene.openTeamProject(false);
-    else if (route === 'personal') document.querySelector('[data-nesto-open]')?.click();
     else {
       scene.setProjectFilter('all');
       document.querySelector('[data-category-open="all"]')?.focus({preventScroll:true});
@@ -52,7 +65,10 @@
     const menu = event.target.closest('[data-reader-menu]');
     if (menu) { openDirectory(); return; }
     const link = event.target.closest('[data-portfolio-route]');
-    if (link) { event.preventDefault(); navigate(link.dataset.portfolioRoute); }
+    if (link && !event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+      event.preventDefault();
+      navigate(link.dataset.portfolioRoute);
+    }
   });
   // Escape inside a native dialog must not also close the underlying project.
   window.addEventListener('keydown', event => {

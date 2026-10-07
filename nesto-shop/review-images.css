@@ -1,25 +1,25 @@
 .n-review-photos > button {
-    width: 104px;
-    border-radius: 3px;
-    overflow: hidden;
+  width: 104px;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .n-review-photo {
-    width: 100%;
-    aspect-ratio: 4 / 7;
-    background-image: var(--review-image);
-    background-size: 500% auto;
-    background-position: var(--review-x) center;
-    background-repeat: no-repeat;
-    transition: transform .25s ease;
+  width: 100%;
+  aspect-ratio: 1;
+  background-image: var(--review-image);
+  background-size: 300% 100%;
+  background-position: var(--review-x) center;
+  background-repeat: no-repeat;
+  transition: transform 0.25s ease;
 }
 
 .n-review-photos > button:hover .n-review-photo {
-    transform: scale(1.035);
+  transform: scale(1.035);
 }
 
 .n-review-photo-large {
-    width: min(420px, 100%);
-    margin: auto;
-    aspect-ratio: 4 / 7;
+  width: min(420px, 100%);
+  margin: auto;
+  aspect-ratio: 1;
 }

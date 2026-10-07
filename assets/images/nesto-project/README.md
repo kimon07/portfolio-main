@@ -10,5 +10,14 @@ Both files are in assets/nesto/. Image generation prompts specify a warm, bright
 
 Case-study cover screenshots (local storefront, not generated mockups):
 - showcase-desktop.png: `nesto-shop/index.html`, desktop home at 1440 × 1280.
-- showcase-mobile.png: `nesto-shop/list.html`, mobile catalog at 390 × 1050.
+- showcase-mobile.png: `nesto-shop/index.html`, mobile home at 390 × 1050.
 The responsive composition in `nesto.html` / `nesto.css` places these actual screens together with the NESTO wordmark. Refresh the screenshots when the storefront changes.
+
+Design-decision screenshots (2026-10-06, actual local storefront):
+- `decision-home.jpg`: home, 1440 × 1000.
+- `decision-product.jpg`: MILO sofa detail (`product.html?id=1`), 1440 × 1000.
+- `decision-mobile.jpg`: the same detail, 390 × 1050.
+- `decision-spaces.jpg`: the home page's `#spaces` section.
+These screenshots support the four design-choice tabs in `nesto.html`.
+The case-study audience and shopping problems are explicitly design hypotheses;
+no interviews, competitor measurements, or conversion improvements are claimed.
