@@ -4,11 +4,11 @@
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   const routes = { home: ['WORKS', '그래픽 · 콘텐츠 디자인'], about: ['ABOUT', '소개 · 스킬'], personal: ['PERSONAL PROJECT', 'NESTO · 가구 쇼핑몰'], team: ['TEAM PROJECT', 'AESOP · 웹 리디자인'] };
   const routeHashes = { home:'works', about:'about', personal:'personal-project', team:'team-project' };
-  const routeUrls = { home:'index.html#works', about:'index.html#about', personal:'nesto.html', team:'index.html#team-project' };
+  const routeUrls = { home:'index.html#works', about:'index.html#about', personal:'nesto.html#brand', team:'index.html#team-project' };
   const directory = document.createElement('dialog');
   directory.className = 'reader-directory';
   directory.setAttribute('aria-label', '포트폴리오 전체 메뉴');
-  directory.innerHTML = `<header><span>GAON KIM / PORTFOLIO</span><button type="button" data-directory-close>닫기 ×</button></header><nav aria-label="포트폴리오 영역">${Object.entries(routes).map(([route, [label, note]], i) => `<a href="${routeUrls[route]}" data-portfolio-route="${route}"><small>0${i + 1}</small><strong>${label}</strong><span>${note}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>`;
+  directory.innerHTML = `<header><span>GAON KIM / PORTFOLIO</span><button type="button" data-directory-close>닫기 ×</button></header><nav aria-label="포트폴리오 영역">${Object.entries(routes).map(([route, [label, note]], i) => `<a href="${routeUrls[route]}"${window.parent !== window ? ' target="_top"' : ''} data-portfolio-route="${route}"><small>0${i + 1}</small><strong>${label}</strong><span>${note}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>`;
   document.body.append(directory);
   directory.querySelector('[data-directory-close]').addEventListener('click', () => directory.close());
   directory.addEventListener('click', event => { if (event.target === directory) directory.close(); });
@@ -27,9 +27,11 @@
     routing = true;
     await closeDirectoryForNavigation();
     if (!isPortfolio) {
-      if (window.parent !== window && route !== 'personal') {
-        window.parent.postMessage({ type: 'portfolio:navigate', route }, location.origin === 'null' ? '*' : location.origin);
-      } else location.href = routeUrls[route];
+      // Leave the embedded case study as well as its dialog. Each link has
+      // a real destination, independent of a parent message listener.
+      const destination = new URL(routeUrls[route], location.href).href;
+      if (window.parent !== window) window.top.location.href = destination;
+      else location.href = destination;
       routing = false;
       return;
     }
@@ -200,7 +202,7 @@
     setupChapters(document.querySelector('[data-profile-scroll]'), '[data-reader-section]');
 
     const introLinks = document.createElement('nav'); introLinks.className = 'intro-projects'; introLinks.setAttribute('aria-label','주요 프로젝트 바로가기');
-    introLinks.innerHTML = '<a href="#personal-project" data-portfolio-route="personal"><span>PERSONAL / WEB DESIGN</span><strong>NESTO <i aria-hidden="true">↗</i></strong><small>가구 쇼핑몰 리디자인</small></a><a href="#team-project" data-portfolio-route="team"><span>TEAM / WEB DESIGN</span><strong>AESOP <i aria-hidden="true">↗</i></strong><small>웹 리디자인 · 디자인 50%</small></a>';
+    introLinks.innerHTML = '<a href="nesto.html#brand" data-portfolio-route="personal"><span>PERSONAL / WEB DESIGN</span><strong>NESTO <i aria-hidden="true">↗</i></strong><small>가구 쇼핑몰 리디자인</small></a><a href="#team-project" data-portfolio-route="team"><span>TEAM / WEB DESIGN</span><strong>AESOP <i aria-hidden="true">↗</i></strong><small>웹 리디자인 · 디자인 50%</small></a>';
     document.querySelector('.intro__copy').append(introLinks);
     const gallery = document.createElement('dialog'); gallery.className = 'works-directory'; gallery.setAttribute('aria-label','전체 작품 목록');
     gallery.innerHTML = `<header><div><p>SELECTED WORKS</p><h2>작품을 한눈에.</h2></div><button type="button" data-gallery-close>전시로 돌아가기 ×</button></header><div class="works-directory__filters" role="group" aria-label="작품 분류">${[{id:'all',label:'전체'},...WORK_CATEGORIES].map(group => `<button type="button" data-gallery-filter="${group.id}" aria-pressed="false">${group.label}</button>`).join('')}</div><p class="works-directory__status" role="status"></p><div class="works-directory__grid"></div>`;
